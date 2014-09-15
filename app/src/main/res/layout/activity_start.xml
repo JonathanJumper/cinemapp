@@ -33,8 +33,8 @@
         android:inputType="text" />
 
 
-    //+60px en y
-    //+10px
+   <!--60px en y-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -5,12 +5,6 @@
     <style name="AppTheme" parent="android:Theme.Holo.Light">
 
         <!-- Customize your theme here. -->
-        <item name="android:textColor">#141414</item>
-        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
-    </style>
-
-    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_settings</item>
     </style>
 
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">

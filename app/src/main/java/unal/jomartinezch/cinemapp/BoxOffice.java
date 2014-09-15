@@ -25,7 +25,7 @@ public class BoxOffice extends Fragment {
         lv_movies = (ListView)rootView.findViewById(R.id.lvy_movies);
         String[] moviesArray = new String[movies.size()];
         for (int i = 0; i < movies.size(); i++)moviesArray[i] = movies.get(i).name;
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),  R.layout.movie_item,  moviesArray );
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,  moviesArray );
         lv_movies.setAdapter(adapter);
 
         return rootView;
