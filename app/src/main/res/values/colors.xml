@@ -1,0 +1,14 @@
+<resources>
+
+    //navigation drawer
+    <color name="black_overlay">#66000000</color>
+    <color name="list_item_title">#ffffff</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#e51c23</color>
+    <color name="list_divider">#272727</color>
+    <color name="counter_text_bg">#fff70d</color>
+    <color name="counter_text_color">#000000</color>
+
+    // box office
+    <color name="list_movie_background">#fde0dc</color>
+</resources>

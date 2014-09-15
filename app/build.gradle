@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "unal.jomartinezch.cinemapp"
+        minSdkVersion 15
+        targetSdkVersion 20
+        versionCode 1
+        versionName "0.1.2"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/jsoup-1.7.3.jar')
+    compile 'com.android.support:support-v4:20.0.0'
+}
