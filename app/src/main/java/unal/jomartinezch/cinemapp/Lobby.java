@@ -11,7 +11,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -172,6 +171,8 @@ public class Lobby extends Activity {
                 break;
             case 3:
                 fragment = new MapMe();
+                //FragmentManager fragmentManager = getFragmentManager();
+                //fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
                 break;
 
             default:

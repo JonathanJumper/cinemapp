@@ -17,8 +17,7 @@ public class BoxOffice extends Fragment {
     ListView lv_movies;
     ArrayList<Movie> movies;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         movies = ((Lobby) getActivity()).getMovies();
         View rootView = inflater.inflate(R.layout.fragment_boxoffice, container, false);

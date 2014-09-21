@@ -7,12 +7,16 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -34,6 +38,8 @@ public class Start extends Activity {
         sp_lang = (Spinner) findViewById(R.id.sp_lang);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spiner_item, langs);
         sp_lang.setAdapter(adapter);
+
+
 
         try {
             String versionName = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
