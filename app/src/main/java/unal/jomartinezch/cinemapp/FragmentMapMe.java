@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * Created by user on 26/08/2014.
  */
-public class MapMe extends Fragment {
+public class FragmentMapMe extends Fragment {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
@@ -24,7 +24,7 @@ public class MapMe extends Fragment {
         //setContentView(R.layout.activity_maps);
         //super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_mapme, container , false);
-        setUpMapIfNeeded();
+        //setUpMapIfNeeded();
         return rootView;
     }
 

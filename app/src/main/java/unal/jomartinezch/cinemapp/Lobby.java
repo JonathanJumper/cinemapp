@@ -20,6 +20,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import unal.jomartinezch.cinemapp.model.DataContainer;
+
 
 public class Lobby extends Activity {
     private DrawerLayout mDrawerLayout;
@@ -34,7 +36,18 @@ public class Lobby extends Activity {
 
     // slide menu items
     private String[] navMenuTitles;
-    public ArrayList<Movie> movies;
+    public DataContainer data;
+    public String feedUrl;
+
+    public String getFeedUrl(){
+        return feedUrl;
+    }
+    public void setData(DataContainer data){
+        this.data = data;
+    }
+    public DataContainer getData(){
+        return data;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +63,12 @@ public class Lobby extends Activity {
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
 
-        movies = new ArrayList<Movie>();
-        Bundle b = this.getIntent().getExtras();
-
         ActionBar ab = getActionBar();
         ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffeb3b")));
-        if(b!=null) movies = b.getParcelableArrayList("movies");
-        Log.d("INNN LOBBBYYY", movies.toString());
-
 
         // agregar un nuevo item al menu deslizante
         // Favoritos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1), true, "" + movies.size()));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1), true, "Peliculas"));
         // Pedidos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         // Catologo
@@ -106,6 +113,11 @@ public class Lobby extends Activity {
             // on first time display view for first nav item
             displayView(0);
         }
+
+        //get data
+        Bundle b = this.getIntent().getExtras();
+        feedUrl = b.getString("url");
+
     }
 
     /**
@@ -161,16 +173,16 @@ public class Lobby extends Activity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new BoxOffice();
+                fragment = new FragmentBoxOffice();
                 break;
             case 1:
-                fragment = new Genre();
+                fragment = new FragmentGenre();
                 break;
             case 2:
-                fragment = new Calendar();
+                fragment = new FragmentCalendar();
                 break;
             case 3:
-                fragment = new MapMe();
+                fragment = new FragmentMapMe();
                 //FragmentManager fragmentManager = getFragmentManager();
                 //fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
                 break;
@@ -191,7 +203,7 @@ public class Lobby extends Activity {
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {
             // error in creating fragment
-            Log.e("Ramiro", "MainActivity - Error cuando se creo el fragment");
+            Log.e("Error", "MainActivity - Error cuando se creo el fragment");
         }
     }
 
@@ -220,8 +232,5 @@ public class Lobby extends Activity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    public ArrayList<Movie> getMovies(){
-       return movies;
-    }
 
 }

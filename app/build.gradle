@@ -26,5 +26,7 @@ dependencies {
     compile 'com.android.support:support-v4:20.+'
     compile 'com.google.android.gms:play-services:5.0.89'
     compile 'com.mcxiaoke.volley:library:1.0.6'
+    compile 'com.google.code.gson:gson:1.7.2'
+
 }
 

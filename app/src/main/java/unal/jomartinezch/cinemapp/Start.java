@@ -1,45 +1,35 @@
 package unal.jomartinezch.cinemapp;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-
-import java.text.Normalizer;
-import java.util.ArrayList;
 
 
 public class Start extends Activity {
 
-    private final String[] langs = { "  Español", "  English", "  Français", "  Deutsch", "  Italiano" };
-    private Spinner sp_lang;
-    private EditText et;
+    private final String[] langs = { "  Español", "  English", "  Português", "  Français", "  Deutsch" };
+    private final String[] cities = { "  Bogotá", "  Medellin", "  Cali", "  Villavicencio", "  Tunja" };;
     private String city;
     private String lang;
-    private ArrayList<Movie> movies = new ArrayList<Movie>();
+    private Spinner sp_lang;
+    private Spinner sp_cities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        sp_cities = (Spinner) findViewById(R.id.sp_cities);
+        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, R.layout.spiner_item, cities);
+        sp_cities.setAdapter(adapterC);
+
         sp_lang = (Spinner) findViewById(R.id.sp_lang);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spiner_item, langs);
-        sp_lang.setAdapter(adapter);
-
-
+        ArrayAdapter<String> adapterL = new ArrayAdapter<String>(this, R.layout.spiner_item, langs);
+        sp_lang.setAdapter(adapterL);
 
         try {
             String versionName = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
@@ -52,29 +42,56 @@ public class Start extends Activity {
     }
 
     public void okOnClick(View v){
-        et = (EditText) findViewById(R.id.et_city);
-        if(TextUtils.isEmpty(et.getText())){
-            Toast.makeText(Start.this, "Ingresa tu ciudad", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            city = et.getText().toString().toLowerCase();
-            city = Normalizer.normalize(city, Normalizer.Form.NFD);
-            city = city.replaceAll("[^\\p{ASCII}]", "");
-            switch (sp_lang.getSelectedItemPosition()) {
-                case 0:
-                    lang = "es";
-                    break;
-                case 1:
-                    lang = "en";
-                    break;
-                default:
-                    lang = "es";
-                    break;
-            }
-            new getData().execute();
-        }
 
+        switch (sp_cities.getSelectedItemPosition()) {
+            case 0:
+                city = "bogota";
+                break;
+            case 1:
+                city = "medellin";
+                break;
+            case 2:
+                city = "cali";
+                break;
+            case 3:
+                city = "villavicencio";
+                break;
+            case 4:
+                city = "tunja";
+                break;
+            default:
+                city = "bogota";
+                break;
+        }
+        switch (sp_lang.getSelectedItemPosition()) {
+            case 0:
+                lang = "es";
+                break;
+            case 1:
+                lang = "en";
+                break;
+            case 2:
+                lang = "pt";
+                break;
+            case 3:
+                lang = "fr";
+                break;
+            case 4:
+                lang = "de";
+                break;
+            default:
+                lang = "es";
+                break;
+        }
+        //new getData().execute();
+
+        String url = "http://extreme-core.appspot.com/getdata?city="+city+"&lang="+lang;
+        Intent intent = new Intent();
+        intent.putExtra("url", url);
+        intent.setClass(Start.this, Lobby.class);
+        startActivity(intent);
     }
+    /*
     private class getData extends AsyncTask<Void, Void, Void>{
 
         @Override
@@ -105,5 +122,6 @@ public class Start extends Activity {
             pDialog.dismiss();
         }
     }
+    */
 
 }

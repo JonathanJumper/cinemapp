@@ -18,20 +18,15 @@
         android:textColor="#cbffffff"
         android:layout_centerHorizontal="true"
         android:layout_margin="235dp"  />
-
-    <EditText
+    <Spinner
         android:layout_width="250dp"
-        android:layout_height="32dp"
-        android:id="@+id/et_city"
+        android:layout_height="35dp"
+        android:id="@+id/sp_cities"
         android:layout_centerHorizontal="true"
         android:layout_margin="257dp"
-        android:textColor="#99ffffff"
-        android:textSize="15sp"
-        android:visibility="visible"
-        android:digits=" ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyzăâáéíîóẹịọụãảẻỉỏủñčďěíňřšșťțúůžđ"
-
-        android:inputType="text" />
-
+        android:background="#00000000"
+        android:popupBackground="#49000000"
+        android:spinnerMode="dropdown" />
 
    <!--60px en y-->
 
