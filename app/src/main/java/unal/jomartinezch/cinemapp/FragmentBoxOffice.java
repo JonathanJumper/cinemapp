@@ -63,8 +63,9 @@ public class FragmentBoxOffice extends Fragment {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                getActivity().finish();
                                 hidePDialog();
-                                Toast.makeText(getActivity(), R.string.connection_error ,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), R.string.connection_error ,Toast.LENGTH_LONG).show();
                             }
                         });
         rq.add(getData);

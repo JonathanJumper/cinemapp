@@ -1,6 +1,7 @@
 package unal.jomartinezch.cinemapp;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class Start extends Activity {
     private String lang;
     private Spinner sp_lang;
     private Spinner sp_cities;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,45 +85,28 @@ public class Start extends Activity {
                 lang = "es";
                 break;
         }
-        //new getData().execute();
 
-        String url = "http://extreme-core.appspot.com/getdata?city="+city+"&lang="+lang;
+        String feedUrl = "http://extreme-core.appspot.com/getdata?city="+city+"&lang="+lang;
+
         Intent intent = new Intent();
-        intent.putExtra("url", url);
+        intent.putExtra("url", feedUrl);
         intent.setClass(Start.this, Lobby.class);
         startActivity(intent);
+
+
     }
-    /*
-    private class getData extends AsyncTask<Void, Void, Void>{
 
-        @Override
-        protected Void doInBackground(Void... voids) {
-            movies = new MovieDataManager(city,lang).getMoviesData();
-            return null;
-        }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        hidePDialog();
+    }
 
-        ProgressDialog pDialog;
-        @Override
-        protected void onPreExecute(){
-            pDialog = new ProgressDialog(Start.this);
-            pDialog.setMessage("Monos entrenados trabajando...");
-            pDialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(Void result){
-            if(movies.isEmpty())Toast.makeText(Start.this, "No se pudo obtener informacion, Verifica los datos.", Toast.LENGTH_SHORT).show();
-            else{
-                Intent intent = new Intent();
-                Bundle b = new Bundle();
-                b.putParcelableArrayList("movies", movies);
-                intent.putExtras(b);
-                intent.setClass(Start.this, Lobby.class);
-                startActivity(intent);
-            }
+    private void hidePDialog() {
+        if (pDialog != null) {
             pDialog.dismiss();
+            pDialog = null;
         }
     }
-    */
 
 }
