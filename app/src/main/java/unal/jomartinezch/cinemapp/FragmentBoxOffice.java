@@ -3,6 +3,7 @@ package unal.jomartinezch.cinemapp;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,7 @@ public class FragmentBoxOffice extends Fragment {
                             public void onErrorResponse(VolleyError error) {
                                 getActivity().finish();
                                 hidePDialog();
+                                Log.e("Error on response", error.toString());
                                 Toast.makeText(getActivity(), R.string.connection_error ,Toast.LENGTH_LONG).show();
                             }
                         });
