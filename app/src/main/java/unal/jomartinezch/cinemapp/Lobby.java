@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -17,6 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
@@ -37,7 +44,9 @@ public class Lobby extends Activity {
     // slide menu items
     private String[] navMenuTitles;
     public DataContainer data;
+
     public String feedUrl;
+    private ProgressDialog pDialog;
 
     public String getFeedUrl(){
         return feedUrl;
@@ -49,26 +58,32 @@ public class Lobby extends Activity {
         return data;
     }
 
+    //fragments
+    FragmentBoxOffice fragmentBoxOffice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
         mTitle = mDrawerTitle = getTitle();
+
+        fragmentBoxOffice = new FragmentBoxOffice();
+
         // load slide menu items
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
         // nav drawer icons from resources
-        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+        final TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-        ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
+        final ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
 
         ActionBar ab = getActionBar();
         ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffeb3b")));
 
         // agregar un nuevo item al menu deslizante
         // Favoritos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1), true, "Peliculas"));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
         // Pedidos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         // Catologo
@@ -77,12 +92,12 @@ public class Lobby extends Activity {
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
 
         // Recycle the typed array
-        navMenuIcons.recycle();
+        //navMenuIcons.recycle();
 
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(),
+        final NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
@@ -117,7 +132,48 @@ public class Lobby extends Activity {
         //get data
         Bundle b = this.getIntent().getExtras();
         feedUrl = b.getString("url");
+        // Showing progress dialog before making http request
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage(getResources().getString(R.string.loading));
+        pDialog.show();
 
+        RequestQueue rq = Volley.newRequestQueue(this);
+        GsonRequest<DataContainer> getData =
+                new GsonRequest<DataContainer>(feedUrl, DataContainer.class,
+                        new Response.Listener<DataContainer>() {
+                            @Override
+                            public void onResponse(DataContainer response) {
+                                hidePDialog();
+                                data = response;
+                                navDrawerItems.get(0).setCounterVisibility(true);
+                                navDrawerItems.get(0).setCount(data.movies.size()+"");
+                                adapter.notifyDataSetChanged();
+                                fragmentBoxOffice.show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                finish();
+                                hidePDialog();
+                                Log.e("Error on response", error.toString());
+                                Toast.makeText(getApplicationContext(), R.string.connection_error, Toast.LENGTH_LONG).show();
+                            }
+                        });
+        rq.add(getData);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 
     /**
@@ -173,7 +229,7 @@ public class Lobby extends Activity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new FragmentBoxOffice();
+                fragment = fragmentBoxOffice;
                 break;
             case 1:
                 fragment = new FragmentGenre();
@@ -183,8 +239,6 @@ public class Lobby extends Activity {
                 break;
             case 3:
                 fragment = new FragmentMapMe();
-                //FragmentManager fragmentManager = getFragmentManager();
-                //fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
                 break;
 
             default:

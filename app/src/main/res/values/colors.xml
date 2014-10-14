@@ -5,7 +5,6 @@
     <color name="list_item_title">#ffffff</color>
     <color name="list_background">#303030</color>
     <color name="list_background_pressed">#e51c23</color>
-    <color name="list_divider_nd">#272727</color>
     <color name="counter_text_bg">#fff70d</color>
     <color name="counter_text_color">#000000</color>
 
@@ -14,9 +13,9 @@
     <color name="rating">#ffffff</color>
     <color name="genre">#666666</color>
     <color name="year">#888888</color>
-    <color name="list_divider">#d9d9d9</color>
-    <color name="list_row_start_color">#272727</color>
-    <color name="list_row_end_color">#272727</color>
+    <color name="list_divider_nd">#000000</color>
+    <color name="list_row_start_color">#212121</color>
+    <color name="list_row_end_color">#212121</color>
     <color name="list_row_hover_start_color">#e51c23</color>
     <color name="list_row_hover_end_color">#e51c23</color>
 </resources>
