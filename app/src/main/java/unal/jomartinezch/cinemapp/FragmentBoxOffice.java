@@ -1,10 +1,12 @@
 package unal.jomartinezch.cinemapp;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -31,15 +33,28 @@ public class FragmentBoxOffice extends Fragment {
         adapter = new CustomListAdapter(getActivity(), movieList);
         listView.setAdapter(adapter);
 
-        return rootView;
-
-    }
-
-    public void show(){
-        DataContainer data = ((Lobby) getActivity()).getData();
+        DataContainer data = DataContainer.getInstance();
         for(MovieLite m: data.movies) {
             movieList.add(m);
             adapter.notifyDataSetChanged();
         }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                Intent intent = new Intent();
+                intent.putExtra("position", arg2);
+                intent.setClass(getActivity(), MovieDetail.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+        return rootView;
+
     }
+
 }

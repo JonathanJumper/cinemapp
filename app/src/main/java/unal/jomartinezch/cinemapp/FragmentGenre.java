@@ -2,7 +2,6 @@ package unal.jomartinezch.cinemapp;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ public class FragmentGenre extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_genre, container, false);
-        Log.d("theaters ", ((Lobby) getActivity()).getData().theaters.toString());
+       // Log.d("theaters ", ((Lobby) getActivity()).getData().theaters.toString());
         return rootView;
     }
 }

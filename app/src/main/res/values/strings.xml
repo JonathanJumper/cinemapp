@@ -9,10 +9,10 @@
 
     <!-- Nombres de los items -->
     <string-array name="nav_drawer_items">
-        <item >Cartelera</item>
-        <item >Generos</item>
-        <item >Calendario</item>
-        <item >Localizame</item>
+        <item>Cartelera</item>
+        <item>Generos</item>
+        <item>Calendario</item>
+        <item>Localizame</item>
     </string-array>
 
     <!-- Iconos de los items -->
@@ -29,5 +29,6 @@
     <!-- Box Office -->
     <string name="connection_error">Check your internet access</string>
     <string name="loading">Trained apes working…</string>
+    <string name="title_activity_movie_detail">MovieDetail</string>
 
 </resources>

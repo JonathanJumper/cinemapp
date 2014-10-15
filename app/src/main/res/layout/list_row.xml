@@ -35,18 +35,17 @@
         android:textColor="@color/rating"
         android:textSize="@dimen/rating" />
 
-    <!-- Genre -->
+    <!-- Director -->
     <TextView
         android:id="@+id/genre"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rating"
-        android:layout_marginTop="5dp"
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/thumbnail"
         android:textColor="@color/genre"
         android:textSize="@dimen/genre" />
 
-    <!-- Release Year -->
+    <!-- Duration-->
     <TextView
         android:id="@+id/releaseYear"
         android:layout_width="wrap_content"
@@ -55,5 +54,16 @@
         android:layout_alignParentRight="true"
         android:textColor="@color/year"
         android:textSize="@dimen/year" />
+
+    <!-- 3D -->
+    <TextView
+        android:id="@+id/threeD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/threeD"
+        android:textStyle="bold"
+        android:textSize="@dimen/threeD"/>
 
 </RelativeLayout>

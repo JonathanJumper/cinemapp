@@ -6,6 +6,7 @@ package unal.jomartinezch.cinemapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,24 +64,50 @@ public class CustomListAdapter extends BaseAdapter {
         TextView rating = (TextView) convertView.findViewById(R.id.rating);
         TextView genre = (TextView) convertView.findViewById(R.id.genre);
         TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
+        TextView threeD = (TextView) convertView.findViewById(R.id.threeD);
 
         // getting movie data for the row
         MovieLite m = movieLiteItems.get(position);
 
         // thumbnail image
-        thumbNail.setImageUrl(m.imagePath, imageLoader);
+        try {
+            String imagePath = m.imagePath.replace("w500", "w92");
+            thumbNail.setImageUrl(imagePath, imageLoader);
+        }
+        catch(Exception e){
+            Log.e("In image path",e.toString());
+        }
 
         // title
-        title.setText(m.name);
+        try {
+            String name = m.name.replace("3D","");
+            if(name.contains("("))
+                title.setText(name.substring(0,name.indexOf("(") ));
+            else
+                title.setText(name);
+        }catch (Exception e ){
+            Log.e("Error in adapter", e.toString());
+            title.setText(m.name);
+        }
+
 
         // rating
-        rating.setText("Rating: 7.5");
+        if(m.genre.contains("/")) {
+            rating.setText(m.genre.substring(0, m.genre.indexOf("/")));
+        }
+        else{
+            rating.setText(m.genre);
+        }
 
         // genre
         genre.setText(m.director);
 
         // release year
-        year.setText("2014");
+        year.setText(m.duration);
+
+        //threeD
+        if(m.threeD) threeD.setText("3D");
+        else threeD.setText("");
 
         return convertView;
     }

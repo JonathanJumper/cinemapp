@@ -5,10 +5,19 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+
+import unal.jomartinezch.cinemapp.model.DataContainer;
 
 
 public class Start extends Activity {
@@ -20,6 +29,7 @@ public class Start extends Activity {
     private Spinner sp_lang;
     private Spinner sp_cities;
     private ProgressDialog pDialog;
+    public DataContainer data = DataContainer.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +96,34 @@ public class Start extends Activity {
                 break;
         }
 
+        // Showing progress dialog before making http request
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage(getResources().getString(R.string.loading));
+        pDialog.show();
+
         String feedUrl = "http://extreme-core.appspot.com/getdata?city="+city+"&lang="+lang;
-
-        Intent intent = new Intent();
-        intent.putExtra("url", feedUrl);
-        intent.setClass(Start.this, Lobby.class);
-        startActivity(intent);
-
-
+        RequestQueue rq = Volley.newRequestQueue(this);
+        GsonRequest<DataContainer> getData =
+                new GsonRequest<DataContainer>(feedUrl, DataContainer.class,
+                        new Response.Listener<DataContainer>() {
+                            @Override
+                            public void onResponse(DataContainer response) {
+                                hidePDialog();
+                                data.setDataContainer(response);
+                                Intent intent = new Intent(getApplicationContext(), Lobby.class);
+                                startActivity(intent);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                finish();
+                                hidePDialog();
+                                Log.e("Error on response", error.toString());
+                                Toast.makeText(getApplicationContext(), R.string.connection_error, Toast.LENGTH_LONG).show();
+                            }
+                        });
+        rq.add(getData);
     }
 
     @Override

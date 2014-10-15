@@ -11,11 +11,15 @@
     // box office
     <color name="title">#ffffff</color>
     <color name="rating">#ffffff</color>
-    <color name="genre">#666666</color>
-    <color name="year">#888888</color>
+    <color name="genre">#888888</color>
+    <color name="year">#666666</color>
+    <color name="threeD">#fff70d</color>
     <color name="list_divider_nd">#000000</color>
     <color name="list_row_start_color">#212121</color>
     <color name="list_row_end_color">#212121</color>
     <color name="list_row_hover_start_color">#e51c23</color>
     <color name="list_row_hover_end_color">#e51c23</color>
+
+    <color name="movie_detail_bg">#212121</color>
+    <color name="movie_detail_text">#ffffff</color>
 </resources>

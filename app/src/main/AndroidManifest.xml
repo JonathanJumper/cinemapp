@@ -32,10 +32,11 @@
         </activity>
         <activity
             android:name=".Lobby"
-            android:label="Explora"
-         />
-
+            android:label="Explora" />
+        <activity
+            android:name=".MovieDetail"
+            android:label="@string/title_activity_movie_detail" >
+        </activity>
     </application>
 
 </manifest>
-

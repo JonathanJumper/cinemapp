@@ -8,5 +8,6 @@
     <dimen name="rating">14dip</dimen>
     <dimen name="genre">13dip</dimen>
     <dimen name="year">12dip</dimen>
+    <dimen name="threeD">14dip</dimen>
 
 </resources>

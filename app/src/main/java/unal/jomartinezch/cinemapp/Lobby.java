@@ -4,7 +4,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -18,12 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
@@ -43,23 +36,11 @@ public class Lobby extends Activity {
 
     // slide menu items
     private String[] navMenuTitles;
-    public DataContainer data;
-
-    public String feedUrl;
-    private ProgressDialog pDialog;
-
-    public String getFeedUrl(){
-        return feedUrl;
-    }
-    public void setData(DataContainer data){
-        this.data = data;
-    }
-    public DataContainer getData(){
-        return data;
-    }
 
     //fragments
     FragmentBoxOffice fragmentBoxOffice;
+
+    public DataContainer data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +49,9 @@ public class Lobby extends Activity {
         mTitle = mDrawerTitle = getTitle();
 
         fragmentBoxOffice = new FragmentBoxOffice();
+
+        //load data
+        data = DataContainer.getInstance();
 
         // load slide menu items
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
@@ -83,7 +67,7 @@ public class Lobby extends Activity {
 
         // agregar un nuevo item al menu deslizante
         // Favoritos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1), true, data.movies.size()+""));
         // Pedidos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         // Catologo
@@ -127,52 +111,6 @@ public class Lobby extends Activity {
         if (savedInstanceState == null) {
             // on first time display view for first nav item
             displayView(0);
-        }
-
-        //get data
-        Bundle b = this.getIntent().getExtras();
-        feedUrl = b.getString("url");
-        // Showing progress dialog before making http request
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage(getResources().getString(R.string.loading));
-        pDialog.show();
-
-        RequestQueue rq = Volley.newRequestQueue(this);
-        GsonRequest<DataContainer> getData =
-                new GsonRequest<DataContainer>(feedUrl, DataContainer.class,
-                        new Response.Listener<DataContainer>() {
-                            @Override
-                            public void onResponse(DataContainer response) {
-                                hidePDialog();
-                                data = response;
-                                navDrawerItems.get(0).setCounterVisibility(true);
-                                navDrawerItems.get(0).setCount(data.movies.size()+"");
-                                adapter.notifyDataSetChanged();
-                                fragmentBoxOffice.show();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                finish();
-                                hidePDialog();
-                                Log.e("Error on response", error.toString());
-                                Toast.makeText(getApplicationContext(), R.string.connection_error, Toast.LENGTH_LONG).show();
-                            }
-                        });
-        rq.add(getData);
-    }
-
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        hidePDialog();
-    }
-
-    private void hidePDialog() {
-        if (pDialog != null) {
-            pDialog.dismiss();
-            pDialog = null;
         }
     }
 
