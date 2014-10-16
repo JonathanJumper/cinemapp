@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Cinemapp Colombia</string>
+    <string name="description">La aplicación que hace que ir al cine sea tan facil como estar alli.</string>
 
-    <string name="app_name">Cinemapp</string>
     <string name="start_pick_city">Escribe la ciudad</string>
     <string name="start_pick_lang">Selecciona el idioma</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <!-- Nombres de los items -->
+    <!-- Nav Drawer Items-->
     <string-array name="nav_drawer_items">
         <item>Cartelera</item>
         <item>Generos</item>
@@ -29,6 +29,8 @@
     <!-- Box Office -->
     <string name="connection_error">Check your internet access</string>
     <string name="loading">Trained apes working…</string>
-    <string name="title_activity_movie_detail">MovieDetail</string>
+
+    <!-- Movie Detail -->
+    <string name="title_activity_movie_detail">Detalles</string>
 
 </resources>

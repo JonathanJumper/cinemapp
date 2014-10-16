@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.util;
 
 /**
  * Created by Usuario on 21/09/2014.
@@ -10,8 +10,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-
-import unal.jomartinezch.cinemapp.util.LruBitmapCache;
 
 public class AppController extends Application {
 

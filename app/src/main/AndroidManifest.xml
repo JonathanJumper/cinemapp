@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="unal.jomartinezch.cinemapp" >
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -14,29 +13,31 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".AppController"
+        android:name=".util.AppController"
+        android:label="@string/app_name"
+        android:description="@string/description"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:theme="@style/AppTheme" >
+
         <activity
-            android:name=".Start"
-            android:label="@string/app_name"
+            android:name=".activity.ActivityStart"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-            >
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".Lobby"
-            android:label="Explora" />
+            android:name=".activity.ActivityLobby"
+            android:label="Explora"/>
+
         <activity
-            android:name=".MovieDetail"
-            android:label="@string/title_activity_movie_detail" >
-        </activity>
+            android:name=".activity.ActivityMovieDetail"
+            android:label="@string/title_activity_movie_detail" />
+
     </application>
 
 </manifest>

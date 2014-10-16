@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -17,13 +17,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
+import unal.jomartinezch.cinemapp.R;
 import unal.jomartinezch.cinemapp.model.DataContainer;
+import unal.jomartinezch.cinemapp.util.GsonRequest;
 
 
-public class Start extends Activity {
+public class ActivityStart extends Activity {
 
     private final String[] langs = { "  Español", "  English", "  Português", "  Français", "  Deutsch" };
-    private final String[] cities = { "  Bogotá", "  Medellin", "  Cali", "  Villavicencio", "  Tunja" };;
+    private final String[] cities = { "  Bogotá", "  Medellin", "  Cali", "  Villavicencio", "  Tunja" };
     private String city;
     private String lang;
     private Spinner sp_lang;
@@ -110,7 +112,7 @@ public class Start extends Activity {
                             public void onResponse(DataContainer response) {
                                 hidePDialog();
                                 data.setDataContainer(response);
-                                Intent intent = new Intent(getApplicationContext(), Lobby.class);
+                                Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
                                 startActivity(intent);
                             }
                         },

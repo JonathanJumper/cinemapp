@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -20,10 +20,13 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import unal.jomartinezch.cinemapp.R;
+import unal.jomartinezch.cinemapp.adapter.NavDrawerItem;
+import unal.jomartinezch.cinemapp.adapter.NavDrawerListAdapter;
 import unal.jomartinezch.cinemapp.model.DataContainer;
 
 
-public class Lobby extends Activity {
+public class ActivityLobby extends Activity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -63,7 +66,7 @@ public class Lobby extends Activity {
         final ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
 
         ActionBar ab = getActionBar();
-        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffeb3b")));
+        if(ab!= null) ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffeb3b")));
 
         // agregar un nuevo item al menu deslizante
         // Favoritos

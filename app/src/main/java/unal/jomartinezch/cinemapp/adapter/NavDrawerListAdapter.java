@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import unal.jomartinezch.cinemapp.R;
 
 public class NavDrawerListAdapter extends BaseAdapter {
 	

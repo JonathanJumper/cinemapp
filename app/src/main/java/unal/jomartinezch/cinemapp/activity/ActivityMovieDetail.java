@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -9,10 +9,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import unal.jomartinezch.cinemapp.R;
 import unal.jomartinezch.cinemapp.model.DataContainer;
 
 
-public class MovieDetail extends Activity {
+public class ActivityMovieDetail extends Activity {
 
     DataContainer data;
     @Override

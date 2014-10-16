@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.util;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;

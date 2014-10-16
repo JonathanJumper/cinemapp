@@ -24,35 +24,35 @@
         android:textStyle="bold"
         android:textColor="@color/title"/>
 
-    <!-- Rating -->
+    <!-- Genre -->
     <TextView
-        android:id="@+id/rating"
+        android:id="@+id/genre"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:textColor="@color/rating"
+        android:textColor="@color/genre"
         android:textSize="@dimen/rating" />
 
     <!-- Director -->
     <TextView
-        android:id="@+id/genre"
+        android:id="@+id/director"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/thumbnail"
-        android:textColor="@color/genre"
+        android:textColor="@color/director"
         android:textSize="@dimen/genre" />
 
     <!-- Duration-->
     <TextView
-        android:id="@+id/releaseYear"
+        android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textColor="@color/year"
+        android:textColor="@color/duration"
         android:textSize="@dimen/year" />
 
     <!-- 3D -->

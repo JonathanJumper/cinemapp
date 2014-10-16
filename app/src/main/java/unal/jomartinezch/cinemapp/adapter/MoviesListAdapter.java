@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.adapter;
 
 /**
  * Created by Usuario on 21/09/2014.
@@ -18,16 +18,18 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.List;
 
+import unal.jomartinezch.cinemapp.R;
 import unal.jomartinezch.cinemapp.model.MovieLite;
+import unal.jomartinezch.cinemapp.util.AppController;
 
 
-public class CustomListAdapter extends BaseAdapter {
+public class MoviesListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<MovieLite> movieLiteItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public CustomListAdapter(Activity activity, List<MovieLite> movieLiteItems) {
+    public MoviesListAdapter(Activity activity, List<MovieLite> movieLiteItems) {
         this.activity = activity;
         this.movieLiteItems = movieLiteItems;
     }
@@ -61,9 +63,9 @@ public class CustomListAdapter extends BaseAdapter {
         NetworkImageView thumbNail = (NetworkImageView) convertView
                 .findViewById(R.id.thumbnail);
         TextView title = (TextView) convertView.findViewById(R.id.title);
-        TextView rating = (TextView) convertView.findViewById(R.id.rating);
         TextView genre = (TextView) convertView.findViewById(R.id.genre);
-        TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
+        TextView director = (TextView) convertView.findViewById(R.id.director);
+        TextView duration = (TextView) convertView.findViewById(R.id.duration);
         TextView threeD = (TextView) convertView.findViewById(R.id.threeD);
 
         // getting movie data for the row
@@ -75,37 +77,22 @@ public class CustomListAdapter extends BaseAdapter {
             thumbNail.setImageUrl(imagePath, imageLoader);
         }
         catch(Exception e){
-            Log.e("In image path",e.toString());
+            // fix assing another picture --> thumbNail...(another);
+            Log.e("In image path of "+m.name,e.toString());
         }
-
-        // title
+        //assign all other attributes
         try {
             String name = m.name.replace("3D","");
-            if(name.contains("("))
-                title.setText(name.substring(0,name.indexOf("(") ));
-            else
-                title.setText(name);
+            if(name.contains("(")) title.setText(name.substring(0,name.indexOf("(") ));
+            else title.setText(name);
         }catch (Exception e ){
             Log.e("Error in adapter", e.toString());
             title.setText(m.name);
         }
-
-
-        // rating
-        if(m.genre.contains("/")) {
-            rating.setText(m.genre.substring(0, m.genre.indexOf("/")));
-        }
-        else{
-            rating.setText(m.genre);
-        }
-
-        // genre
-        genre.setText(m.director);
-
-        // release year
-        year.setText(m.duration);
-
-        //threeD
+        if(m.genre.contains("/"))  genre.setText(m.genre.substring(0, m.genre.indexOf("/")));
+        else genre.setText(m.genre);
+        director.setText(m.director);
+        duration.setText(m.duration);
         if(m.threeD) threeD.setText("3D");
         else threeD.setText("");
 

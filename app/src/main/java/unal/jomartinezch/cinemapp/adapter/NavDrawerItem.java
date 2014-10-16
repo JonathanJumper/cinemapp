@@ -1,14 +1,13 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.adapter;
 
 public class NavDrawerItem {
 	
 	private String title;
 	private int icon;
 	private String count = "0";
+
 	// boolean to set visiblity of the counter
 	private boolean isCounterVisible = false;
-	
-	public NavDrawerItem(){}
 
 	public NavDrawerItem(String title, int icon){
 		this.title = title;
@@ -41,16 +40,5 @@ public class NavDrawerItem {
 	public void setTitle(String title){
 		this.title = title;
 	}
-	
-	public void setIcon(int icon){
-		this.icon = icon;
-	}
-	
-	public void setCount(String count){
-		this.count = count;
-	}
-	
-	public void setCounterVisibility(boolean isCounterVisible){
-		this.isCounterVisible = isCounterVisible;
-	}
+
 }

@@ -10,9 +10,9 @@
 
     // box office
     <color name="title">#ffffff</color>
-    <color name="rating">#ffffff</color>
-    <color name="genre">#888888</color>
-    <color name="year">#666666</color>
+    <color name="genre">#ffffff</color>
+    <color name="director">#888888</color>
+    <color name="duration">#666666</color>
     <color name="threeD">#fff70d</color>
     <color name="list_divider_nd">#000000</color>
     <color name="list_row_start_color">#212121</color>

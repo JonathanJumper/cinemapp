@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import unal.jomartinezch.cinemapp.R;
+import unal.jomartinezch.cinemapp.adapter.MoviesListAdapter;
 import unal.jomartinezch.cinemapp.model.DataContainer;
 import unal.jomartinezch.cinemapp.model.MovieLite;
 
@@ -22,7 +24,7 @@ public class FragmentBoxOffice extends Fragment {
 
     private List<MovieLite> movieList = new ArrayList<MovieLite>();
     private ListView listView;
-    private CustomListAdapter adapter;
+    private MoviesListAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class FragmentBoxOffice extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_boxoffice, container, false);
 
         listView = (ListView) rootView.findViewById(R.id.lvy_movies);
-        adapter = new CustomListAdapter(getActivity(), movieList);
+        adapter = new MoviesListAdapter(getActivity(), movieList);
         listView.setAdapter(adapter);
 
         DataContainer data = DataContainer.getInstance();
@@ -46,7 +48,7 @@ public class FragmentBoxOffice extends Fragment {
                                     long arg3) {
                 Intent intent = new Intent();
                 intent.putExtra("position", arg2);
-                intent.setClass(getActivity(), MovieDetail.class);
+                intent.setClass(getActivity(), ActivityMovieDetail.class);
                 startActivity(intent);
 
 

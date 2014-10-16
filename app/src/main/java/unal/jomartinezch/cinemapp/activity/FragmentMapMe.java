@@ -1,4 +1,4 @@
-package unal.jomartinezch.cinemapp;
+package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import unal.jomartinezch.cinemapp.R;
 
 /**
  * Created by user on 26/08/2014.
