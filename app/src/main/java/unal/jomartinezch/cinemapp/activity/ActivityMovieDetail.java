@@ -1,7 +1,6 @@
 package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Activity;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +23,6 @@ public class ActivityMovieDetail extends Activity {
         int pos = b.getInt("position");
         data = DataContainer.getInstance();
 
-        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.primary)));
         getActionBar().setTitle(data.movies.get(pos).name);
 
         TextView t = (TextView)findViewById(R.id.movieDetail);

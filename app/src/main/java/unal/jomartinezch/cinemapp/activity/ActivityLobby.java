@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -68,9 +67,6 @@ public class ActivityLobby extends Activity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         final ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
-
-        //paint action bar
-        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.primary)));
 
         // agregar un nuevo item al menu deslizante
         // Favoritos
