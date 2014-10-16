@@ -22,11 +22,9 @@ public class FragmentMapMe extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)  {
-        super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_maps);
-        //super.onCreateView(inflater, container, savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_mapme, container , false);
-        //setUpMapIfNeeded();
+        setUpMapIfNeeded();
         return rootView;
     }
 

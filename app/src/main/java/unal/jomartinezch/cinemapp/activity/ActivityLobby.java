@@ -1,12 +1,10 @@
 package unal.jomartinezch.cinemapp.activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -42,6 +40,9 @@ public class ActivityLobby extends Activity {
 
     //fragments
     FragmentBoxOffice fragmentBoxOffice;
+    FragmentGenre fragmentGenre;
+    FragmentCalendar fragmentCalendar;
+    FragmentMapMe fragmentMapMe;
 
     public DataContainer data;
 
@@ -52,6 +53,9 @@ public class ActivityLobby extends Activity {
         mTitle = mDrawerTitle = getTitle();
 
         fragmentBoxOffice = new FragmentBoxOffice();
+        fragmentGenre = new FragmentGenre();
+        fragmentCalendar = new FragmentCalendar();
+        fragmentMapMe = new FragmentMapMe();
 
         //load data
         data = DataContainer.getInstance();
@@ -65,8 +69,8 @@ public class ActivityLobby extends Activity {
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         final ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
 
-        ActionBar ab = getActionBar();
-        if(ab!= null) ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffeb3b")));
+        //paint action bar
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.primary)));
 
         // agregar un nuevo item al menu deslizante
         // Favoritos
@@ -173,13 +177,13 @@ public class ActivityLobby extends Activity {
                 fragment = fragmentBoxOffice;
                 break;
             case 1:
-                fragment = new FragmentGenre();
+                fragment = fragmentGenre;
                 break;
             case 2:
-                fragment = new FragmentCalendar();
+                fragment = fragmentCalendar;
                 break;
             case 3:
-                fragment = new FragmentMapMe();
+                fragment = fragmentMapMe;
                 break;
 
             default:

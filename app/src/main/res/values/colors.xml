@@ -1,5 +1,10 @@
 <resources>
 
+    //global
+    <color name="primary">#009688</color>
+    <color name="secondary">#ffeb3b</color>
+    <color name="background">#212121</color>
+    
     //navigation drawer
     <color name="black_overlay">#66000000</color>
     <color name="list_item_title">#ffffff</color>
@@ -20,6 +25,7 @@
     <color name="list_row_hover_start_color">#e51c23</color>
     <color name="list_row_hover_end_color">#e51c23</color>
 
+    // movie detail
     <color name="movie_detail_bg">#212121</color>
     <color name="movie_detail_text">#ffffff</color>
 </resources>
