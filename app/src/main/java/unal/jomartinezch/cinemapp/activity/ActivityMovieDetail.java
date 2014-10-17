@@ -2,18 +2,23 @@ package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 
 import unal.jomartinezch.cinemapp.R;
 import unal.jomartinezch.cinemapp.model.DataContainer;
+import unal.jomartinezch.cinemapp.model.MovieLite;
+import unal.jomartinezch.cinemapp.util.AppController;
 
 
 public class ActivityMovieDetail extends Activity {
 
-    DataContainer data;
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,14 +26,25 @@ public class ActivityMovieDetail extends Activity {
 
         Bundle b = this.getIntent().getExtras();
         int pos = b.getInt("position");
-        data = DataContainer.getInstance();
+        MovieLite m = DataContainer.getInstance().movies.get(pos);
 
-        getActionBar().setTitle(data.movies.get(pos).name);
+        if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
+        NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.thumbnail);
 
-        TextView t = (TextView)findViewById(R.id.movieDetail);
-        t.setText(data.movies.get(pos).toString());
+        try {
+            String imagePath = m.imagePath;
+            thumbNail.setImageUrl(imagePath, imageLoader);
+        }
+        catch(Exception e){
+            // fix assing another picture --> thumbNail...(another);
+            Log.e("In image path of " + m.name, e.toString());
+        }
 
-        Toast.makeText(getApplicationContext(),"Position "+pos, Toast.LENGTH_SHORT).show();
+        ((TextView) findViewById(R.id.name)).setText(m.name);
+        if(m.description.equals(null)) ((TextView) findViewById(R.id.description)).setText(R.string.movie_description_null);
+        else ((TextView) findViewById(R.id.description)).setText(m.description);
+        ((TextView) findViewById(R.id.original)).setText(m.originalName);
+        ((TextView) findViewById(R.id.genre)).setText(m.genre.replace("/",", "));
     }
 
 

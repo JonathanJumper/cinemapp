@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -115,6 +116,9 @@ public class ActivityLobby extends Activity {
             // on first time display view for first nav item
             displayView(0);
         }
+
+        //open drawer layou
+        mDrawerLayout.openDrawer(Gravity.LEFT);
     }
 
     /**

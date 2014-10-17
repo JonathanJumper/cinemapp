@@ -4,7 +4,7 @@
 
     <gradient
         android:angle="270"
-        android:endColor="@color/list_row_hover_end_color"
-        android:startColor="@color/list_row_hover_start_color" />
+        android:endColor="@color/secondary"
+        android:startColor="@color/secondary" />
 
 </shape>

@@ -3,15 +3,17 @@
     //global
     <color name="primary">#fff70d</color>
     <color name="primary_text">#000000</color>
-    <color name="secondary">#e51c23</color>
+    <color name="secondary">#880e4f</color>
     <color name="background">#212121</color>
+    <color name="background_text">#ffffff</color>
+    <color name="background_light">#ffe7e7e7</color>
     
     //navigation drawer
     <color name="black_overlay">#66000000</color>
     <color name="list_item_title">#ffffff</color>
-    <color name="list_background">#303030</color>
-    <color name="list_background_pressed">#e51c23</color>
-    <color name="counter_text_bg">#fff70d</color>
+    <color name="list_background">#ff303030</color>
+    <color name="list_background_pressed">#880e4f</color>
+    <color name="counter_text_bg">#fff70d</color>fff70d
     <color name="counter_text_color">#000000</color>
 
     // box office
@@ -23,8 +25,6 @@
     <color name="list_divider_nd">#000000</color>
     <color name="list_row_start_color">#212121</color>
     <color name="list_row_end_color">#212121</color>
-    <color name="list_row_hover_start_color">#e51c23</color>
-    <color name="list_row_hover_end_color">#e51c23</color>
 
     // movie detail
     <color name="movie_detail_bg">#212121</color>

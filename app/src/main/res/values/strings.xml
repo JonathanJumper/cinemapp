@@ -32,5 +32,9 @@
 
     <!-- Movie Detail -->
     <string name="title_activity_movie_detail">Detalles</string>
+    <string name="movie_description">Descripción:</string>
+    <string name="movie_description_null">No disponible</string>
+    <string name="movie_original">Nombre original:</string>
+    <string name="movie_genre">Genero:</string>
 
 </resources>
