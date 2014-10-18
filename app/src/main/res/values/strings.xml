@@ -28,7 +28,7 @@
 
     <!-- Box Office -->
     <string name="connection_error">Check your internet access</string>
-    <string name="loading">Trained apes working…</string>
+    <string name="loading">Monos entrenados trabajando…</string>
 
     <!-- Movie Detail -->
     <string name="title_activity_movie_detail">Detalles</string>
