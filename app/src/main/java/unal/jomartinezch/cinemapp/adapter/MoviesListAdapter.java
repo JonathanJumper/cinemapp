@@ -60,8 +60,7 @@ public class MoviesListAdapter extends BaseAdapter {
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
-        NetworkImageView thumbNail = (NetworkImageView) convertView
-                .findViewById(R.id.thumbnail);
+        NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.thumbnail);
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView genre = (TextView) convertView.findViewById(R.id.genre);
         TextView director = (TextView) convertView.findViewById(R.id.director);

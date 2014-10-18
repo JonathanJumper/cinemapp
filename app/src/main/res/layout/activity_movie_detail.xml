@@ -107,5 +107,19 @@
             android:padding="2dp"
             android:textColor="@color/background_light" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trailer"
+            android:id="@+id/trailer"
+            android:layout_below="@+id/description"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#ff3753b4"
+            android:textSize="@dimen/movie_description"
+            android:background="#00000000"
+            android:onClick="onTrailerClicked"
+            android:textStyle="bold"/>
     </RelativeLayout>
 </ScrollView>

@@ -13,5 +13,6 @@
     //movie detail
     <dimen name="movie_description">16dp</dimen>
     <dimen name="movie_name">22dp</dimen>
+    <dimen name="trailer">22dp</dimen>
 
 </resources>

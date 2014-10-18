@@ -36,5 +36,6 @@
     <string name="movie_description_null">No disponible</string>
     <string name="movie_original">Nombre original:</string>
     <string name="movie_genre">Genero:</string>
+    <string name="trailer">Ver trailer</string>
 
 </resources>

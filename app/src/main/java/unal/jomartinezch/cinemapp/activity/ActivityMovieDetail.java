@@ -1,10 +1,14 @@
 package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -25,8 +29,8 @@ public class ActivityMovieDetail extends Activity {
         setContentView(R.layout.activity_movie_detail);
 
         Bundle b = this.getIntent().getExtras();
-        int pos = b.getInt("position");
-        MovieLite m = DataContainer.getInstance().movies.get(pos);
+        final int pos = b.getInt("position");
+        final MovieLite m = DataContainer.getInstance().movies.get(pos);
 
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
         NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.thumbnail);
@@ -41,12 +45,18 @@ public class ActivityMovieDetail extends Activity {
         }
 
         ((TextView) findViewById(R.id.name)).setText(m.name);
-        if(m.description.equals(null)) ((TextView) findViewById(R.id.description)).setText(R.string.movie_description_null);
+        if(m.description.equals("null")) ((TextView) findViewById(R.id.description)).setText(R.string.movie_description_null);
         else ((TextView) findViewById(R.id.description)).setText(m.description);
         ((TextView) findViewById(R.id.original)).setText(m.originalName);
         ((TextView) findViewById(R.id.genre)).setText(m.genre.replace("/",", "));
-    }
 
+        final Button button = (Button) findViewById(R.id.trailer);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(m.trailerPath)));
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
