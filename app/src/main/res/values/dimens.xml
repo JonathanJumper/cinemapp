@@ -9,6 +9,7 @@
     <dimen name="genre">13dip</dimen>
     <dimen name="year">12dip</dimen>
     <dimen name="threeD">14dip</dimen>
+    <dimen name="toRefresh">18dip</dimen>
 
     //movie detail
     <dimen name="movie_description">16dp</dimen>

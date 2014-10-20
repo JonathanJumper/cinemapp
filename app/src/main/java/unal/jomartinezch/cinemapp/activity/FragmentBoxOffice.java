@@ -3,11 +3,13 @@ package unal.jomartinezch.cinemapp.activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,22 +22,32 @@ import unal.jomartinezch.cinemapp.model.MovieLite;
 /**
  * Created by user on 26/08/2014.
  */
-public class FragmentBoxOffice extends Fragment {
+public class FragmentBoxOffice extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
+    SwipeRefreshLayout swipeLayout;
     private List<MovieLite> movieList = new ArrayList<MovieLite>();
     private ListView listView;
     private MoviesListAdapter adapter;
+    DataContainer data = DataContainer.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_boxoffice, container, false);
+        swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(this);
+        swipeLayout.setColorSchemeResources(
+                R.color.primary,
+                R.color.refresh_3,
+                R.color.secondary,
+                R.color.refresh_4);
+
+        swipeLayout.setBackgroundColor(getResources().getColor(R.color.background));
 
         listView = (ListView) rootView.findViewById(R.id.lvy_movies);
         adapter = new MoviesListAdapter(getActivity(), movieList);
         listView.setAdapter(adapter);
 
-        DataContainer data = DataContainer.getInstance();
         for(MovieLite m: data.movies) {
             movieList.add(m);
             adapter.notifyDataSetChanged();
@@ -50,13 +62,13 @@ public class FragmentBoxOffice extends Fragment {
                 intent.putExtra("position", arg2);
                 intent.setClass(getActivity(), ActivityMovieDetail.class);
                 startActivity(intent);
-
-
             }
         });
-
         return rootView;
-
     }
 
+    @Override
+    public void onRefresh() {
+        Toast.makeText(getActivity(), R.string.loading, Toast.LENGTH_SHORT).show();
+    }
 }

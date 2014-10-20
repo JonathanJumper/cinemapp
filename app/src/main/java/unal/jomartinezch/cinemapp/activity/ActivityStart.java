@@ -12,8 +12,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
@@ -125,6 +127,9 @@ public class ActivityStart extends Activity {
                                 Toast.makeText(getApplicationContext(), R.string.connection_error, Toast.LENGTH_LONG).show();
                             }
                         });
+        int socketTimeout = 20*1000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        getData.setRetryPolicy(policy);
         rq.add(getData);
     }
 

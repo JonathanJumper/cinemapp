@@ -25,6 +25,8 @@
     <color name="list_divider_nd">#000000</color>
     <color name="list_row_start_color">#212121</color>
     <color name="list_row_end_color">#212121</color>
+    <color name="refresh_3">#ffffff</color>
+    <color name="refresh_4">#03a9f4</color>
 
     // movie detail
     <color name="movie_detail_bg">#212121</color>
