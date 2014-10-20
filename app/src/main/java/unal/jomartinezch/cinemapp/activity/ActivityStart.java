@@ -3,6 +3,7 @@ package unal.jomartinezch.cinemapp.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import unal.jomartinezch.cinemapp.R;
 import unal.jomartinezch.cinemapp.model.DataContainer;
@@ -27,13 +29,14 @@ import unal.jomartinezch.cinemapp.util.GsonRequest;
 public class ActivityStart extends Activity {
 
     private final String[] langs = { "  Español", "  English", "  Português", "  Français", "  Deutsch" };
-    private final String[] cities = { "  Bogotá", "  Medellin", "  Cali", "  Villavicencio", "  Tunja" };
+    private final String[] cities = { "  Bogota", "  Medellin", "  Cali", "  Villavicencio", "  Tunja" };
     private String city;
     private String lang;
     private Spinner sp_lang;
     private Spinner sp_cities;
     private ProgressDialog pDialog;
     public DataContainer data = DataContainer.getInstance();
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,30 +58,26 @@ public class ActivityStart extends Activity {
         }catch(Exception e){
             e.printStackTrace();
         }
+
+        preferences = getPreferences(MODE_PRIVATE);
     }
 
     public void okOnClick(View v){
-
-        switch (sp_cities.getSelectedItemPosition()) {
-            case 0:
-                city = "bogota";
-                break;
-            case 1:
-                city = "medellin";
-                break;
-            case 2:
-                city = "cali";
-                break;
-            case 3:
-                city = "villavicencio";
-                break;
-            case 4:
-                city = "tunja";
-                break;
-            default:
-                city = "bogota";
-                break;
+        Gson gson = new Gson();
+        String json = preferences.getString("data", null);
+        if(json == null){
+            refreshData();
         }
+        else {
+            data.setDataContainer(gson.fromJson(json, DataContainer.class));
+            Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
+            startActivity(intent);
+        }
+
+    }
+
+    public void refreshData(){
+        city = cities[sp_cities.getSelectedItemPosition()].trim().toLowerCase();
         switch (sp_lang.getSelectedItemPosition()) {
             case 0:
                 lang = "es";
@@ -114,8 +113,17 @@ public class ActivityStart extends Activity {
                             public void onResponse(DataContainer response) {
                                 hidePDialog();
                                 data.setDataContainer(response);
+
                                 Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
                                 startActivity(intent);
+
+                                //persist data
+                                SharedPreferences.Editor prefsEditor = preferences.edit();
+                                Gson gson = new Gson();
+                                String json = gson.toJson(response);
+                                Log.e("saving", json);
+                                prefsEditor.putString("data", json);
+                                prefsEditor.commit();
                             }
                         },
                         new Response.ErrorListener() {
