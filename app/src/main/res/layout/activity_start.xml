@@ -1,11 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="unal.jomartinezch.cinemapp.activity.ActivityStart"
     android:background="@drawable/start">
 
@@ -15,56 +11,71 @@
         android:id="@+id/tv_city"
         android:text="@string/start_pick_city"
         android:textStyle="bold"
-        android:textColor="#cbffffff"
+        android:textColor="#ffffff"
+
+        android:layout_alignBottom="@+id/sp_cities"
         android:layout_centerHorizontal="true"
-        android:layout_margin="235dp"  />
+        android:layout_marginBottom="40dp" />
+
     <Spinner
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:id="@+id/sp_cities"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="257dp"
-        android:background="#00000000"
-        android:popupBackground="#49000000"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dialog"
+        android:background="#00ffffff"
 
-   <!--60px en y-->
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_pick_lang"
         android:id="@+id/tv_lang"
-        android:textColor="#cbffffff"
+        android:textColor="#ffffff"
         android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="320dp" />
+
+        android:layout_alignTop="@id/sp_cities"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"/>
 
     <Spinner
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:id="@+id/sp_lang"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="343dp"
-        android:background="#00000000"
-        android:popupBackground="#49000000"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dialog"
+        android:background="#00ffffff"
+
+        android:layout_alignTop="@id/tv_lang"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"/>
 
     <Button android:id="@+id/ok"
         android:onClick="okOnClick"
-        android:alpha="0.2"
-        android:layout_width="86dp"
-        android:layout_height="42dp"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:text="OK"
+        android:textColor="#000000"
+        android:textStyle="bold|normal"
+        android:textSize="18dp"
+        android:textAlignment="gravity"
+        android:singleLine="false"
+
+        android:layout_alignTop="@id/sp_lang"
+        android:layout_marginTop="70dp"
         android:layout_centerHorizontal="true"
-        android:layout_margin="400dp"/>
+        android:background="@drawable/rounded_button"
+     />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_version"
-        android:textColor="#cbffffff"
+        android:textColor="#ffffff"
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true" />
+
+
 
 </RelativeLayout>

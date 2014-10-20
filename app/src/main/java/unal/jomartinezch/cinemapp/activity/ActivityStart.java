@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +23,6 @@ import com.google.gson.Gson;
 import unal.jomartinezch.cinemapp.R;
 import unal.jomartinezch.cinemapp.model.DataContainer;
 import unal.jomartinezch.cinemapp.util.GsonRequest;
-
 
 public class ActivityStart extends Activity {
 
@@ -53,11 +51,8 @@ public class ActivityStart extends Activity {
         try {
             String versionName = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
             TextView tv = (TextView) findViewById(R.id.tv_version);
-            tv.setTextColor(Color.parseColor("#5fffffff"));
             tv.setText("Version beta "+versionName);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        }catch(Exception e){}
 
         preferences = getPreferences(MODE_PRIVATE);
     }
