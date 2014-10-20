@@ -11,8 +11,8 @@
     //navigation drawer
     <color name="black_overlay">#66000000</color>
     <color name="list_item_title">#ffffff</color>
-    <color name="list_background">#ff303030</color>
-    <color name="list_background_pressed">#880e4f</color>
+    <color name="list_nd_bg">#ff303030</color>
+    <color name="list_nd_bg_pressed">#880e4f</color>
     <color name="counter_text_bg">#fff70d</color>fff70d
     <color name="counter_text_color">#000000</color>
 

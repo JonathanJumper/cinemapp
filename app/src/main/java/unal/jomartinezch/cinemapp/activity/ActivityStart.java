@@ -41,11 +41,11 @@ public class ActivityStart extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         sp_cities = (Spinner) findViewById(R.id.sp_cities);
-        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, R.layout.spiner_item, cities);
+        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, R.layout.spiner_st_item, cities);
         sp_cities.setAdapter(adapterC);
 
         sp_lang = (Spinner) findViewById(R.id.sp_lang);
-        ArrayAdapter<String> adapterL = new ArrayAdapter<String>(this, R.layout.spiner_item, langs);
+        ArrayAdapter<String> adapterL = new ArrayAdapter<String>(this, R.layout.spiner_st_item, langs);
         sp_lang.setAdapter(adapterL);
 
         try {

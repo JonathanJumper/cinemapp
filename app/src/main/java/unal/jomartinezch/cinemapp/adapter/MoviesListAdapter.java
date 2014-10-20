@@ -56,7 +56,7 @@ public class MoviesListAdapter extends BaseAdapter {
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.list_row, null);
+            convertView = inflater.inflate(R.layout.list_bo_item, null);
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
