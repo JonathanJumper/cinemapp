@@ -31,10 +31,21 @@ public class FragmentTrailer extends YouTubePlayerFragment {
             public void onInitializationFailure(YouTubePlayer.Provider arg0, YouTubeInitializationResult arg1) {}
 
             @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer player, boolean wasRestored) {
                 if (!wasRestored) {
                     player.cueVideo(getArguments().getString("url"));
-                    player.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
+                    player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+                    player.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
+                        @Override
+                        public void onFullscreen(boolean b) {
+                            if(b) {
+                                player.setFullscreen(true);
+                            }
+                            else{
+                                player.setFullscreen(false);
+                            }
+                        }
+                    });
                 }
             }
         });

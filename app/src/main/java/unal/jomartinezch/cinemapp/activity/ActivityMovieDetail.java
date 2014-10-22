@@ -3,9 +3,9 @@ package unal.jomartinezch.cinemapp.activity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -29,27 +29,54 @@ public class ActivityMovieDetail extends Activity {
         final int pos = b.getInt("position");
         final MovieLite m = DataContainer.getInstance().movies.get(pos);
 
-        if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
-        NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.thumbnail);
-
-        try {
-            String imagePath = m.imagePath;
-            thumbNail.setImageUrl(imagePath, imageLoader);
+        if(m.trailerPath == null) {
+            findViewById(R.id.thumbnail).setVisibility(View.GONE);
         }
-        catch(Exception e){
-            // fix assing another picture --> thumbNail...(another);
-            Log.e("In image path of " + m.name, e.toString());
+        else{
+            if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
+            NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.thumbnail);
+
+            try {
+                String imagePath = m.imagePath;
+                thumbNail.setImageUrl(imagePath, imageLoader);
+            } catch (Exception e) {
+                findViewById(R.id.thumbnail).setVisibility(View.GONE);
+            }
         }
 
         ((TextView) findViewById(R.id.name)).setText(m.name);
-        if(m.description.equals("null")) ((TextView) findViewById(R.id.description)).setText(R.string.movie_description_null);
-        else ((TextView) findViewById(R.id.description)).setText(m.description);
         ((TextView) findViewById(R.id.original)).setText(m.originalName);
-        ((TextView) findViewById(R.id.genre)).setText(m.genre.replace("/",", "));
+        ((TextView) findViewById(R.id.genre)).setText(m.genre.replace("/", ", "));
+        ((TextView) findViewById(R.id.director)).setText(m.director);
 
-        final FragmentTrailer f = FragmentTrailer.newInstance(m.trailerPath);
-        final FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.frame_container_video, f).commit();
+        String cast = "";
+        if (m.cast == null) {
+            findViewById(R.id.cast_title).setVisibility(View.GONE);
+            findViewById(R.id.cast).setVisibility(View.GONE);
+        }
+        else{
+            for (String c : m.cast) cast = cast + c;
+            ((TextView) findViewById(R.id.cast)).setText(cast);
+        }
+
+        if (m.description == null) {
+            findViewById(R.id.description_title).setVisibility(View.GONE);
+            findViewById(R.id.description).setVisibility(View.GONE);
+        }
+        else {
+            ((TextView) findViewById(R.id.description)).setText(m.description);
+        }
+
+
+        if (m.trailerPath == null) {
+            findViewById(R.id.trailer_title).setVisibility(View.GONE);
+            findViewById(R.id.frame_container_video).setVisibility(View.GONE);
+        }
+        else{
+            final FragmentTrailer f = FragmentTrailer.newInstance(m.trailerPath);
+            final FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.frame_container_video, f).commit();
+        }
     }
 
     @Override

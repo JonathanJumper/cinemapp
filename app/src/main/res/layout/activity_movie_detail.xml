@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:padding="5dp"
             android:textColor="@color/background_text"
             android:textSize="@dimen/movie_name"
@@ -87,8 +87,54 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/description_title"
+            android:id="@+id/director_title"
             android:layout_below="@+id/genre"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/background_text"
+            android:text="@string/movie_director"
+            android:textStyle="bold"
+            android:textSize="@dimen/movie_description" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/director"
+            android:layout_below="@+id/director_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/background_light" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cast_title"
+            android:layout_below="@+id/director"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/background_text"
+            android:text="@string/movie_cast"
+            android:textStyle="bold"
+            android:textSize="@dimen/movie_description" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cast"
+            android:layout_below="@+id/cast_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/background_light" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/description_title"
+            android:layout_below="@+id/cast"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="8dp"
@@ -110,7 +156,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/trailer"
+            android:id="@+id/trailer_title"
             android:layout_below="@+id/description"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -127,7 +173,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_below="@+id/trailer"
+            android:layout_below="@+id/trailer_title"
             />
 
     </RelativeLayout>

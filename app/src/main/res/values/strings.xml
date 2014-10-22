@@ -35,7 +35,9 @@
     <string name="movie_description">Descripción:</string>
     <string name="movie_description_null">No disponible</string>
     <string name="movie_original">Nombre original:</string>
+    <string name="movie_director">Director:</string>
+    <string name="movie_cast">Elenco:</string>
     <string name="movie_genre">Genero:</string>
-    <string name="movie_trailer">Ver trailer:</string>
+    <string name="movie_trailer">Trailer:</string>
 
 </resources>

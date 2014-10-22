@@ -6,6 +6,9 @@ package unal.jomartinezch.cinemapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,13 +74,16 @@ public class MoviesListAdapter extends BaseAdapter {
         MovieLite m = movieLiteItems.get(position);
 
         // thumbnail image
-        try {
-            String imagePath = m.imagePath.replace("w500", "w92");
-            thumbNail.setImageUrl(imagePath, imageLoader);
-        }
-        catch(Exception e){
-            // fix assing another picture --> thumbNail...(another);
-            Log.e("In image path of "+m.name,e.toString());
+        if(m.imagePath != null)
+            if(!m.imagePath.contains("null")){
+                try {
+                    String imagePath = m.imagePath.replace("w500", "w92");
+                    thumbNail.setImageUrl(imagePath, imageLoader);
+                } catch (Exception e) {
+                    Drawable transparentDrawable = new ColorDrawable(Color.TRANSPARENT);
+                    thumbNail.setImageDrawable(transparentDrawable);
+                    Log.e("In image path of " + m.name, e.toString());
+                }
         }
         //assign all other attributes
         try {
