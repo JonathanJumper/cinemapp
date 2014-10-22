@@ -51,7 +51,6 @@
         android:layout_centerHorizontal="true"/>
 
     <Button android:id="@+id/ok"
-        android:onClick="okOnClick"
         android:layout_width="80dp"
         android:layout_height="35dp"
         android:text="OK"
@@ -67,6 +66,20 @@
         android:background="@drawable/rounded_button"
      />
 
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:id="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        android:indeterminate="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateOnly="true"
+        android:focusableInTouchMode="false" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,7 +88,6 @@
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true" />
-
 
 
 </RelativeLayout>

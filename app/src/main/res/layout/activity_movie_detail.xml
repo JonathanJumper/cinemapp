@@ -121,5 +121,12 @@
             android:background="#00000000"
             android:onClick="onTrailerClicked"
             android:textStyle="bold"/>
+
+            <!-- Framelayout to display Fragments -->
+            <FrameLayout
+                android:id="@+id/frame_container_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 </ScrollView>

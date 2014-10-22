@@ -184,7 +184,7 @@ public class ActivityLobby extends Activity {
                 break;
             case 3:
                 fragment = fragmentMapMe;
-                break;
+            break;
 
             default:
                 break;
@@ -200,10 +200,8 @@ public class ActivityLobby extends Activity {
             mDrawerList.setSelection(position);
             setTitle(navMenuTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
-        } else {
-            // error in creating fragment
-            Log.e("Error", "MainActivity - Error cuando se creo el fragment");
         }
+        else Log.e("Error", "Error creating fragment");
     }
 
     @Override

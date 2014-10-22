@@ -1,13 +1,15 @@
 package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+
+import java.util.Calendar;
 
 import unal.jomartinezch.cinemapp.R;
 import unal.jomartinezch.cinemapp.model.DataContainer;
@@ -32,7 +36,8 @@ public class ActivityStart extends Activity {
     private String lang;
     private Spinner sp_lang;
     private Spinner sp_cities;
-    private ProgressDialog pDialog;
+    private ProgressBar pBar;
+    private Button okBtn;
     public DataContainer data = DataContainer.getInstance();
     SharedPreferences preferences;
 
@@ -54,24 +59,22 @@ public class ActivityStart extends Activity {
             tv.setText("Version beta "+versionName);
         }catch(Exception e){}
 
+        okBtn = (Button) findViewById(R.id.ok);
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                okBtn.setEnabled(false);
+                okOnClick();
+            }
+        });
+
+        pBar = (ProgressBar) findViewById(R.id.progressBar);
+        pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#e91e63"),
+                android.graphics.PorterDuff.Mode.SRC_IN);
         preferences = getPreferences(MODE_PRIVATE);
     }
 
-    public void okOnClick(View v){
-        Gson gson = new Gson();
-        String json = preferences.getString("data", null);
-        if(json == null){
-            refreshData();
-        }
-        else {
-            data.setDataContainer(gson.fromJson(json, DataContainer.class));
-            Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
-            startActivity(intent);
-        }
+    public void okOnClick(){
 
-    }
-
-    public void refreshData(){
         city = cities[sp_cities.getSelectedItemPosition()].trim().toLowerCase();
         switch (sp_lang.getSelectedItemPosition()) {
             case 0:
@@ -94,10 +97,62 @@ public class ActivityStart extends Activity {
                 break;
         }
 
-        // Showing progress dialog before making http request
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage(getResources().getString(R.string.loading));
-        pDialog.show();
+        Calendar c = Calendar.getInstance();
+        int date = c.get(Calendar.DAY_OF_YEAR)+c.get(Calendar.YEAR);
+
+        //if date is not current, clear cache, and refresh it
+        int gotDate = preferences.getInt("date", -1);
+        if(gotDate == -1) {
+            Log.e("into:", "null got date");
+            preferences.edit().clear();
+            refreshData();
+            return;
+        }
+        if(gotDate != date) {
+            Log.e("into:", "different date");
+            preferences.edit().clear();
+            refreshData();
+            return;
+        }
+
+        //if city is not the same, refresh data
+        String gotCity = preferences.getString("city", "");
+        if(!gotCity.equals(city)){
+            Log.e("into:", "different city");
+            preferences.edit().clear();
+            refreshData();
+            return;
+        }
+
+        //if lang is not the same, refresh data
+        String gotLang = preferences.getString("lang", "");
+        if(!gotLang.equals(lang)){
+            Log.e("into:", "different lang");
+            preferences.edit().clear();
+            refreshData();
+            return;
+        }
+
+        //if there isn't data at all, refresh data, else load cache
+        Gson gson = new Gson();
+        String json = preferences.getString("data", null);
+        if(json == null) {
+            Log.e("into:", "data == null");
+            refreshData();
+        }
+        else {
+            Log.e("into:", "data from cache");
+            data.setDataContainer(gson.fromJson(json, DataContainer.class));
+            Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
+            startActivity(intent);
+            okBtn.setEnabled(true);
+        }
+    }
+
+    public void refreshData(){
+
+        // Showing progress bar before making http request
+        pBar.setVisibility(View.VISIBLE);
 
         String feedUrl = "http://extreme-core.appspot.com/getdata?city="+city+"&lang="+lang;
         RequestQueue rq = Volley.newRequestQueue(this);
@@ -106,7 +161,8 @@ public class ActivityStart extends Activity {
                         new Response.Listener<DataContainer>() {
                             @Override
                             public void onResponse(DataContainer response) {
-                                hidePDialog();
+                                okBtn.setEnabled(true);
+                                pBar.setVisibility(View.GONE);
                                 data.setDataContainer(response);
 
                                 Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
@@ -116,8 +172,10 @@ public class ActivityStart extends Activity {
                                 SharedPreferences.Editor prefsEditor = preferences.edit();
                                 Gson gson = new Gson();
                                 String json = gson.toJson(response);
-                                Log.e("saving", json);
                                 prefsEditor.putString("data", json);
+                                prefsEditor.putInt("date", Calendar.getInstance().get(Calendar.DAY_OF_YEAR) + Calendar.getInstance().get(Calendar.YEAR));
+                                prefsEditor.putString("city", city);
+                                prefsEditor.putString("lang",lang);
                                 prefsEditor.commit();
                             }
                         },
@@ -125,7 +183,7 @@ public class ActivityStart extends Activity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 finish();
-                                hidePDialog();
+                                pBar.setVisibility(View.INVISIBLE);
                                 Log.e("Error on response", error.toString());
                                 Toast.makeText(getApplicationContext(), R.string.connection_error, Toast.LENGTH_LONG).show();
                             }
@@ -139,14 +197,7 @@ public class ActivityStart extends Activity {
     @Override
     public void onDestroy(){
         super.onDestroy();
-        hidePDialog();
-    }
-
-    private void hidePDialog() {
-        if (pDialog != null) {
-            pDialog.dismiss();
-            pDialog = null;
-        }
+        pBar.setVisibility(View.GONE);
     }
 
 }

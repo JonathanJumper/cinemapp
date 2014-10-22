@@ -3,7 +3,7 @@
     <string name="app_name">Cinemapp Colombia</string>
     <string name="description">La aplicación que hace que ir al cine sea tan facil como estar alli.</string>
 
-    <string name="start_pick_city">Escribe la ciudad</string>
+    <string name="start_pick_city">Selecciona la ciudad</string>
     <string name="start_pick_lang">Selecciona el idioma</string>
     <string name="action_settings">Settings</string>
 

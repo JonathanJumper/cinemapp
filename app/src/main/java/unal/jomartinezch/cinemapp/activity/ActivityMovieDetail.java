@@ -1,8 +1,7 @@
 package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -53,7 +52,10 @@ public class ActivityMovieDetail extends Activity {
         final Button button = (Button) findViewById(R.id.trailer);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(m.trailerPath)));
+                FragmentTrailer f = FragmentTrailer.newInstance(m.trailerPath.
+                        replace("https://www.youtube.com/watch?v=",""));
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.frame_container_video, f).commit();
             }
         });
     }
