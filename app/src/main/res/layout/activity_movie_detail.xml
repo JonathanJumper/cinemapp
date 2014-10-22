@@ -8,11 +8,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:scrollbarStyle="outsideOverlay"
-    android:background="@color/movie_detail_bg">
+    android:background="@color/movie_detail_bg"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/name"
@@ -106,27 +107,30 @@
             android:layout_marginTop="8dp"
             android:padding="2dp"
             android:textColor="@color/background_light" />
-
-        <Button
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/trailer"
             android:id="@+id/trailer"
             android:layout_below="@+id/description"
-            android:layout_marginTop="8dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textColor="#ff3753b4"
-            android:textSize="@dimen/movie_description"
-            android:background="#00000000"
-            android:onClick="onTrailerClicked"
-            android:textStyle="bold"/>
+            android:layout_marginTop="8dp"
+            android:textColor="@color/background_text"
+            android:text="@string/movie_trailer"
+            android:textStyle="bold"
+            android:textSize="@dimen/movie_description" />
 
-            <!-- Framelayout to display Fragments -->
-            <FrameLayout
-                android:id="@+id/frame_container_video"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+        <!-- Framelayout to display Fragments -->
+        <FrameLayout
+            android:id="@+id/frame_container_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/trailer"
+            />
 
     </RelativeLayout>
+
 </ScrollView>
+

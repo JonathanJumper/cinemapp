@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -49,15 +47,9 @@ public class ActivityMovieDetail extends Activity {
         ((TextView) findViewById(R.id.original)).setText(m.originalName);
         ((TextView) findViewById(R.id.genre)).setText(m.genre.replace("/",", "));
 
-        final Button button = (Button) findViewById(R.id.trailer);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                FragmentTrailer f = FragmentTrailer.newInstance(m.trailerPath.
-                        replace("https://www.youtube.com/watch?v=",""));
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame_container_video, f).commit();
-            }
-        });
+        final FragmentTrailer f = FragmentTrailer.newInstance(m.trailerPath);
+        final FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame_container_video, f).commit();
     }
 
     @Override

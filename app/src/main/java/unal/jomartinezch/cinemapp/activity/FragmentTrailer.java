@@ -18,10 +18,8 @@ public class FragmentTrailer extends YouTubePlayerFragment {
 
         Bundle b = new Bundle();
         b.putString("url", url);
-
         f.setArguments(b);
         f.init();
-
         return f;
     }
 
@@ -36,6 +34,7 @@ public class FragmentTrailer extends YouTubePlayerFragment {
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
                 if (!wasRestored) {
                     player.cueVideo(getArguments().getString("url"));
+                    player.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
                 }
             }
         });
