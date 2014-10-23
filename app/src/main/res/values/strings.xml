@@ -18,9 +18,9 @@
     <!-- Iconos de los items -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_boxoffice</item>
-        <item>@drawable/ic_people</item>
-        <item>@drawable/ic_photos</item>
-        <item>@drawable/ic_communities</item>
+        <item>@drawable/ic_genre</item>
+        <item>@drawable/ic_calendar</item>
+        <item>@drawable/ic_mapme</item>
     </array>
 
     <!-- Content Description -->

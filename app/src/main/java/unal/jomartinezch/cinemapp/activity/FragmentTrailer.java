@@ -1,10 +1,12 @@
 package unal.jomartinezch.cinemapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 
 /**
  * Created by Usuario on 20/10/2014.
@@ -35,13 +37,16 @@ public class FragmentTrailer extends YouTubePlayerFragment {
                 if (!wasRestored) {
                     player.cueVideo(getArguments().getString("url"));
                     player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+                    player.setFullscreenControlFlags(YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT);
+
                     player.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
                         @Override
                         public void onFullscreen(boolean b) {
                             if(b) {
-                                player.setFullscreen(true);
-                            }
-                            else{
+                                player.pause();
+                                Intent intent = YouTubeStandalonePlayer.createVideoIntent(
+                                        getActivity(), "AIzaSyC8VGL64CyC-IG43IXsqpqDBdzGvXTelKE", getArguments().getString("url"), player.getCurrentTimeMillis(), true, false);
+                                startActivity(intent);
                                 player.setFullscreen(false);
                             }
                         }

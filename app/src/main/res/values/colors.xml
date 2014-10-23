@@ -1,7 +1,7 @@
 <resources>
 
     //global
-    <color name="primary">#fff70d</color>
+    <color name="primary">#fffff70d</color>
     <color name="primary_text">#000000</color>
     <color name="secondary">#880e4f</color>
     <color name="background">#212121</color>

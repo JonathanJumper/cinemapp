@@ -34,16 +34,8 @@ public class FragmentBoxOffice extends Fragment implements SwipeRefreshLayout.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_boxoffice, container, false);
-        swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-        swipeLayout.setOnRefreshListener(this);
-        swipeLayout.setColorSchemeResources(
-                R.color.primary,
-                R.color.refresh_3,
-                R.color.secondary,
-                R.color.refresh_4);
 
-        swipeLayout.setBackgroundColor(getResources().getColor(R.color.background));
-
+        //getActivity().getActionBar().set
         listView = (ListView) rootView.findViewById(R.id.lvy_movies);
         adapter = new MoviesListAdapter(getActivity(), movieList);
         listView.setAdapter(adapter);

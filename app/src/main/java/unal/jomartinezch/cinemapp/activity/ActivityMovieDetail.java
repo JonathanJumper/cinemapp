@@ -67,7 +67,6 @@ public class ActivityMovieDetail extends Activity {
             ((TextView) findViewById(R.id.description)).setText(m.description);
         }
 
-
         if (m.trailerPath == null) {
             findViewById(R.id.trailer_title).setVisibility(View.GONE);
             findViewById(R.id.frame_container_video).setVisibility(View.GONE);
