@@ -2,7 +2,6 @@ package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Dialog;
 import android.app.Fragment;
-import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +23,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -38,9 +38,7 @@ import unal.jomartinezch.cinemapp.util.Utils;
 public class FragmentMapMe extends Fragment implements
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener,
-        LocationListener, GoogleMap.OnMarkerClickListener,
-        GoogleMap.OnMarkerDragListener,
-        GoogleMap.OnMapLongClickListener{
+        LocationListener, GoogleMap.OnMarkerClickListener{
 
     private final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final int MILLISECONDS_PER_SECOND = 1000;
@@ -53,16 +51,16 @@ public class FragmentMapMe extends Fragment implements
     private GoogleMap mMap;
     private MapView mapView;
     private View myFragmentView;
-    private Location location = null;
     private LocationClient mLocationClient = null;
     private LocationRequest mLocationRequest = null;
-    private Marker mOrigin;
-    private boolean isCalculating = false;
     private ImageView findMe;
     private LatLng myPosition;
-    static  int times = 0;
 
+    String city = DataContainer.getInstance().city;
+    Double cityLat = DataContainer.getInstance().lat;
+    Double cityLon = DataContainer.getInstance().lon;
     ArrayList<Theater> theaters = DataContainer.getInstance().theaters;
+
     public FragmentMapMe() {}
 
     @Override
@@ -157,21 +155,6 @@ public class FragmentMapMe extends Fragment implements
         }
     }
 
-    /**
-     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed  (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(android.os.Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called.
-     */
     private void setUpMapIfNeeded() {
         if (mMap == null) {
             mMap = mapView.getMap();
@@ -181,32 +164,28 @@ public class FragmentMapMe extends Fragment implements
         }
     }
 
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera.
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
     private void setUpMap() {
         if (mMap != null) {
             //Map is ready
             mMap.setMyLocationEnabled(MYLOCATIONENABLE);
             mMap.getUiSettings().setZoomControlsEnabled(MYLOCATIONENABLE);
-            mMap.setOnMapLongClickListener(this);
-            mMap.setOnMarkerDragListener(this);
             mMap.setOnMarkerClickListener(this);
+
+            for(Theater t: theaters)
+                mMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(Double.parseDouble(t.lat), Double.parseDouble(t.lon)))
+                                .draggable(false)
+                                .title(t.name)
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
+                );
+
             Location myLocation = Utils.getLocation(getActivity(), mLocationClient);
+            myPosition = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
 
-            double mylatitude = myLocation.getLatitude();
-            double mylongitude = myLocation.getLongitude();
-
-            myPosition = new LatLng(mylatitude, mylongitude);
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(myPosition));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(ZOOM_LVL));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(cityLat,cityLon)));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
         }
     }
-
-    /**
-     * Move the camera to a location
-     */
 
     public void takeToLocation(LatLng toBeLocationLatLang) {
         if (toBeLocationLatLang != null) {
@@ -231,34 +210,6 @@ public class FragmentMapMe extends Fragment implements
 
     @Override
     public void onConnected(Bundle bundle) {
-        if (mOrigin == null) {
-            boolean mUpdatesRequestedPreferences = getActivity().getSharedPreferences("LOCATION_UPDATE", getActivity().MODE_PRIVATE).getBoolean("KEY_UPDATES_ON", false);
-            Context contextApp = getActivity();
-            if (mUpdatesRequestedPreferences) {
-
-            } else {
-                location = Utils.getLocation(contextApp, mLocationClient);
-            }
-            if (location != null) {
-                if (!isCalculating) {
-                    takeToLocation(Utils.convertLocationtoLatLang(location, getActivity()));
-                    mOrigin = mMap.addMarker(new MarkerOptions().position(Utils.convertLocationtoLatLang(location, getActivity())).title("Usted esta aca").draggable(true));
-                    // mOrigin = mMap.addMarker(new MarkerOptions().position(Utils.convertLocationtoLatLang(location, getActivity())).title(getString(R.string.you_are_here)).draggable(true)
-                    //        .icon(BitmapDescriptorFactory.fromBitmap(profileIcon)));
-                    mOrigin.showInfoWindow();
-                    //loadAnunciosFromFile();
-                }
-            } else {
-                try{
-                    Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-                }catch (Exception e){}
-            }
-
-        } else {
-            try {
-                takeToLocation(mOrigin.getPosition());
-            } catch (Exception e) {}
-        }
     }
 
     @Override
@@ -284,24 +235,5 @@ public class FragmentMapMe extends Fragment implements
     public boolean onMarkerClick(Marker marker) {
         Log.e("Clicked", " this marker");
         return true;
-    }
-
-    public void onMarkerDragStart(Marker marker) {
-
-    }
-
-    @Override
-    public void onMarkerDrag(Marker marker) {
-
-    }
-
-    @Override
-    public void onMarkerDragEnd(Marker marker) {
-        marker.showInfoWindow();
-    }
-
-    @Override
-    public void onMapLongClick(LatLng point) {
-
     }
 }

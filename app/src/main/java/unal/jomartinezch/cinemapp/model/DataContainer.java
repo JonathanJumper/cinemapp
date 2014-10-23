@@ -12,7 +12,9 @@ public class DataContainer {
     //singleton global variable class
     private static DataContainer instance;
 
-    String city;
+    public String city;
+    public double lat;
+    public double lon;
     public ArrayList<MovieLite> movies;
     public ArrayList<Theater> theaters;
     public ArrayList<Showtime> showtimes;
@@ -31,13 +33,4 @@ public class DataContainer {
         return instance;
     }
 
-    @Override
-    public String toString() {
-        return "DataContainer{" +
-                "city='" + city + '\'' +
-                ", movies=" + movies +
-                ", theaters=" + theaters +
-                ", showtimes=" + showtimes +
-                '}';
-    }
 }
