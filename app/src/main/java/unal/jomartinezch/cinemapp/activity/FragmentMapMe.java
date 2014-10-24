@@ -2,6 +2,7 @@ package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -38,7 +40,7 @@ import unal.jomartinezch.cinemapp.util.Utils;
 public class FragmentMapMe extends Fragment implements
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener,
-        LocationListener, GoogleMap.OnMarkerClickListener{
+        LocationListener, GoogleMap.OnMarkerClickListener {
 
     private final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final int MILLISECONDS_PER_SECOND = 1000;
@@ -51,10 +53,13 @@ public class FragmentMapMe extends Fragment implements
     private GoogleMap mMap;
     private MapView mapView;
     private View myFragmentView;
-    private LocationClient mLocationClient = null;
+    private LocationClient mLocationClient;
     private LocationRequest mLocationRequest = null;
+
+    private Button theaterDetail;
     private ImageView findMe;
     private LatLng myPosition;
+    private int markerIndex;
 
     String city = DataContainer.getInstance().city;
     Double cityLat = DataContainer.getInstance().lat;
@@ -109,6 +114,14 @@ public class FragmentMapMe extends Fragment implements
 
                 }
         }
+
+        findMe = (ImageView) myFragmentView.findViewById(R.id.findMe);
+        findMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takeToLocation(myPosition);
+            }
+        });
 
         return myFragmentView;
     }
@@ -176,14 +189,34 @@ public class FragmentMapMe extends Fragment implements
                                 .position(new LatLng(Double.parseDouble(t.lat), Double.parseDouble(t.lon)))
                                 .draggable(false)
                                 .title(t.name)
+                                .snippet(getResources().getString(R.string.marker_snippet))
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
                 );
-
             Location myLocation = Utils.getLocation(getActivity(), mLocationClient);
-            myPosition = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-
+            myPosition = Utils.convertLocationtoLatLang(myLocation, getActivity().getBaseContext());
+            Log.e("position ",myPosition.toString());
+            mMap.addMarker(new MarkerOptions()
+                            .position(myPosition)
+                            .draggable(false)
+                            .title(getResources().getString(R.string.youre_here))
+                            .snippet(getResources().getString(R.string.youre_here_snippet))
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+            );
             mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(cityLat,cityLon)));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+
+            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    try {
+                        markerIndex = Integer.parseInt(marker.getId().replace("m", ""));
+                        Intent intent = new Intent();
+                        intent.putExtra("position", markerIndex);
+                        intent.setClass(getActivity(), ActivityTheaterDetail.class);
+                        startActivity(intent);
+                    }catch (Exception e){}
+                }
+            });
         }
     }
 
@@ -223,17 +256,17 @@ public class FragmentMapMe extends Fragment implements
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
     }
 
     @Override
     public void onLocationChanged(Location location) {
-
+        Log.e("clicked","onLocationChanged");
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Log.e("Clicked", " this marker");
+        marker.showInfoWindow();
         return true;
     }
+
 }

@@ -42,7 +42,7 @@ public class ActivityLobby extends Activity {
     FragmentBoxOffice fragmentBoxOffice;
     FragmentGenre fragmentGenre;
     FragmentCalendar fragmentCalendar;
-    FragmentMapMe fragmentMapMe;
+    //FragmentMapMe fragmentMapMe;
 
     public DataContainer data;
 
@@ -55,7 +55,7 @@ public class ActivityLobby extends Activity {
         fragmentBoxOffice = new FragmentBoxOffice();
         fragmentGenre = new FragmentGenre();
         fragmentCalendar = new FragmentCalendar();
-        fragmentMapMe = new FragmentMapMe();
+        //fragmentMapMe = new FragmentMapMe();
 
         //load data
         data = DataContainer.getInstance();
@@ -183,7 +183,7 @@ public class ActivityLobby extends Activity {
                 fragment = fragmentCalendar;
                 break;
             case 3:
-                fragment = fragmentMapMe;
+                fragment = new FragmentMapMe();
             break;
 
             default:

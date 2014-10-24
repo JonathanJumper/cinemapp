@@ -10,14 +10,15 @@
         />
 
     <ImageView
-        android:id="@+id/findMy"
+        android:id="@+id/findMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_boxoffice"
+        android:src="@drawable/ic_findme"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"/>
-
+        android:layout_marginRight="5dp"
+        android:clickable="true"
+        />
 
 </RelativeLayout>

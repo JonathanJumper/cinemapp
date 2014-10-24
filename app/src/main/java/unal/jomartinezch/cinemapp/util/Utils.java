@@ -121,11 +121,8 @@ public class Utils {
 
     public static Location getLocation(Context context, LocationClient mLocationClient) {
         Location locationResult = null;
-
         try{
-
             LocationUtils unLocationUtils = new LocationUtils(context,mLocationClient);
-
             return locationResult =unLocationUtils.returnLocation();
         }
 
