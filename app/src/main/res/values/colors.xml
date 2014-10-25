@@ -1,7 +1,7 @@
 <resources>
 
     //global
-    <color name="primary">#fffff70d</color>
+    <color name="primary">#fff70d</color>
     <color name="primary_text">#000000</color>
     <color name="secondary">#880e4f</color>
     <color name="background">#212121</color>
@@ -13,7 +13,7 @@
     <color name="list_item_title">#ffffff</color>
     <color name="list_nd_bg">#ff303030</color>
     <color name="list_nd_bg_pressed">#880e4f</color>
-    <color name="counter_text_bg">#fff70d</color>fff70d
+    <color name="counter_text_bg">#fff70d</color>
     <color name="counter_text_color">#000000</color>
 
     // box office
@@ -22,11 +22,11 @@
     <color name="director">#888888</color>
     <color name="duration">#666666</color>
     <color name="threeD">#fff70d</color>
+    <color name="bo_detail_bg">#3f51b5</color>
+    <color name="bo_locate_bg">#ffffff</color>
     <color name="list_divider_nd">#000000</color>
     <color name="list_row_start_color">#212121</color>
     <color name="list_row_end_color">#212121</color>
-    <color name="refresh_3">#ffffff</color>
-    <color name="refresh_4">#03a9f4</color>
 
     // movie detail
     <color name="movie_detail_bg">#212121</color>

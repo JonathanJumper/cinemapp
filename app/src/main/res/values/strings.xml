@@ -11,7 +11,7 @@
     <string-array name="nav_drawer_items">
         <item>Cartelera</item>
         <item>Generos</item>
-        <item>Calendario</item>
+        <item>Teatros</item>
         <item>Localizame</item>
     </string-array>
 

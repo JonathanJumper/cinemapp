@@ -5,6 +5,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
+import android.util.TypedValue;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.model.LatLng;
@@ -308,5 +309,8 @@ public class Utils {
         return resolution;
     }
 
-
+    public static int dpToPx(int dp, Context context) {
+        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+        return (int)px;
+    }
 }
