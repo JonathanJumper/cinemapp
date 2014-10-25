@@ -31,4 +31,7 @@
     // movie detail
     <color name="movie_detail_bg">#212121</color>
     <color name="movie_detail_text">#ffffff</color>
+
+    //map me
+    <color name="mm_findme_bg">#fff70d</color>
 </resources>

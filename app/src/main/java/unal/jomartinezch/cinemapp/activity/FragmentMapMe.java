@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -56,10 +55,9 @@ public class FragmentMapMe extends Fragment implements
     private LocationClient mLocationClient;
     private LocationRequest mLocationRequest = null;
 
-    private Button theaterDetail;
-    private ImageView findMe;
+    private ImageView findMe, details, movies;
     private LatLng myPosition;
-    private int markerIndex;
+    private int markerIndex = -1;
 
     String city = DataContainer.getInstance().city;
     Double cityLat = DataContainer.getInstance().lat;
@@ -118,6 +116,28 @@ public class FragmentMapMe extends Fragment implements
 
         findMe = (ImageView) myFragmentView.findViewById(R.id.findMe);
         findMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takeToLocation(myPosition);
+            }
+        });
+
+        details = (ImageView) myFragmentView.findViewById(R.id.detailsMap);
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //if marker index equals size, marker is current location
+                if(markerIndex != -1 && markerIndex != theaters.size()) {
+                    Intent intent = new Intent();
+                    intent.putExtra("position", markerIndex);
+                    intent.setClass(getActivity(), ActivityTheaterDetail.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        movies = (ImageView) myFragmentView.findViewById(R.id.moviesMap);
+        movies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 takeToLocation(myPosition);
@@ -190,7 +210,6 @@ public class FragmentMapMe extends Fragment implements
                                 .position(new LatLng(Double.parseDouble(t.lat), Double.parseDouble(t.lon)))
                                 .draggable(false)
                                 .title(t.name)
-                                .snippet(getResources().getString(R.string.marker_snippet))
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
                 );
             Location myLocation = Utils.getLocation(getActivity(), mLocationClient);
@@ -200,7 +219,6 @@ public class FragmentMapMe extends Fragment implements
                             .position(myPosition)
                             .draggable(false)
                             .title(getResources().getString(R.string.youre_here))
-                            .snippet(getResources().getString(R.string.youre_here_snippet))
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
             );
             mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(cityLat,cityLon)));
@@ -209,13 +227,7 @@ public class FragmentMapMe extends Fragment implements
             mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
-                    try {
-                        markerIndex = Integer.parseInt(marker.getId().replace("m", ""));
-                        Intent intent = new Intent();
-                        intent.putExtra("position", markerIndex);
-                        intent.setClass(getActivity(), ActivityTheaterDetail.class);
-                        startActivity(intent);
-                    }catch (Exception e){}
+                    marker.hideInfoWindow();
                 }
             });
         }
@@ -267,6 +279,9 @@ public class FragmentMapMe extends Fragment implements
     @Override
     public boolean onMarkerClick(Marker marker) {
         marker.showInfoWindow();
+        markerIndex = Integer.parseInt(marker.getId().replace("m", ""));
+        details.setVisibility(View.VISIBLE);
+        movies.setVisibility(View.VISIBLE);
         return true;
     }
 

@@ -41,7 +41,7 @@ public class ActivityLobby extends Activity {
     //fragments
     FragmentBoxOffice fragmentBoxOffice;
     FragmentGenre fragmentGenre;
-    FragmentCalendar fragmentCalendar;
+    FragmentTheater fragmentTheater;
     //FragmentMapMe fragmentMapMe;
 
     public DataContainer data;
@@ -54,7 +54,7 @@ public class ActivityLobby extends Activity {
 
         fragmentBoxOffice = new FragmentBoxOffice();
         fragmentGenre = new FragmentGenre();
-        fragmentCalendar = new FragmentCalendar();
+        fragmentTheater = new FragmentTheater();
         //fragmentMapMe = new FragmentMapMe();
 
         //load data
@@ -180,7 +180,7 @@ public class ActivityLobby extends Activity {
                 fragment = fragmentGenre;
                 break;
             case 2:
-                fragment = fragmentCalendar;
+                fragment = fragmentTheater;
                 break;
             case 3:
                 fragment = new FragmentMapMe();

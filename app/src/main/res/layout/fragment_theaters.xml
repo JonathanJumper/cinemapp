@@ -1,0 +1,14 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <unal.jomartinezch.cinemapp.util.SwipeMenuListView
+        android:id="@+id/lv_theaters"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/list_divider_nd"
+        android:dividerHeight="2dp"
+        android:listSelector="@drawable/list_bo_selector" />
+
+</RelativeLayout>

@@ -64,6 +64,7 @@ public class MoviesListAdapter extends BaseAdapter {
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
         NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.thumbnail);
+
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView genre = (TextView) convertView.findViewById(R.id.genre);
         TextView director = (TextView) convertView.findViewById(R.id.director);
@@ -79,6 +80,7 @@ public class MoviesListAdapter extends BaseAdapter {
                 try {
                     String imagePath = m.imagePath.replace("w500", "w92");
                     thumbNail.setImageUrl(imagePath, imageLoader);
+
                 } catch (Exception e) {
                     Drawable transparentDrawable = new ColorDrawable(Color.TRANSPARENT);
                     thumbNail.setImageDrawable(transparentDrawable);

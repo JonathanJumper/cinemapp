@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="thumbnail_size">80dp</dimen>
+    <dimen name="thumbnail_size_map">60dp</dimen>
+    <dimen name="thumbnail_padding">7dp</dimen>
     //box office
     <dimen name="title">17dp</dimen>
     <dimen name="rating">14dip</dimen>

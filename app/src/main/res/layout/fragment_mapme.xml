@@ -11,13 +11,39 @@
 
     <ImageView
         android:id="@+id/findMe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/thumbnail_size"
+        android:layout_height="@dimen/thumbnail_size"
+        android:scaleType="center"
         android:src="@drawable/ic_findme"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
+        android:background="@drawable/ovaled_button_mm_findme"
+        android:clickable="true"
+        />
+
+    <ImageView
+        android:id="@+id/detailsMap"
+        android:layout_width="@dimen/thumbnail_size"
+        android:layout_height="@dimen/thumbnail_size"
+        android:scaleType="center"
+        android:src="@drawable/ic_details"
+        android:background="@drawable/ovaled_button_bo_details"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/findMe"
+        android:visibility="invisible"
+        android:clickable="true"
+        />
+
+    <ImageView
+        android:id="@+id/moviesMap"
+        android:layout_width="@dimen/thumbnail_size"
+        android:layout_height="@dimen/thumbnail_size"
+        android:scaleType="center"
+        android:src="@drawable/ic_genre"
+        android:background="@drawable/ovaled_button_bo_locate"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/detailsMap"
+        android:visibility="invisible"
         android:clickable="true"
         />
 
