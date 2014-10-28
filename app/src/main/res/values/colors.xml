@@ -7,6 +7,7 @@
     <color name="background">#212121</color>
     <color name="background_text">#ffffff</color>
     <color name="background_light">#ffe7e7e7</color>
+    <color name="text_link">#3f51b5</color>
     
     //navigation drawer
     <color name="black_overlay">#66000000</color>

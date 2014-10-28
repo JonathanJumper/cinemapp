@@ -154,7 +154,7 @@ public class ActivityStart extends Activity {
         // Showing progress bar before making http request
         pBar.setVisibility(View.VISIBLE);
 
-        String feedUrl = "http://extreme-core.appspot.com/getdata?city="+city+"&lang="+lang;
+        String feedUrl = "http://cinemappco.appspot.com/getdata?city="+city+"&lang="+lang;
         RequestQueue rq = Volley.newRequestQueue(this);
         GsonRequest<DataContainer> getData =
                 new GsonRequest<DataContainer>(feedUrl, DataContainer.class,

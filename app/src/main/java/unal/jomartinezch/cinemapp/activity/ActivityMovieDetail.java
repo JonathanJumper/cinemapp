@@ -37,7 +37,7 @@ public class ActivityMovieDetail extends Activity {
             NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.thumbnail);
 
             try {
-                String imagePath = m.imagePath;
+                String imagePath = "http://image.tmdb.org/t/p/w500"+m.imagePath;
                 thumbNail.setImageUrl(imagePath, imageLoader);
             } catch (Exception e) {
                 findViewById(R.id.thumbnail).setVisibility(View.GONE);

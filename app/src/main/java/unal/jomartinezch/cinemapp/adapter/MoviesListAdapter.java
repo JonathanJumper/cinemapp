@@ -78,7 +78,7 @@ public class MoviesListAdapter extends BaseAdapter {
         if(m.imagePath != null)
             if(!m.imagePath.contains("null")){
                 try {
-                    String imagePath = m.imagePath.replace("w500", "w92");
+                    String imagePath = "http://image.tmdb.org/t/p/w92"+ m.imagePath;
                     thumbNail.setImageUrl(imagePath, imageLoader);
 
                 } catch (Exception e) {

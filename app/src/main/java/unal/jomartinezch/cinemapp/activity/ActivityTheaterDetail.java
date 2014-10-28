@@ -1,9 +1,12 @@
 package unal.jomartinezch.cinemapp.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import unal.jomartinezch.cinemapp.R;
@@ -12,22 +15,22 @@ import unal.jomartinezch.cinemapp.model.Theater;
 
 public class ActivityTheaterDetail extends Activity {
 
+    Theater t;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theater_detail);
 
         Bundle b = this.getIntent().getExtras();
-        final int pos = b.getInt("position");
-        final Theater t = DataContainer.getInstance().theaters.get(pos);
+        t = DataContainer.getInstance().theaters.get(b.getInt("position"));
 
         ((TextView) findViewById(R.id.theater_name)).setText(t.name);
         ((TextView) findViewById(R.id.theater_adress)).setText(t.desc);
         ((TextView) findViewById(R.id.theater_phone)).setText(t.tel);
-        ((TextView) findViewById(R.id.theater_url)).setText(t.city);
+        ((TextView) findViewById(R.id.theater_url)).setText(t.url);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,5 +49,11 @@ public class ActivityTheaterDetail extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void urlOnClick(View view) {
+        Uri webpage = Uri.parse(t.url);
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(webIntent);
     }
 }

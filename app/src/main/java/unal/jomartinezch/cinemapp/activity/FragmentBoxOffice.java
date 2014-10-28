@@ -96,7 +96,7 @@ public class FragmentBoxOffice extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                listView.smoothOpenMenu(arg2);
+            listView.smoothOpenMenu(arg2);
             }
         });
         return rootView;

@@ -11,14 +11,21 @@ public class Theater {
     public String desc;
     public String tel;
     public String city;
+    public String url;
 
     public Theater(){}
 
     @Override
     public String toString() {
-        return "\n[name=" + name + ", tid=" + tid + ", lat=" + lat
-                + ", lon=" + lon + ", desc=" + desc + ", tel=" + tel
-                + ", city=" + city + "]";
+        return "\n[" +
+                "name='" + name + '\'' +
+                ", tid='" + tid + '\'' +
+                ", lat='" + lat + '\'' +
+                ", lon='" + lon + '\'' +
+                ", desc='" + desc + '\'' +
+                ", tel='" + tel + '\'' +
+                ", city='" + city + '\'' +
+                ", url='" + url + '\'' +
+                ']';
     }
-
 }
