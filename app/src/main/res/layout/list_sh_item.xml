@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_bo_selector"
+    android:padding="8dp" >
+
+    <!-- Movie -->
+    <TextView
+        android:id="@+id/sh_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="1dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/genre"
+        android:textSize="@dimen/rating" />
+
+    <!-- Theater -->
+    <TextView
+        android:id="@+id/sh_theater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/sh_movie"
+        android:layout_marginTop="1dip"
+        android:textColor="@color/genre"
+        android:textSize="@dimen/rating" />
+
+    <!-- Director -->
+    <TextView
+        android:id="@+id/sh_showtimes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sh_theater"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/director"
+        android:textSize="@dimen/genre" />
+
+</RelativeLayout>

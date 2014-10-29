@@ -44,10 +44,14 @@
     <string name="youre_here">"Estas aqui"</string>
     <string name="youre_here_snippet">"Selecciona el teatro deseado"</string>
     <string name="marker_snippet">Click aqui para ver detalles</string>
+
     <!-- Theater Detail -->
     <string name="title_activity_theater_detail">Detalles</string>
     <string name="theater_adress">Direccion:</string>
     <string name="theater_phone">Telefono:</string>
-    <string name="theater_url">Direccion Web:</string>
+    <string name="theater_url">Sitio Web:</string>
+
+    <!-- Showtimes -->
+    <string name="title_activity_showtime">Funciones Disponibles</string>
 
 </resources>

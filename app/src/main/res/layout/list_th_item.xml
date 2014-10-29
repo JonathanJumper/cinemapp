@@ -1,58 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     android:background="@drawable/list_bo_selector"
     android:padding="8dp" >
 
-    <!-- Thumbnail Image -->
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/thumbnail"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="8dp" />
-
-    <!-- Movie Title -->
+    <!-- Theater Name -->
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:id="@+id/theater_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/thumbnail"
-        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:textSize="@dimen/title"
         android:textStyle="bold"
         android:textColor="@color/title"/>
 
-    <!-- Genre -->
+    <!-- Phone -->
     <TextView
-        android:id="@+id/genre"
-        android:layout_width="fill_parent"
+        android:id="@+id/theater_phone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@id/theater_name"
+        android:layout_marginTop="3dip"
         android:textColor="@color/genre"
         android:textSize="@dimen/rating" />
 
-    <!-- Director -->
+    <!-- Adress -->
     <TextView
-        android:id="@+id/director"
-        android:layout_width="fill_parent"
+        android:id="@+id/theater_adress"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:textColor="@color/director"
-        android:textSize="@dimen/genre" />
-
-    <!-- Duration-->
-    <TextView
-        android:id="@+id/duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/duration"
+        android:layout_below="@id/theater_phone"
+        android:layout_marginTop="5dip"
+        android:textColor="@color/genre"
         android:textSize="@dimen/year" />
 
 </RelativeLayout>

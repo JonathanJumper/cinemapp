@@ -1,43 +1,53 @@
 package unal.jomartinezch.cinemapp.activity;
 
-import android.app.Fragment;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import unal.jomartinezch.cinemapp.R;
-import unal.jomartinezch.cinemapp.adapter.TheatersListAdapter;
+import unal.jomartinezch.cinemapp.adapter.ShowtimesListAdapter;
 import unal.jomartinezch.cinemapp.model.DataContainer;
-import unal.jomartinezch.cinemapp.model.Theater;
+import unal.jomartinezch.cinemapp.model.Showtime;
 import unal.jomartinezch.cinemapp.util.SwipeMenu;
 import unal.jomartinezch.cinemapp.util.SwipeMenuCreator;
 import unal.jomartinezch.cinemapp.util.SwipeMenuItem;
 import unal.jomartinezch.cinemapp.util.SwipeMenuListView;
 
-/**
- * Created by user on 26/08/2014.
- */
-public class FragmentTheater extends Fragment {
+public class ActivityShowtime extends Activity {
 
-    private List<Theater> theatersList = DataContainer.getInstance().theaters;
+    private List<Showtime> showtimes = DataContainer.getInstance().showtimes;
     private SwipeMenuListView listView;
-    private TheatersListAdapter adapter;
+    private ShowtimesListAdapter adapter;
+    private int moviePos, theaterPos;
+    private List<Showtime> showtimesFetched = new ArrayList<Showtime>();
 
+    
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_showtime);
 
-        View rootView = inflater.inflate(R.layout.fragment_theaters, container, false);
-        listView = (SwipeMenuListView) rootView.findViewById(R.id.lv_theaters);
-        adapter = new TheatersListAdapter(getActivity(), theatersList);
+        Bundle b = this.getIntent().getExtras();
+        moviePos = b.getInt("movie_position");
+        theaterPos = b.getInt("theater_position");
+
+        if(theaterPos == -1) {
+            String mid = DataContainer.getInstance().movies.get(moviePos).mid;
+            for(Showtime s: showtimes)
+                if(s.mid.equals(mid)) showtimesFetched.add(s);
+        }
+
+        listView = (SwipeMenuListView) findViewById(R.id.lv_showtimes);
+        adapter = new ShowtimesListAdapter(this, showtimesFetched);
         listView.setAdapter(adapter);
-
 
         final int itemWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 96, getResources().getDisplayMetrics());
 
@@ -46,8 +56,7 @@ public class FragmentTheater extends Fragment {
             @Override
             public void create(SwipeMenu menu) {
                 // create "locate" item
-                SwipeMenuItem locateItem = new SwipeMenuItem(
-                        getActivity().getApplicationContext());
+                SwipeMenuItem locateItem = new SwipeMenuItem(getApplicationContext());
                 // set item background
                 locateItem.setBackground(R.drawable.ovaled_button_bo_locate);
                 // set item width
@@ -58,8 +67,7 @@ public class FragmentTheater extends Fragment {
                 menu.addMenuItem(locateItem);
 
                 // create "detail" item
-                SwipeMenuItem detailsItem = new SwipeMenuItem(
-                        getActivity().getApplicationContext());
+                SwipeMenuItem detailsItem = new SwipeMenuItem(getApplicationContext());
                 // set item background
                 detailsItem.setBackground(R.drawable.ovaled_button_bo_details);
                 // set item width
@@ -83,7 +91,7 @@ public class FragmentTheater extends Fragment {
                     case 1:
                         Intent intent = new Intent();
                         intent.putExtra("position", position);
-                        intent.setClass(getActivity(), ActivityTheaterDetail.class);
+                        intent.setClass(getApplicationContext(), ActivityMovieDetail.class);
                         startActivity(intent);
                         break;
                 }
@@ -100,6 +108,25 @@ public class FragmentTheater extends Fragment {
                 listView.smoothOpenMenu(arg2);
             }
         });
-        return rootView;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.showtime, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

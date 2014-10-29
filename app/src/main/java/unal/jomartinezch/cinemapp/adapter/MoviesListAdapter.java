@@ -96,7 +96,9 @@ public class MoviesListAdapter extends BaseAdapter {
             Log.e("Error in adapter", e.toString());
             title.setText(m.name);
         }
-        if(m.genre.contains("/"))  genre.setText(m.genre.substring(0, m.genre.indexOf("/")));
+        if(m.genre != null)
+            if(m.genre.contains("/"))
+                genre.setText(m.genre.substring(0, m.genre.indexOf("/")));
         else genre.setText(m.genre);
         director.setText(m.director);
         duration.setText(m.duration);

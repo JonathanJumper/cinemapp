@@ -2,17 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="unal.jomartinezch.cinemapp" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but are recommended.
-    -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <application
         android:name=".util.AppController"
         android:allowBackup="true"
@@ -32,10 +21,22 @@
         </activity>
         <activity
             android:name=".activity.ActivityLobby"
-            android:label="Explora" />
+            android:label="Explora"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ActivityMovieDetail"
-            android:label="@string/title_activity_movie_detail" />
+            android:label="@string/title_activity_movie_detail"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ActivityTheaterDetail"
+            android:label="@string/title_activity_theater_detail"
+            android:theme="@style/AppTheme" >>
+        </activity>
+        <activity
+            android:name=".activity.ActivityShowtime"
+            android:label="@string/title_activity_showtime"
+            android:theme="@style/AppTheme" >>
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -44,10 +45,17 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".activity.ActivityTheaterDetail"
-            android:label="@string/title_activity_theater_detail" >
-        </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

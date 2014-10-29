@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -48,8 +49,19 @@ public class TheatersListAdapter extends BaseAdapter {
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.list_bo_item, null);
+            convertView = inflater.inflate(R.layout.list_th_item, null);
 
+        // getting movie data for the row
+        Theater t = theaterItems.get(position);
+
+        TextView name = (TextView) convertView.findViewById(R.id.theater_name);
+        name.setText(t.name);
+
+        TextView phone = (TextView) convertView.findViewById(R.id.theater_phone);
+        phone.setText(t.tel);
+
+        TextView address = (TextView) convertView.findViewById(R.id.theater_adress);
+        address.setText(t.desc);
 
 
         return convertView;
