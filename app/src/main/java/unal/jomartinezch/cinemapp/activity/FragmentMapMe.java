@@ -126,13 +126,10 @@ public class FragmentMapMe extends Fragment implements
         details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if marker index equals size, marker is current location
-                if(markerIndex != -1 && markerIndex != theaters.size()) {
-                    Intent intent = new Intent();
-                    intent.putExtra("position", markerIndex);
-                    intent.setClass(getActivity(), ActivityTheaterDetail.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent();
+                intent.putExtra("position", markerIndex);
+                intent.setClass(getActivity(), ActivityTheaterDetail.class);
+                startActivity(intent);
             }
         });
 
@@ -140,7 +137,10 @@ public class FragmentMapMe extends Fragment implements
         movies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                takeToLocation(myPosition);
+                Intent intent = new Intent();
+                intent.putExtra("theater_position", markerIndex);
+                intent.setClass(getActivity(), ActivityShowtime.class);
+                startActivity(intent);
             }
         });
 
@@ -280,8 +280,15 @@ public class FragmentMapMe extends Fragment implements
     public boolean onMarkerClick(Marker marker) {
         marker.showInfoWindow();
         markerIndex = Integer.parseInt(marker.getId().replace("m", ""));
-        details.setVisibility(View.VISIBLE);
-        movies.setVisibility(View.VISIBLE);
+        //if marker index equals size, marker is current location
+        if(markerIndex == theaters.size()){
+            details.setVisibility(View.INVISIBLE);
+            movies.setVisibility(View.INVISIBLE);
+        }
+        else {
+            details.setVisibility(View.VISIBLE);
+            movies.setVisibility(View.VISIBLE);
+        }
         return true;
     }
 

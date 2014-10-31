@@ -19,7 +19,7 @@
     <array name="nav_drawer_icons">
         <item>@drawable/ic_boxoffice</item>
         <item>@drawable/ic_genre</item>
-        <item>@drawable/ic_calendar</item>
+        <item>@drawable/ic_theater</item>
         <item>@drawable/ic_mapme</item>
     </array>
 

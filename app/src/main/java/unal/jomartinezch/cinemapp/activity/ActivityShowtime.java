@@ -36,13 +36,19 @@ public class ActivityShowtime extends Activity {
         setContentView(R.layout.activity_showtime);
 
         Bundle b = this.getIntent().getExtras();
-        moviePos = b.getInt("movie_position");
-        theaterPos = b.getInt("theater_position");
+        moviePos = b.getInt("movie_position", -1);
+        theaterPos = b.getInt("theater_position", -1);
 
         if(theaterPos == -1) {
             String mid = DataContainer.getInstance().movies.get(moviePos).mid;
             for(Showtime s: showtimes)
                 if(s.mid.equals(mid)) showtimesFetched.add(s);
+        }
+
+        if(moviePos == -1) {
+            String tid = DataContainer.getInstance().theaters.get(theaterPos).tid;
+            for(Showtime s: showtimes)
+                if(s.tid.equals(tid)) showtimesFetched.add(s);
         }
 
         listView = (SwipeMenuListView) findViewById(R.id.lv_showtimes);
@@ -58,22 +64,22 @@ public class ActivityShowtime extends Activity {
                 // create "locate" item
                 SwipeMenuItem locateItem = new SwipeMenuItem(getApplicationContext());
                 // set item background
-                locateItem.setBackground(R.drawable.list_bo_button_locate);
+                locateItem.setBackground(R.drawable.list_bo_button_theater);
                 // set item width
                 locateItem.setWidth(itemWidth);
                 // set a icon
-                locateItem.setIcon(R.drawable.ic_locate);
+                locateItem.setIcon(R.drawable.ic_theater);
                 // add to menu
                 menu.addMenuItem(locateItem);
 
                 // create "detail" item
                 SwipeMenuItem detailsItem = new SwipeMenuItem(getApplicationContext());
                 // set item background
-                detailsItem.setBackground(R.drawable.list_bo_button_details);
+                detailsItem.setBackground(R.drawable.list_th_button_movies);
                 // set item width
                 detailsItem.setWidth(itemWidth);
                 // set a icon
-                detailsItem.setIcon(R.drawable.ic_details);
+                detailsItem.setIcon(R.drawable.ic_boxoffice);
                 // add to menu
                 menu.addMenuItem(detailsItem);
             }
@@ -87,12 +93,32 @@ public class ActivityShowtime extends Activity {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
+                        int theaterPos = -1;
+                        String tid = showtimesFetched.get(position).tid;
+                        for(int i= 0; i < DataContainer.getInstance().movies.size(); i++ ){
+                            if(DataContainer.getInstance().theaters.get(i).tid.equals(tid)) {
+                                theaterPos = i;
+                                break;
+                            }
+                        }
+                        Intent intent = new Intent();
+                        intent.putExtra("position", theaterPos);
+                        intent.setClass(getApplicationContext(), ActivityTheaterDetail.class);
+                        startActivity(intent);
                         break;
                     case 1:
-                        Intent intent = new Intent();
-                        intent.putExtra("position", position);
-                        intent.setClass(getApplicationContext(), ActivityMovieDetail.class);
-                        startActivity(intent);
+                        int moviePos = -1;
+                        String mid = showtimesFetched.get(position).mid;
+                        for(int i= 0; i < DataContainer.getInstance().movies.size(); i++ ){
+                            if(DataContainer.getInstance().movies.get(i).mid.equals(mid)) {
+                                moviePos = i;
+                                break;
+                            }
+                        }
+                        Intent intent2 = new Intent();
+                        intent2.putExtra("position", moviePos);
+                        intent2.setClass(getApplicationContext(), ActivityMovieDetail.class);
+                        startActivity(intent2);
                         break;
                 }
                 // false : close the menu; true : not close the menu

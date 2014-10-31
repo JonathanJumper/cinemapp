@@ -79,12 +79,16 @@ public class FragmentTheater extends Fragment {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
+                        Intent intent = new Intent();
+                        intent.putExtra("theater_position", position);
+                        intent.setClass(getActivity(), ActivityShowtime.class);
+                        startActivity(intent);
                         break;
                     case 1:
-                        Intent intent = new Intent();
-                        intent.putExtra("position", position);
-                        intent.setClass(getActivity(), ActivityTheaterDetail.class);
-                        startActivity(intent);
+                        Intent intent2 = new Intent();
+                        intent2.putExtra("position", position);
+                        intent2.setClass(getActivity(), ActivityTheaterDetail.class);
+                        startActivity(intent2);
                         break;
                 }
                 // false : close the menu; true : not close the menu

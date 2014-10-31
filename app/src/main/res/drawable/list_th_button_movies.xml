@@ -4,10 +4,8 @@
         <shape
             android:shape="rectangle"
             >
-            <gradient
-                android:startColor="@color/background"
-                android:centerColor="@color/button_fade"
-                android:endColor="@color/button_fade"
+            <solid
+                android:color="@color/button_fade"
                 />
         </shape>
     </item>

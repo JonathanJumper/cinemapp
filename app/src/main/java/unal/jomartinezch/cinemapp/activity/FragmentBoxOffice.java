@@ -48,11 +48,11 @@ public class FragmentBoxOffice extends Fragment{
                 SwipeMenuItem locateItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                locateItem.setBackground(R.drawable.list_bo_button_locate);
+                locateItem.setBackground(R.drawable.list_bo_button_theater);
                 // set item width
                 locateItem.setWidth(itemWidth);
                 // set a icon
-                locateItem.setIcon(R.drawable.ic_locate);
+                locateItem.setIcon(R.drawable.ic_theater);
                 // add to menu
                 menu.addMenuItem(locateItem);
 
@@ -80,7 +80,6 @@ public class FragmentBoxOffice extends Fragment{
                     case 0:
                         Intent intent = new Intent();
                         intent.putExtra("movie_position", position);
-                        intent.putExtra("theater_position", -1);
                         intent.setClass(getActivity(), ActivityShowtime.class);
                         startActivity(intent);
                         break;

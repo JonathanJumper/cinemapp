@@ -4,11 +4,9 @@
         <shape
             android:shape="rectangle"
             >
-            <gradient
-                android:startColor="@color/background"
-                android:centerColor="@color/button_fade"
-                android:endColor="@color/button_fade"
-            />
+            <solid
+                android:color="@color/button_fade"
+                />
         </shape>
     </item>
     <item
@@ -17,7 +15,7 @@
         android:top="@dimen/thumbnail_padding"
         android:bottom="@dimen/thumbnail_padding">
         <shape android:shape="oval">
-            <solid android:color="@color/bo_locate_bg"/>
+            <solid android:color="@color/bo_theater_bg"/>
         </shape>
 
     </item>
