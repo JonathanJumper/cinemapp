@@ -49,7 +49,7 @@ public class TheatersListAdapter extends BaseAdapter {
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.list_th_item, null);
+            convertView = inflater.inflate(R.layout.list_th_item, parent, false);
 
         // getting movie data for the row
         Theater t = theaterItems.get(position);
@@ -60,7 +60,7 @@ public class TheatersListAdapter extends BaseAdapter {
         TextView phone = (TextView) convertView.findViewById(R.id.theater_phone);
         phone.setText(t.tel);
 
-        TextView address = (TextView) convertView.findViewById(R.id.theater_adress);
+        TextView address = (TextView) convertView.findViewById(R.id.theater_address);
         address.setText(t.desc);
 
 

@@ -29,7 +29,7 @@ public class ActivityMovieDetail extends Activity {
         final int pos = b.getInt("position");
         final MovieLite m = DataContainer.getInstance().movies.get(pos);
 
-        if(m.trailerPath == null) {
+        if(m.imagePath == null) {
             findViewById(R.id.thumbnail).setVisibility(View.GONE);
         }
         else{
@@ -59,7 +59,7 @@ public class ActivityMovieDetail extends Activity {
             ((TextView) findViewById(R.id.cast)).setText(cast);
         }
 
-        if (m.description == null) {
+        if ( m.description == null || m.description.equals("null") ) {
             findViewById(R.id.description_title).setVisibility(View.GONE);
             findViewById(R.id.description).setVisibility(View.GONE);
         }

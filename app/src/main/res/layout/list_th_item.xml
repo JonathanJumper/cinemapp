@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/listview_height"
     android:background="@drawable/list_bo_selector"
     android:padding="8dp" >
 
@@ -22,18 +23,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/theater_name"
-        android:layout_marginTop="3dip"
-        android:textColor="@color/genre"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dip"
+        android:textColor="@color/director"
         android:textSize="@dimen/rating" />
 
     <!-- Adress -->
     <TextView
-        android:id="@+id/theater_adress"
+        android:id="@+id/theater_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/theater_phone"
-        android:layout_marginTop="5dip"
-        android:textColor="@color/genre"
-        android:textSize="@dimen/year" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="5dip"
+        android:textColor="@color/director"
+        android:textSize="@dimen/rating" />
+
 
 </RelativeLayout>

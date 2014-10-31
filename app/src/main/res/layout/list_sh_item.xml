@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minHeight="@dimen/listview_height"
     android:background="@drawable/list_bo_selector"
     android:padding="8dp" >
 
@@ -33,7 +34,7 @@
         android:id="@+id/sh_showtimes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sh_theater"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:textColor="@color/director"
         android:textSize="@dimen/genre" />

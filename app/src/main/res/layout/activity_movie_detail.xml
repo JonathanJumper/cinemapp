@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"
             android:padding="5dp"
             android:textColor="@color/background_text"
             android:textSize="@dimen/movie_name"
@@ -35,7 +34,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:adjustViewBounds="true"
-            android:padding="5dp"
+            android:padding="2dp"
             android:layout_marginTop="8dp"/>
 
         <TextView

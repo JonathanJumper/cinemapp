@@ -17,7 +17,7 @@
         android:src="@drawable/ic_findme"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/ovaled_button_mm_findme"
+        android:background="@drawable/button_findme"
         android:clickable="true"
         />
 
@@ -27,7 +27,7 @@
         android:layout_height="@dimen/thumbnail_size"
         android:scaleType="center"
         android:src="@drawable/ic_details"
-        android:background="@drawable/ovaled_button_bo_details"
+        android:background="@drawable/button_details"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/findMe"
         android:visibility="invisible"
@@ -39,8 +39,8 @@
         android:layout_width="@dimen/thumbnail_size"
         android:layout_height="@dimen/thumbnail_size"
         android:scaleType="center"
-        android:src="@drawable/ic_genre"
-        android:background="@drawable/ovaled_button_bo_locate"
+        android:src="@drawable/ic_boxoffice"
+        android:background="@drawable/button_movies"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/detailsMap"
         android:visibility="invisible"

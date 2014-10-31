@@ -48,7 +48,7 @@ public class FragmentBoxOffice extends Fragment{
                 SwipeMenuItem locateItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                locateItem.setBackground(R.drawable.ovaled_button_bo_locate);
+                locateItem.setBackground(R.drawable.list_bo_button_locate);
                 // set item width
                 locateItem.setWidth(itemWidth);
                 // set a icon
@@ -60,7 +60,7 @@ public class FragmentBoxOffice extends Fragment{
                 SwipeMenuItem detailsItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                detailsItem.setBackground(R.drawable.ovaled_button_bo_details);
+                detailsItem.setBackground(R.drawable.list_bo_button_details);
                 // set item width
                 detailsItem.setWidth(itemWidth);
                 // set a icon

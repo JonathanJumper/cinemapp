@@ -58,7 +58,7 @@ public class ActivityShowtime extends Activity {
                 // create "locate" item
                 SwipeMenuItem locateItem = new SwipeMenuItem(getApplicationContext());
                 // set item background
-                locateItem.setBackground(R.drawable.ovaled_button_bo_locate);
+                locateItem.setBackground(R.drawable.list_bo_button_locate);
                 // set item width
                 locateItem.setWidth(itemWidth);
                 // set a icon
@@ -69,7 +69,7 @@ public class ActivityShowtime extends Activity {
                 // create "detail" item
                 SwipeMenuItem detailsItem = new SwipeMenuItem(getApplicationContext());
                 // set item background
-                detailsItem.setBackground(R.drawable.ovaled_button_bo_details);
+                detailsItem.setBackground(R.drawable.list_bo_button_details);
                 // set item width
                 detailsItem.setWidth(itemWidth);
                 // set a icon

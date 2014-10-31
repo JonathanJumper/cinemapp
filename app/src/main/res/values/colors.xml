@@ -3,17 +3,22 @@
     //global
     <color name="primary">#fff70d</color>
     <color name="primary_text">#000000</color>
-    <color name="secondary">#880e4f</color>
+    <color name="secondary">#3f51b5</color>
     <color name="background">#212121</color>
     <color name="background_text">#ffffff</color>
     <color name="background_light">#ffe7e7e7</color>
     <color name="text_link">#3f51b5</color>
-    
+
+    <color name="button_movies">#FF4444</color>
+
+    //list view
+    <color name="button_fade">#000000</color>
+
     //navigation drawer
     <color name="black_overlay">#66000000</color>
     <color name="list_item_title">#ffffff</color>
     <color name="list_nd_bg">#ff303030</color>
-    <color name="list_nd_bg_pressed">#880e4f</color>
+    <color name="list_nd_bg_pressed">#3f51b5</color>
     <color name="counter_text_bg">#fff70d</color>
     <color name="counter_text_color">#000000</color>
 
