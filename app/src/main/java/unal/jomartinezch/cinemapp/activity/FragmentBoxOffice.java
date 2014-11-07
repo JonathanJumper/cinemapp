@@ -3,7 +3,6 @@ package unal.jomartinezch.cinemapp.activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -138,14 +137,12 @@ public class FragmentBoxOffice extends Fragment{
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Log.d("submit --->", s);
                 adapter.getFilter().filter(s);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                Log.d("change --->", s);
                 adapter.getFilter().filter(s);
                 return true;
             }
@@ -154,9 +151,8 @@ public class FragmentBoxOffice extends Fragment{
         sv.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                Log.d("sv_------------>","closed");
-                sv.setQuery("", false);
-                sv.clearFocus();
+                adapter.getFilter().filter("");
+                sv.onActionViewCollapsed();
                 return false;
             }
         });

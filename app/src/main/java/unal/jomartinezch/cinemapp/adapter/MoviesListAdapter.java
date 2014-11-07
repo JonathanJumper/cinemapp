@@ -21,10 +21,12 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
 import unal.jomartinezch.cinemapp.R;
+import unal.jomartinezch.cinemapp.model.DataContainer;
 import unal.jomartinezch.cinemapp.model.MovieLite;
 import unal.jomartinezch.cinemapp.util.AppController;
 
@@ -114,40 +116,61 @@ public class MoviesListAdapter extends BaseAdapter implements Filterable{
 
     @Override
     public Filter getFilter() {
-        if(valueFilter==null) {
-
+        if(valueFilter==null)
             valueFilter=new ValueFilter();
-        }
-
         return valueFilter;
     }
-    private class ValueFilter extends Filter {
 
+    private class ValueFilter extends Filter {
         //Invoked in a worker thread to filter the data according to the constraint.
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             String s = constraint.toString().toLowerCase();
-            FilterResults results=new FilterResults();
-            if(constraint!=null && constraint.length()>0){
+            FilterResults results = new FilterResults();
+            if(constraint != null && constraint.length()>0){
                 ArrayList<MovieLite> filterList=new ArrayList<MovieLite>();
-                for(MovieLite m: movieLiteItems){
-                    if(m.name.toLowerCase().contains(s)) filterList.add(m);
+                for(MovieLite m: DataContainer.getInstance().movies) {
+                    boolean flag = true;
+                    if (m.name != null) {
+                        String name = Normalizer.normalize(m.name.toLowerCase(), Normalizer.Form.NFD);
+                        name = name.replaceAll("[^\\p{ASCII}]", "");
+                        if (name.contains(s) || m.genre.contains(s)) {
+                            filterList.add(m);
+                            flag = false;
+                        }
+                    }
+                    if (flag && m.genre != null){
+                        if (m.genre.toLowerCase().contains(s)) {
+                            filterList.add(m);
+                            flag = false;
+                        }
+                    }
+                    if (flag && m.director != null){
+                        if (m.director.toLowerCase().contains(s)) {
+                            filterList.add(m);
+                            flag = false;
+                        }
+                    }
+                    if (flag && m.originalName != null){
+                        if (m.originalName.toLowerCase().contains(s)) {
+                            filterList.add(m);
+                        }
+                    }
                 }
                 results.count=filterList.size();
                 results.values=filterList;
             }else{
-                results.count=movieLiteItems.size();
-                results.values=movieLiteItems;
+                results.count=DataContainer.getInstance().movies.size();
+                results.values=DataContainer.getInstance().movies;
             }
             return results;
         }
-
 
         //Invoked in the UI thread to publish the filtering results in the user interface.
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            movieLiteItems =(ArrayList<MovieLite>) results.values;
+            movieLiteItems = (ArrayList<MovieLite>) results.values;
             notifyDataSetChanged();
         }
     }
