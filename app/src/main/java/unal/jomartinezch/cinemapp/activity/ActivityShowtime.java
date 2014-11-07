@@ -62,7 +62,7 @@ public class ActivityShowtime extends Activity {
                 // create "locate" item
                 SwipeMenuItem locateItem = new SwipeMenuItem(getApplicationContext());
                 // set item background
-                locateItem.setBackground(R.drawable.list_bo_button_theater);
+                locateItem.setBackground(R.drawable.button_list_theater);
                 // set item width
                 locateItem.setWidth(itemWidth);
                 // set a icon
@@ -91,30 +91,14 @@ public class ActivityShowtime extends Activity {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-                        int theaterPos = -1;
-                        String tid = showtimesFetched.get(position).tid;
-                        for(int i= 0; i < DataContainer.getInstance().movies.size(); i++ ){
-                            if(DataContainer.getInstance().theaters.get(i).tid.equals(tid)) {
-                                theaterPos = i;
-                                break;
-                            }
-                        }
                         Intent intent = new Intent();
-                        intent.putExtra("position", theaterPos);
+                        intent.putExtra("tid", showtimesFetched.get(position).tid);
                         intent.setClass(getApplicationContext(), ActivityTheaterDetail.class);
                         startActivity(intent);
                         break;
                     case 1:
-                        int moviePos = -1;
-                        String mid = showtimesFetched.get(position).mid;
-                        for(int i= 0; i < DataContainer.getInstance().movies.size(); i++ ){
-                            if(DataContainer.getInstance().movies.get(i).mid.equals(mid)) {
-                                moviePos = i;
-                                break;
-                            }
-                        }
                         Intent intent2 = new Intent();
-                        intent2.putExtra("position", moviePos);
+                        intent2.putExtra("mid", showtimesFetched.get(position).mid);
                         intent2.setClass(getApplicationContext(), ActivityMovieDetail.class);
                         startActivity(intent2);
                         break;
@@ -132,25 +116,19 @@ public class ActivityShowtime extends Activity {
                 listView.smoothOpenMenu(arg2);
             }
         });
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.showtime, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+        onBackPressed();
+        return true;
     }
 }

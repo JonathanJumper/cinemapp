@@ -35,6 +35,7 @@ public class FragmentBoxOffice extends Fragment{
     private SwipeMenuListView listView;
     private MoviesListAdapter adapter;
     private MovieLite selected;
+    private SearchView sv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -55,11 +56,11 @@ public class FragmentBoxOffice extends Fragment{
                 SwipeMenuItem locateItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                locateItem.setBackground(R.drawable.list_bo_button_theater);
+                locateItem.setBackground(R.drawable.button_list_showtime);
                 // set item width
                 locateItem.setWidth(itemWidth);
                 // set a icon
-                locateItem.setIcon(R.drawable.ic_theater);
+                locateItem.setIcon(R.drawable.ic_showtime);
                 // add to menu
                 menu.addMenuItem(locateItem);
 
@@ -67,7 +68,7 @@ public class FragmentBoxOffice extends Fragment{
                 SwipeMenuItem detailsItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                detailsItem.setBackground(R.drawable.list_bo_button_details);
+                detailsItem.setBackground(R.drawable.button_list_details);
                 // set item width
                 detailsItem.setWidth(itemWidth);
                 // set a icon
@@ -121,11 +122,10 @@ public class FragmentBoxOffice extends Fragment{
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        // Implementing ActionBar Search inside a fragment
         MenuItem item = menu.add("Search");
-        item.setIcon(R.drawable.button_findme); // sets icon
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        SearchView sv = new SearchView(getActivity());
+        //item.setIcon(R.drawable.button_findme); // sets icon
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        sv = new SearchView(getActivity());
 
         // modifying the text inside edittext component
         int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
@@ -138,18 +138,29 @@ public class FragmentBoxOffice extends Fragment{
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Log.d("submit --->",s);
+                Log.d("submit --->", s);
                 adapter.getFilter().filter(s);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                Log.d("change --->",s);
+                Log.d("change --->", s);
                 adapter.getFilter().filter(s);
                 return true;
             }
         });
+
+        sv.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                Log.d("sv_------------>","closed");
+                sv.setQuery("", false);
+                sv.clearFocus();
+                return false;
+            }
+        });
+
         item.setActionView(sv);
     }
 }

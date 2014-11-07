@@ -50,11 +50,11 @@ public class FragmentTheater extends Fragment {
                 SwipeMenuItem locateItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                locateItem.setBackground(R.drawable.list_th_button_movies);
+                locateItem.setBackground(R.drawable.button_list_showtime);
                 // set item width
                 locateItem.setWidth(itemWidth);
                 // set a icon
-                locateItem.setIcon(R.drawable.ic_boxoffice);
+                locateItem.setIcon(R.drawable.ic_showtime);
                 // add to menu
                 menu.addMenuItem(locateItem);
 
@@ -62,7 +62,7 @@ public class FragmentTheater extends Fragment {
                 SwipeMenuItem detailsItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                detailsItem.setBackground(R.drawable.list_bo_button_details);
+                detailsItem.setBackground(R.drawable.button_list_details);
                 // set item width
                 detailsItem.setWidth(itemWidth);
                 // set a icon

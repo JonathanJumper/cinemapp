@@ -5,9 +5,8 @@
             android:shape="rectangle"
             >
             <solid
-                android:color="@color/button_fade"
-            />
-
+                android:color="@color/btns_bg"
+                />
         </shape>
     </item>
     <item
@@ -16,7 +15,8 @@
         android:top="@dimen/thumbnail_padding"
         android:bottom="@dimen/thumbnail_padding">
         <shape android:shape="oval">
-            <solid android:color="@color/bo_detail_bg"/>
+            <solid android:color="@color/btn_theater_bg"/>
         </shape>
+
     </item>
 </layer-list>

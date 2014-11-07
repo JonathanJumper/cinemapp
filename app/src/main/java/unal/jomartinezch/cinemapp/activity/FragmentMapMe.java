@@ -55,7 +55,7 @@ public class FragmentMapMe extends Fragment implements
     private LocationClient mLocationClient;
     private LocationRequest mLocationRequest = null;
 
-    private ImageView findMe, details, movies;
+    private ImageView findMe, details, showtime;
     private LatLng myPosition;
     private int markerIndex = -1;
 
@@ -133,8 +133,8 @@ public class FragmentMapMe extends Fragment implements
             }
         });
 
-        movies = (ImageView) myFragmentView.findViewById(R.id.moviesMap);
-        movies.setOnClickListener(new View.OnClickListener() {
+        showtime = (ImageView) myFragmentView.findViewById(R.id.moviesMap);
+        showtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -283,11 +283,11 @@ public class FragmentMapMe extends Fragment implements
         //if marker index equals size, marker is current location
         if(markerIndex == theaters.size()){
             details.setVisibility(View.INVISIBLE);
-            movies.setVisibility(View.INVISIBLE);
+            showtime.setVisibility(View.INVISIBLE);
         }
         else {
             details.setVisibility(View.VISIBLE);
-            movies.setVisibility(View.VISIBLE);
+            showtime.setVisibility(View.VISIBLE);
         }
         return true;
     }

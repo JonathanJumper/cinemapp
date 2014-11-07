@@ -54,6 +54,6 @@
     <string name="theater_url">Sitio Web:</string>
 
     <!-- Showtimes -->
-    <string name="title_activity_showtime">Funciones Disponibles</string>
+    <string name="title_activity_showtime">Funciones</string>
 
 </resources>

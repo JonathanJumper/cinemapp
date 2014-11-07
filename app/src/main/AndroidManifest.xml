@@ -25,17 +25,21 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ActivityMovieDetail"
+            android:icon="@drawable/ic_boxoffice"
             android:label="@string/title_activity_movie_detail"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/DetailsTheme"
+            />
         <activity
             android:name=".activity.ActivityTheaterDetail"
+            android:icon="@drawable/ic_theater"
             android:label="@string/title_activity_theater_detail"
-            android:theme="@style/AppTheme" >>
+            android:theme="@style/DetailsTheme" >>
         </activity>
         <activity
             android:name=".activity.ActivityShowtime"
+            android:icon="@drawable/ic_showtime"
             android:label="@string/title_activity_showtime"
-            android:theme="@style/AppTheme" >>
+            android:theme="@style/ShowtimeTheme" >>
         </activity>
 
         <meta-data
