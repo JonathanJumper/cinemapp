@@ -3,6 +3,7 @@ package unal.jomartinezch.cinemapp.activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -129,9 +131,17 @@ public class FragmentBoxOffice extends Fragment{
         // modifying the text inside edittext component
         int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = (TextView) sv.findViewById(id);
-        textView.setHint(R.string.search_movie);
-        textView.setHintTextColor(getResources().getColor(R.color.director));
+        textView.setHint(Html.fromHtml("<small><i>" + getResources().getString(R.string.search_movie) + "</i></small>"));
+        textView.setHintTextColor(getResources().getColor(R.color.duration));
         textView.setTextColor(getResources().getColor(R.color.primary_text));
+
+        int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
+        ImageView v = (ImageView) sv.findViewById(searchImgId);
+        v.setImageResource(R.drawable.ic_search);
+
+        int closeButtonId = getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButtonImage = (ImageView) sv.findViewById(closeButtonId);
+        closeButtonImage.setImageResource(R.drawable.ic_cancel_action);
 
         // implementing the listener
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -3,11 +3,18 @@ package unal.jomartinezch.cinemapp.activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -29,6 +36,7 @@ public class FragmentTheater extends Fragment {
     private SwipeMenuListView listView;
     private TheatersListAdapter adapter;
     private Theater selected;
+    private SearchView sv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,6 +115,59 @@ public class FragmentTheater extends Fragment {
                 listView.smoothOpenMenu(arg2);
             }
         });
+
+        setHasOptionsMenu(true);
+
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        MenuItem item = menu.add("Search");
+        //item.setIcon(R.drawable.button_findme); // sets icon
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        sv = new SearchView(getActivity());
+
+        // modifying the text inside edittext component
+        int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) sv.findViewById(id);
+        textView.setHint(Html.fromHtml("<small><i>" + getResources().getString(R.string.search_movie) + "</i></small>"));
+        textView.setHintTextColor(getResources().getColor(R.color.duration));
+        textView.setTextColor(getResources().getColor(R.color.primary_text));
+
+        int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
+        ImageView v = (ImageView) sv.findViewById(searchImgId);
+        v.setImageResource(R.drawable.ic_search);
+
+        int closeButtonId = getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButtonImage = (ImageView) sv.findViewById(closeButtonId);
+        closeButtonImage.setImageResource(R.drawable.ic_cancel_action);
+
+        // implementing the listener
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                adapter.getFilter().filter(s);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return true;
+            }
+        });
+
+        sv.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                adapter.getFilter().filter("");
+                sv.onActionViewCollapsed();
+                return false;
+            }
+        });
+
+        item.setActionView(sv);
     }
 }

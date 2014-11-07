@@ -30,7 +30,7 @@
     <!-- Box Office -->
     <string name="connection_error">Check your internet access</string>
     <string name="loading">Monos entrenados trabajando…</string>
-    <string name="search_movie">"Nombre, Director, Genero…</string>
+    <string name="search_movie">Nombre, Director, Genero…</string>
 
     <!-- Movie Detail -->
     <string name="title_activity_movie_detail">Detalles</string>
@@ -46,6 +46,9 @@
     <string name="youre_here">"Estas aqui"</string>
     <string name="youre_here_snippet">"Selecciona el teatro deseado"</string>
     <string name="marker_snippet">Click aqui para ver detalles</string>
+
+    <!-- Theater -->
+    <string name="search_theater">Nombre, Cadena, Direccion…</string>
 
     <!-- Theater Detail -->
     <string name="title_activity_theater_detail">Detalles</string>

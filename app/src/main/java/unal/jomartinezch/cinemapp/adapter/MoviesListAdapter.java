@@ -131,30 +131,50 @@ public class MoviesListAdapter extends BaseAdapter implements Filterable{
                 ArrayList<MovieLite> filterList=new ArrayList<MovieLite>();
                 for(MovieLite m: DataContainer.getInstance().movies) {
                     boolean flag = true;
-                    if (m.name != null) {
-                        String name = Normalizer.normalize(m.name.toLowerCase(), Normalizer.Form.NFD);
-                        name = name.replaceAll("[^\\p{ASCII}]", "");
-                        if (name.contains(s) || m.genre.contains(s)) {
-                            filterList.add(m);
-                            flag = false;
+                    try {
+                        if (m.name != null) {
+                            String name = Normalizer.normalize(m.name.toLowerCase(), Normalizer.Form.NFD);
+                            name = name.replaceAll("[^\\p{ASCII}]", "");
+                            if (name.contains(s)) {
+                                filterList.add(m);
+                                flag = false;
+                            }
                         }
                     }
-                    if (flag && m.genre != null){
-                        if (m.genre.toLowerCase().contains(s)) {
-                            filterList.add(m);
-                            flag = false;
+                    catch (Exception e){
+                        Log.d("Exception on filter name-->"+m.name, e.toString());
+                    }
+                    try {
+                        if (flag && m.genre != null) {
+                            if (m.genre.toLowerCase().contains(s)) {
+                                filterList.add(m);
+                                flag = false;
+                            }
                         }
                     }
-                    if (flag && m.director != null){
-                        if (m.director.toLowerCase().contains(s)) {
-                            filterList.add(m);
-                            flag = false;
+                    catch(Exception e){
+                        Log.d("Exception on filter genre-->"+m.genre, e.toString());
+                    }
+                    try{
+                        if (flag && m.director != null) {
+                            if (m.director.toLowerCase().contains(s)) {
+                                filterList.add(m);
+                                flag = false;
+                            }
                         }
                     }
-                    if (flag && m.originalName != null){
-                        if (m.originalName.toLowerCase().contains(s)) {
-                            filterList.add(m);
+                    catch (Exception e){
+                        Log.d("Exception on filter director-->"+m.director, e.toString());
+                    }
+                    try {
+                        if (flag && m.originalName != null) {
+                            if (m.originalName.toLowerCase().contains(s)) {
+                                filterList.add(m);
+                            }
                         }
+                    }
+                    catch (Exception e){
+                        Log.d("Exception on filter original name-->"+m.originalName, e.toString());
                     }
                 }
                 results.count=filterList.size();
