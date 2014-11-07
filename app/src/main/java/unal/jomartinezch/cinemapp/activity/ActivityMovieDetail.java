@@ -20,14 +20,20 @@ import unal.jomartinezch.cinemapp.util.AppController;
 public class ActivityMovieDetail extends Activity {
 
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    MovieLite m;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
 
         Bundle b = this.getIntent().getExtras();
-        final int pos = b.getInt("position");
-        final MovieLite m = DataContainer.getInstance().movies.get(pos);
+        String mid = b.getString("mid");
+        for (MovieLite m : DataContainer.getInstance().movies){
+            if (m.mid.equals(mid)) {
+                this.m = m;
+                break;
+            }
+        }
 
         if(m.imagePath == null) {
             findViewById(R.id.thumbnail).setVisibility(View.GONE);

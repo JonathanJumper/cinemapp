@@ -59,10 +59,10 @@ public class FragmentMapMe extends Fragment implements
     private LatLng myPosition;
     private int markerIndex = -1;
 
-    String city = DataContainer.getInstance().city;
-    Double cityLat = DataContainer.getInstance().lat;
-    Double cityLon = DataContainer.getInstance().lon;
-    ArrayList<Theater> theaters = DataContainer.getInstance().theaters;
+    private String city = DataContainer.getInstance().city;
+    private Double cityLat = DataContainer.getInstance().lat;
+    private Double cityLon = DataContainer.getInstance().lon;
+    private ArrayList<Theater> theaters = DataContainer.getInstance().theaters;
 
     public FragmentMapMe() {}
 
@@ -127,7 +127,7 @@ public class FragmentMapMe extends Fragment implements
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("position", markerIndex);
+                intent.putExtra("tid", theaters.get(markerIndex).tid);
                 intent.setClass(getActivity(), ActivityTheaterDetail.class);
                 startActivity(intent);
             }
@@ -138,7 +138,7 @@ public class FragmentMapMe extends Fragment implements
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("theater_position", markerIndex);
+                intent.putExtra("tid", theaters.get(markerIndex).tid);
                 intent.setClass(getActivity(), ActivityShowtime.class);
                 startActivity(intent);
             }

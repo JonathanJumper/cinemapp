@@ -28,6 +28,7 @@ public class FragmentTheater extends Fragment {
     private List<Theater> theatersList = DataContainer.getInstance().theaters;
     private SwipeMenuListView listView;
     private TheatersListAdapter adapter;
+    private Theater selected;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,13 +81,15 @@ public class FragmentTheater extends Fragment {
                 switch (index) {
                     case 0:
                         Intent intent = new Intent();
-                        intent.putExtra("theater_position", position);
+                        selected = (Theater) listView.getItemAtPosition(position);
+                        intent.putExtra("tid", selected.tid);
                         intent.setClass(getActivity(), ActivityShowtime.class);
                         startActivity(intent);
                         break;
                     case 1:
                         Intent intent2 = new Intent();
-                        intent2.putExtra("position", position);
+                        selected = (Theater) listView.getItemAtPosition(position);
+                        intent2.putExtra("tid", selected.tid);
                         intent2.setClass(getActivity(), ActivityTheaterDetail.class);
                         startActivity(intent2);
                         break;

@@ -26,7 +26,7 @@ public class ActivityShowtime extends Activity {
     private List<Showtime> showtimes = DataContainer.getInstance().showtimes;
     private SwipeMenuListView listView;
     private ShowtimesListAdapter adapter;
-    private int moviePos, theaterPos;
+    private String mid, tid;
     private List<Showtime> showtimesFetched = new ArrayList<Showtime>();
 
     
@@ -36,17 +36,15 @@ public class ActivityShowtime extends Activity {
         setContentView(R.layout.activity_showtime);
 
         Bundle b = this.getIntent().getExtras();
-        moviePos = b.getInt("movie_position", -1);
-        theaterPos = b.getInt("theater_position", -1);
+        mid = b.getString("mid" , null);
+        tid = b.getString("tid", null);
 
-        if(theaterPos == -1) {
-            String mid = DataContainer.getInstance().movies.get(moviePos).mid;
+        if(tid == null) {
             for(Showtime s: showtimes)
                 if(s.mid.equals(mid)) showtimesFetched.add(s);
         }
 
-        if(moviePos == -1) {
-            String tid = DataContainer.getInstance().theaters.get(theaterPos).tid;
+        if(mid == null) {
             for(Showtime s: showtimes)
                 if(s.tid.equals(tid)) showtimesFetched.add(s);
         }

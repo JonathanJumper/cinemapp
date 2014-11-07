@@ -14,11 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import unal.jomartinezch.cinemapp.R;
@@ -26,10 +29,11 @@ import unal.jomartinezch.cinemapp.model.MovieLite;
 import unal.jomartinezch.cinemapp.util.AppController;
 
 
-public class MoviesListAdapter extends BaseAdapter {
+public class MoviesListAdapter extends BaseAdapter implements Filterable{
     private Activity activity;
     private LayoutInflater inflater;
     private List<MovieLite> movieLiteItems;
+    private ValueFilter valueFilter;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     public MoviesListAdapter(Activity activity, List<MovieLite> movieLiteItems) {
@@ -108,4 +112,43 @@ public class MoviesListAdapter extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public Filter getFilter() {
+        if(valueFilter==null) {
+
+            valueFilter=new ValueFilter();
+        }
+
+        return valueFilter;
+    }
+    private class ValueFilter extends Filter {
+
+        //Invoked in a worker thread to filter the data according to the constraint.
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String s = constraint.toString().toLowerCase();
+            FilterResults results=new FilterResults();
+            if(constraint!=null && constraint.length()>0){
+                ArrayList<MovieLite> filterList=new ArrayList<MovieLite>();
+                for(MovieLite m: movieLiteItems){
+                    if(m.name.toLowerCase().contains(s)) filterList.add(m);
+                }
+                results.count=filterList.size();
+                results.values=filterList;
+            }else{
+                results.count=movieLiteItems.size();
+                results.values=movieLiteItems;
+            }
+            return results;
+        }
+
+
+        //Invoked in the UI thread to publish the filtering results in the user interface.
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            movieLiteItems =(ArrayList<MovieLite>) results.values;
+            notifyDataSetChanged();
+        }
+    }
 }

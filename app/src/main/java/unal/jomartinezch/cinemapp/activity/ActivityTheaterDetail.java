@@ -23,7 +23,13 @@ public class ActivityTheaterDetail extends Activity {
         setContentView(R.layout.activity_theater_detail);
 
         Bundle b = this.getIntent().getExtras();
-        t = DataContainer.getInstance().theaters.get(b.getInt("position"));
+        String tid = b.getString("tid");
+        for (Theater t: DataContainer.getInstance().theaters){
+            if(t.tid.equals(tid)){
+                this.t = t;
+                break;
+            }
+        }
 
         ((TextView) findViewById(R.id.theater_name)).setText(t.name);
         ((TextView) findViewById(R.id.theater_adress)).setText(t.desc);

@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- Nav Drawer Items -->
+    <string name="nav_open">"Explora"</string>
     <string-array name="nav_drawer_items">
         <item>Cartelera</item>
         <item>Generos</item>
@@ -29,6 +30,7 @@
     <!-- Box Office -->
     <string name="connection_error">Check your internet access</string>
     <string name="loading">Monos entrenados trabajando…</string>
+    <string name="search_movie">"Nombre, Director, Genero…</string>
 
     <!-- Movie Detail -->
     <string name="title_activity_movie_detail">Detalles</string>

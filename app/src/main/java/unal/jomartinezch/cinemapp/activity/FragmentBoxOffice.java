@@ -3,11 +3,17 @@ package unal.jomartinezch.cinemapp.activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -28,6 +34,7 @@ public class FragmentBoxOffice extends Fragment{
     private List<MovieLite> movieList = DataContainer.getInstance().movies;
     private SwipeMenuListView listView;
     private MoviesListAdapter adapter;
+    private MovieLite selected;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -79,13 +86,15 @@ public class FragmentBoxOffice extends Fragment{
                 switch (index) {
                     case 0:
                         Intent intent = new Intent();
-                        intent.putExtra("movie_position", position);
+                        selected = (MovieLite) listView.getItemAtPosition(position);
+                        intent.putExtra("mid", selected.mid);
                         intent.setClass(getActivity(), ActivityShowtime.class);
                         startActivity(intent);
                         break;
                     case 1:
                         Intent intent2 = new Intent();
-                        intent2.putExtra("position", position);
+                        selected = (MovieLite) listView.getItemAtPosition(position);
+                        intent2.putExtra("mid", selected.mid);
                         intent2.setClass(getActivity(), ActivityMovieDetail.class);
                         startActivity(intent2);
                         break;
@@ -103,6 +112,44 @@ public class FragmentBoxOffice extends Fragment{
             listView.smoothOpenMenu(arg2);
             }
         });
+
+        setHasOptionsMenu(true);
+
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        // Implementing ActionBar Search inside a fragment
+        MenuItem item = menu.add("Search");
+        item.setIcon(R.drawable.button_findme); // sets icon
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        SearchView sv = new SearchView(getActivity());
+
+        // modifying the text inside edittext component
+        int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) sv.findViewById(id);
+        textView.setHint(R.string.search_movie);
+        textView.setHintTextColor(getResources().getColor(R.color.director));
+        textView.setTextColor(getResources().getColor(R.color.primary_text));
+
+        // implementing the listener
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Log.d("submit --->",s);
+                adapter.getFilter().filter(s);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                Log.d("change --->",s);
+                adapter.getFilter().filter(s);
+                return true;
+            }
+        });
+        item.setActionView(sv);
     }
 }
