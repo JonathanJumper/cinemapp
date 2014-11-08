@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".activity.ActivityLobby"
-            android:label="Explora"
+            android:label="@string/nav_open"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ActivityMovieDetail"

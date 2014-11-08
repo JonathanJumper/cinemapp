@@ -4,7 +4,6 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo">
         <item name="android:actionBarStyle">@style/AppTheme.ActionBarStyle</item>
-        <item name="android:animateLayoutChanges">true</item>
     </style>
 
             <style name="AppTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">

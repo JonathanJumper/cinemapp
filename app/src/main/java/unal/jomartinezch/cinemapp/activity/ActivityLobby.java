@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,6 @@ import unal.jomartinezch.cinemapp.model.DataContainer;
 public class ActivityLobby extends Activity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList, mDrawerListB;
-    private RelativeLayout drawer_relative_layout;
     private ActionBarDrawerToggle mDrawerToggle;
 
     // nav drawer title
@@ -72,7 +70,6 @@ public class ActivityLobby extends Activity {
         final TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        drawer_relative_layout = (RelativeLayout) findViewById(R.id.drawer_relative_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         mDrawerListB = (ListView) findViewById(R.id.list_slidermenu_bottom);
 
@@ -115,19 +112,9 @@ public class ActivityLobby extends Activity {
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
-            public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
-                // calling onPrepareOptionsMenu() to show action bar icons
-                invalidateOptionsMenu();
-            }
-            public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
-                // calling onPrepareOptionsMenu() to hide action bar icons
-                invalidateOptionsMenu();
-            }
+
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
         if (savedInstanceState == null) {
             // on first time display view for first nav item
             displayView(0);
@@ -206,7 +193,7 @@ public class ActivityLobby extends Activity {
                 mDrawerListB.setSelection(position-4);
             }
             setTitle(navMenuTitles[position]);
-            mDrawerLayout.closeDrawer(drawer_relative_layout);
+            mDrawerLayout.closeDrawer(Gravity.LEFT);
         }
         else Log.d("Error", "Error creating fragment");
     }
@@ -238,13 +225,14 @@ public class ActivityLobby extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // toggle nav drawer on selecting action bar app icon/title
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
+        if (item != null && item.getItemId() == android.R.id.home) {
+            if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
+            } else {
+                mDrawerLayout.openDrawer(Gravity.LEFT);
+            }
         }
-        return super.onOptionsItemSelected(item);
-
+        return false;
     }
-
 
 }
