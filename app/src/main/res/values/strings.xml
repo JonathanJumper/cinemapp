@@ -14,6 +14,8 @@
         <item>Generos</item>
         <item>Teatros</item>
         <item>Localizame</item>
+        <item>Sugerencias</item>
+        <item>Acerca</item>
     </string-array>
 
     <!-- Iconos de los items -->
@@ -22,6 +24,8 @@
         <item>@drawable/ic_genre</item>
         <item>@drawable/ic_theater</item>
         <item>@drawable/ic_mapme</item>
+        <item>@drawable/ic_mailbox</item>
+        <item>@drawable/ic_about</item>
     </array>
 
     <!-- Content Description -->

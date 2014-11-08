@@ -15,7 +15,7 @@ import unal.jomartinezch.cinemapp.model.Theater;
 
 public class ActivityTheaterDetail extends Activity {
 
-    Theater t;
+    Theater t = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +30,12 @@ public class ActivityTheaterDetail extends Activity {
                 break;
             }
         }
-
-        ((TextView) findViewById(R.id.theater_name)).setText(t.name);
-        ((TextView) findViewById(R.id.theater_adress)).setText(t.desc);
-        ((TextView) findViewById(R.id.theater_phone)).setText(t.tel);
-        ((TextView) findViewById(R.id.theater_url)).setText(t.url);
+        if(t != null) {
+            ((TextView) findViewById(R.id.theater_name)).setText(t.name);
+            ((TextView) findViewById(R.id.theater_adress)).setText(t.desc);
+            ((TextView) findViewById(R.id.theater_phone)).setText(t.tel);
+            ((TextView) findViewById(R.id.theater_url)).setText(t.url);
+        }
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 

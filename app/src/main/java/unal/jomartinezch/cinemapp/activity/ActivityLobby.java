@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,8 @@ import unal.jomartinezch.cinemapp.model.DataContainer;
 
 public class ActivityLobby extends Activity {
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    private ListView mDrawerList, mDrawerListB;
+    private RelativeLayout drawer_relative_layout;
     private ActionBarDrawerToggle mDrawerToggle;
 
     // nav drawer title
@@ -42,6 +44,8 @@ public class ActivityLobby extends Activity {
     FragmentGenre fragmentGenre;
     FragmentTheater fragmentTheater;
     //FragmentMapMe fragmentMapMe;
+    FragmentMailbox fragmentMailbox;
+    FragmentAbout fragmentAbout;
 
     public DataContainer data;
 
@@ -55,6 +59,8 @@ public class ActivityLobby extends Activity {
         fragmentGenre = new FragmentGenre();
         fragmentTheater = new FragmentTheater();
         //fragmentMapMe = new FragmentMapMe();
+        fragmentMailbox = new FragmentMailbox();
+        fragmentAbout = new FragmentAbout();
 
         //load data
         data = DataContainer.getInstance();
@@ -65,33 +71,45 @@ public class ActivityLobby extends Activity {
         // nav drawer icons from resources
         final TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        drawer_relative_layout = (RelativeLayout) findViewById(R.id.drawer_relative_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
+        mDrawerListB = (ListView) findViewById(R.id.list_slidermenu_bottom);
+
         final ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
+        final ArrayList<NavDrawerItem> navDrawerItemsB = new ArrayList<NavDrawerItem>();
 
         // agregar un nuevo item al menu deslizante
-        // Favoritos
+
+        // Movies
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1), true, data.movies.size()+""));
-        // Pedidos
+        // Genres
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-        // Catologo
+        // Theaters
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1), true, data.theaters.size()+""));
-        // Contacto
+        // MapMe
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
 
+        //Mailbox
+        navDrawerItemsB.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+        //About
+        navDrawerItemsB.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+
         // Recycle the typed array
-        //navMenuIcons.recycle();
+        navMenuIcons.recycle();
 
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+        mDrawerListB.setOnItemClickListener(new SlideMenuClickListenerB());
 
         // setting the nav drawer list adapter
-        final NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(),
-                navDrawerItems);
+        NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(),navDrawerItems);
         mDrawerList.setAdapter(adapter);
+        adapter = new NavDrawerListAdapter(getApplicationContext(),navDrawerItemsB);
+        mDrawerListB.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
@@ -102,7 +120,6 @@ public class ActivityLobby extends Activity {
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
-
             public void onDrawerOpened(View drawerView) {
                 getActionBar().setTitle(mDrawerTitle);
                 // calling onPrepareOptionsMenu() to hide action bar icons
@@ -116,7 +133,7 @@ public class ActivityLobby extends Activity {
             displayView(0);
         }
 
-        //open drawer layou
+        //open drawer layout
         mDrawerLayout.openDrawer(Gravity.LEFT);
     }
 
@@ -133,18 +150,13 @@ public class ActivityLobby extends Activity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // toggle nav drawer on selecting action bar app icon/title
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        // Handle action bar actions click
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+    private class SlideMenuClickListenerB implements
+            ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                long id) {
+            // display view for selected nav drawer item
+            displayView(position+4);
         }
     }
 
@@ -166,24 +178,37 @@ public class ActivityLobby extends Activity {
                 break;
             case 3:
                 fragment = new FragmentMapMe();
-            break;
-
+                break;
+            case 4:
+                fragment = fragmentMailbox;
+                break;
+            case 5:
+                fragment = fragmentAbout;
+                break;
             default:
                 break;
         }
 
         if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
             // update selected item and title, then close the drawer
-            mDrawerList.setItemChecked(position, true);
-            mDrawerList.setSelection(position);
+            if(position < 4) {
+                mDrawerListB.setItemChecked(0, false);
+                mDrawerListB.setItemChecked(1, false);
+                mDrawerList.setItemChecked(position, true);
+                mDrawerList.setSelection(position);
+            }
+            else {
+                mDrawerList.clearChoices();
+                mDrawerListB.setItemChecked(position-4, true);
+                mDrawerListB.setSelection(position-4);
+            }
             setTitle(navMenuTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
+            mDrawerLayout.closeDrawer(drawer_relative_layout);
         }
-        else Log.e("Error", "Error creating fragment");
+        else Log.d("Error", "Error creating fragment");
     }
 
     @Override
@@ -207,10 +232,19 @@ public class ActivityLobby extends Activity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggls
+        // Pass any configuration change to the drawer toggle
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // toggle nav drawer on selecting action bar app icon/title
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 
 
 }

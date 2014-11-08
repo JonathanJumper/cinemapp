@@ -10,16 +10,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Listview to display slider menu -->
-    <ListView
-        android:id="@+id/list_slidermenu"
-        android:layout_width="240dp"
+    <RelativeLayout
+        android:id="@+id/drawer_relative_layout"
+        android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@color/list_divider_nd"
-        android:dividerHeight="2dp"
-        android:listSelector="@drawable/list_nd_selector"
-        android:background="@color/list_nd_bg"/>
+        android:layout_gravity="start" >
+
+        <!-- Listview to display slider menu -->
+        <ListView
+            android:id="@+id/list_slidermenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:divider="@color/list_divider_nd"
+            android:dividerHeight="2dp"
+            android:listSelector="@drawable/list_nd_selector"
+            android:background="@color/list_nd_bg"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" >
+
+            <!-- Listview to display slider menu at the bottom-->
+            <ListView
+                android:id="@+id/list_slidermenu_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="singleChoice"
+                android:headerDividersEnabled="true"
+                android:divider="@color/list_divider_nd"
+                android:dividerHeight="2dp"
+                android:listSelector="@drawable/list_nd_selector"
+                android:background="@color/list_nd_bg"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

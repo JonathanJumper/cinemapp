@@ -7,6 +7,8 @@
     <dimen name="thumbnail_size_map">60dp</dimen>
     <dimen name="thumbnail_padding">7dp</dimen>
     <dimen name="listview_height">96dp</dimen>
+    <dimen name="drawer_width">240dp</dimen>
+
     //box office
     <dimen name="title">17dp</dimen>
     <dimen name="rating">14dip</dimen>
