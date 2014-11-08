@@ -8,7 +8,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- Nav Drawer Items -->
-    <string name="nav_open">"Explora"</string>
+    <string name="nav_open">"Vestibulo"</string>
     <string-array name="nav_drawer_items">
         <item>Cartelera</item>
         <item>Generos</item>

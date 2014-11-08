@@ -112,7 +112,16 @@ public class ActivityLobby extends Activity {
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
-
+            public void onDrawerClosed(View view) {
+                getActionBar().setTitle(mTitle);
+                // calling onPrepareOptionsMenu() to show action bar icons
+                invalidateOptionsMenu();
+            }
+            public void onDrawerOpened(View drawerView) {
+                getActionBar().setTitle(getResources().getString(R.string.nav_open));
+                // calling onPrepareOptionsMenu() to hide action bar icons
+                invalidateOptionsMenu();
+             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         if (savedInstanceState == null) {
@@ -122,6 +131,7 @@ public class ActivityLobby extends Activity {
 
         //open drawer layout
         mDrawerLayout.openDrawer(Gravity.LEFT);
+        getActionBar().setTitle(getResources().getString(R.string.nav_open));
     }
 
     /**
