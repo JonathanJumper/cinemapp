@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="unal.jomartinezch.cinemapp.activity.ActivityShowtime">
+    tools:context="apps.daydreams.cinemapp.activity.ActivityShowtime">
 
-    <unal.jomartinezch.cinemapp.util.SwipeMenuListView
+    <apps.daydreams.cinemapp.util.SwipeMenuListView
         android:id="@+id/lv_showtimes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

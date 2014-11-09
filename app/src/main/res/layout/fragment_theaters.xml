@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <unal.jomartinezch.cinemapp.util.SwipeMenuListView
+    <apps.daydreams.cinemapp.util.SwipeMenuListView
         android:id="@+id/lv_theaters"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
