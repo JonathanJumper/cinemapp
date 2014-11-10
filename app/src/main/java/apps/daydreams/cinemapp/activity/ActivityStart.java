@@ -22,6 +22,11 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.startapp.android.publish.Ad;
+import com.startapp.android.publish.AdDisplayListener;
+import com.startapp.android.publish.AdEventListener;
+import com.startapp.android.publish.StartAppAd;
+import com.startapp.android.publish.StartAppSDK;
 
 import java.io.File;
 import java.util.Calendar;
@@ -44,10 +49,17 @@ public class ActivityStart extends Activity {
     public DataContainer data = DataContainer.getInstance();
     SharedPreferences preferences;
 
+    //ads
+    private StartAppAd startAppAd = new StartAppAd(this);
+    private boolean adReceived = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        StartAppSDK.init(this, "111715672", "211138085", true);
+
         sp_cities = (Spinner) findViewById(R.id.sp_cities);
         ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, R.layout.spiner_st_item, cities);
         sp_cities.setAdapter(adapterC);
@@ -74,6 +86,17 @@ public class ActivityStart extends Activity {
         pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#e91e63"),
                 android.graphics.PorterDuff.Mode.SRC_IN);
         preferences = getPreferences(MODE_PRIVATE);
+
+        startAppAd.loadAd (new AdEventListener() {
+            @Override
+            public void onReceiveAd(Ad ad) {
+                adReceived = true;
+            }
+            @Override
+            public void onFailedToReceiveAd(Ad ad) {
+                adReceived = false;
+            }
+        });
     }
 
     public void okOnClick(){
@@ -148,9 +171,7 @@ public class ActivityStart extends Activity {
         else {
             Log.e("into:", "data from cache");
             data.setDataContainer(gson.fromJson(json, DataContainer.class));
-            Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
-            startActivity(intent);
-            okBtn.setEnabled(true);
+            toLobby();
         }
     }
 
@@ -166,12 +187,8 @@ public class ActivityStart extends Activity {
                         new Response.Listener<DataContainer>() {
                             @Override
                             public void onResponse(DataContainer response) {
-                                okBtn.setEnabled(true);
                                 pBar.setVisibility(View.GONE);
                                 data.setDataContainer(response);
-
-                                Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
-                                startActivity(intent);
 
                                 //persist data
                                 SharedPreferences.Editor prefsEditor = preferences.edit();
@@ -182,6 +199,8 @@ public class ActivityStart extends Activity {
                                 prefsEditor.putString("city", city);
                                 prefsEditor.putString("lang",lang);
                                 prefsEditor.commit();
+
+                                toLobby();
                             }
                         },
                         new Response.ErrorListener() {
@@ -225,5 +244,51 @@ public class ActivityStart extends Activity {
             }
         }
         return dir.delete();
+    }
+
+    public void toLobby(){
+        if(adReceived) {
+            startAppAd.showAd(new AdDisplayListener() {
+                @Override
+                public void adHidden(Ad ad) {
+                    Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
+                    startActivity(intent);
+                }
+                @Override
+                public void adDisplayed(Ad ad) {}
+                @Override
+                public void adClicked(Ad ad) {}
+            });
+        }
+        else{
+            Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
+            startActivity(intent);
+        }
+        //had to to put this, because when internet connection failed, ad received stayed true
+        okBtn.setEnabled(true);
+        adReceived = false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        startAppAd.loadAd (new AdEventListener() {
+            @Override
+            public void onReceiveAd(Ad ad) {
+                adReceived = true;
+            }
+            @Override
+            public void onFailedToReceiveAd(Ad ad) {
+                adReceived = false;
+            }
+        });
+        startAppAd.onResume();
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        startAppAd.onPause();
     }
 }
