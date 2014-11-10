@@ -14,7 +14,7 @@
         <item>Generos</item>
         <item>Teatros</item>
         <item>Localizame</item>
-        <item>Sugerencias</item>
+        <item>Reportes</item>
         <item>Acerca</item>
     </string-array>
 
@@ -63,4 +63,13 @@
     <!-- Showtimes -->
     <string name="title_activity_showtime">Funciones</string>
 
+
+    <!-- Mailbox -->
+    <string name="mailbox_send">"Enviar"</string>
+    <string name="mailbox_desc">"En Daydreams te escuchamos, tus mensajes nos ayudan a mejorar día a día.
+        \nSi quieres reportar un fallo, bug o inconveniente, o si simplemente quieres dejarnos una sugerencia o consejo, este es el lugar.  Ayuda a que nuestros desarrolladores no se sientan solos, estaremos esperando tus mensajes :) </string>
+
+    <!-- About -->
+    <string name="legal_advice">"Brought to you by Daydreams®, beyond imagination.
+    \nTodos los derechos reservados © 2014 Cinemapp Colombia y todas sus filiales.</string>
 </resources>

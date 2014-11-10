@@ -1,8 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/btn_showtime_bg">
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:scrollbarStyle="outsideOverlay"
+    android:background="@color/background"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mailbox_desc"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/mailbox_desc"
+            android:textColor="@color/background_light"
+            android:padding="5dp"
+            android:textSize="@dimen/mailbox_desc_size"
+            android:gravity="left" />
+
+        <EditText
+            android:id="@+id/mailbox_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mailbox_height"
+            android:layout_below="@+id/mailbox_desc"
+            android:layout_marginTop="40dp"
+            android:editable="true"
+            android:padding="5dp"
+            android:gravity="left"
+            android:textColor="@color/background"
+            android:textSize="@dimen/mailbox_text_size"
+            android:background="@color/director" />
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/mailbox_desc"
+            android:layout_marginTop="240dp"
+            android:text="@string/mailbox_send"
+            android:textColor="#000000"
+            android:textStyle="bold|normal"
+            android:textSize="18dp"
+            android:singleLine="false"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_button"
+            android:onClick="urlOnClick"
+            />
+
+    </RelativeLayout>
+
+</ScrollView>

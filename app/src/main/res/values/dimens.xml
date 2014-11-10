@@ -22,4 +22,7 @@
     <dimen name="movie_name">22dp</dimen>
     <dimen name="trailer">22dp</dimen>
 
+    <dimen name="mailbox_height">150dp</dimen>
+    <dimen name="mailbox_desc_size">16dp</dimen>
+    <dimen name="mailbox_text_size">14dp</dimen>
 </resources>
