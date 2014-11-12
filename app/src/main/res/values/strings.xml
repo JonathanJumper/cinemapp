@@ -7,14 +7,20 @@
     <string name="start_pick_lang">Selecciona el idioma</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Daydreams -->
+    <string name="company">Daydreams ®</string>
+    <string name="slogan">Beyond imagination</string>
+
     <!-- Nav Drawer Items -->
     <string name="nav_open">"Vestibulo"</string>
+
     <string-array name="nav_drawer_items">
         <item>Cartelera</item>
         <item>Generos</item>
         <item>Teatros</item>
         <item>Localizame</item>
         <item>Reportes</item>
+        <item>Configurar</item>
         <item>Acerca</item>
     </string-array>
 
@@ -25,6 +31,7 @@
         <item>@drawable/ic_theater</item>
         <item>@drawable/ic_mapme</item>
         <item>@drawable/ic_mailbox</item>
+        <item>@drawable/ic_settings</item>
         <item>@drawable/ic_about</item>
     </array>
 
@@ -63,7 +70,6 @@
     <!-- Showtimes -->
     <string name="title_activity_showtime">Funciones</string>
 
-
     <!-- Mailbox -->
     <string name="mailbox_send">"Enviar"</string>
     <string name="mailbox_desc">"En Daydreams te escuchamos, tus mensajes nos ayudan a mejorar día a día.
@@ -71,5 +77,11 @@
 
     <!-- About -->
     <string name="legal_advice">"Brought to you by Daydreams®, beyond imagination.
-    \nTodos los derechos reservados © 2014 Cinemapp Colombia y todas sus filiales.</string>
+    \nTodos los derechos reservados © 2014 Cinemapp Colombia y todas sus filiales.
+    \nCinemapp Colombia no representa a ninguna de las empresas o compañias aqui mostradas, ni tiene ningun vinculo directo con alguna de estas, todos los datos aqui mostrados son explicitamente informativos y no busca con estos el lucro o beneficio de forma alguna, indistinta de la aplicacion.</string>
+    <string name="title_activity_activity_daydreams">ActivityDaydreams</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

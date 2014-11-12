@@ -1,8 +1,8 @@
 package apps.daydreams.cinemapp.activity;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +17,7 @@ import apps.daydreams.cinemapp.model.MovieLite;
 import apps.daydreams.cinemapp.util.AppController;
 
 
-public class ActivityMovieDetail extends Activity {
+public class ActivityMovieDetail extends ActionBarActivity {
 
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     MovieLite m;
@@ -83,7 +83,7 @@ public class ActivityMovieDetail extends Activity {
             fragmentManager.beginTransaction().replace(R.id.frame_container_video, f).commit();
         }
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

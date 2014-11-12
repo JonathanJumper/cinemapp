@@ -22,10 +22,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.startapp.android.publish.Ad;
-import com.startapp.android.publish.AdDisplayListener;
-import com.startapp.android.publish.AdEventListener;
-import com.startapp.android.publish.StartAppAd;
 import com.startapp.android.publish.StartAppSDK;
 
 import java.io.File;
@@ -48,10 +44,6 @@ public class ActivityStart extends Activity {
     private Button okBtn;
     public DataContainer data = DataContainer.getInstance();
     SharedPreferences preferences;
-
-    //ads
-    private StartAppAd startAppAd = new StartAppAd(this);
-    private boolean adReceived = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,17 +78,6 @@ public class ActivityStart extends Activity {
         pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#e91e63"),
                 android.graphics.PorterDuff.Mode.SRC_IN);
         preferences = getPreferences(MODE_PRIVATE);
-
-        startAppAd.loadAd (new AdEventListener() {
-            @Override
-            public void onReceiveAd(Ad ad) {
-                adReceived = true;
-            }
-            @Override
-            public void onFailedToReceiveAd(Ad ad) {
-                adReceived = false;
-            }
-        });
     }
 
     public void okOnClick(){
@@ -236,59 +217,35 @@ public class ActivityStart extends Activity {
     public static boolean deleteDir(File dir) {
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
+            for (String aChildren : children) {
+                boolean success = deleteDir(new File(dir, aChildren));
                 if (!success) {
                     return false;
                 }
             }
         }
-        return dir.delete();
+        try {
+            return dir.delete();
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
     public void toLobby(){
-        if(adReceived) {
-            startAppAd.showAd(new AdDisplayListener() {
-                @Override
-                public void adHidden(Ad ad) {
-                    Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
-                    startActivity(intent);
-                }
-                @Override
-                public void adDisplayed(Ad ad) {}
-                @Override
-                public void adClicked(Ad ad) {}
-            });
-        }
-        else{
-            Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
-            startActivity(intent);
-        }
-        //had to to put this, because when internet connection failed, ad received stayed true
         okBtn.setEnabled(true);
-        adReceived = false;
+        Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
+        startActivity(intent);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        startAppAd.loadAd (new AdEventListener() {
-            @Override
-            public void onReceiveAd(Ad ad) {
-                adReceived = true;
-            }
-            @Override
-            public void onFailedToReceiveAd(Ad ad) {
-                adReceived = false;
-            }
-        });
-        startAppAd.onResume();
     }
 
 
     @Override
     public void onPause() {
         super.onPause();
-        startAppAd.onPause();
     }
 }

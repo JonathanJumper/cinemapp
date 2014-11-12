@@ -9,6 +9,16 @@
     <dimen name="listview_height">96dp</dimen>
     <dimen name="drawer_width">240dp</dimen>
 
+    //nav drawer
+    <dimen name="nd_item_height">55dp</dimen>
+    <dimen name="nd_icon_size">35dp</dimen>
+
+    //daydreams
+    <dimen name="dd_width">200dp</dimen>
+    <dimen name="dd_height">320dp</dimen>
+    <dimen name="txt_dd_name">22dp</dimen>
+    <dimen name="txt_dd_slogan">14dp</dimen>
+
     //box office
     <dimen name="title">17dp</dimen>
     <dimen name="rating">14dip</dimen>

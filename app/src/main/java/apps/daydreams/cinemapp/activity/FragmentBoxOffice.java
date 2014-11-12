@@ -124,14 +124,13 @@ public class FragmentBoxOffice extends Fragment{
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
         MenuItem item = menu.add("Search");
-        //item.setIcon(R.drawable.button_findme); // sets icon
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         sv = new SearchView(getActivity());
 
         // modifying the text inside edittext component
         int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = (TextView) sv.findViewById(id);
-        textView.setHint(Html.fromHtml("<small><i>" + getResources().getString(R.string.search_movie) + "</i></small>"));
+        textView.setHint(Html.fromHtml("<small>" + getResources().getString(R.string.search_movie) + "</small>"));
         textView.setHintTextColor(getResources().getColor(R.color.duration));
         textView.setTextColor(getResources().getColor(R.color.primary_text));
 

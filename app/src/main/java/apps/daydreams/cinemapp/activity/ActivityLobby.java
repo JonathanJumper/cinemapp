@@ -1,13 +1,13 @@
 package apps.daydreams.cinemapp.activity;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -23,13 +23,10 @@ import apps.daydreams.cinemapp.adapter.NavDrawerListAdapter;
 import apps.daydreams.cinemapp.model.DataContainer;
 
 
-public class ActivityLobby extends Activity {
+public class ActivityLobby extends ActionBarActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList, mDrawerListB;
     private ActionBarDrawerToggle mDrawerToggle;
-
-    // nav drawer title
-    private CharSequence mDrawerTitle;
 
     // used to store app title
     private CharSequence mTitle;
@@ -51,7 +48,25 @@ public class ActivityLobby extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
-        mTitle = mDrawerTitle = getTitle();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        // enabling action bar app icon and behaving it as toggle button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.string.nav_open, // nav drawer open - description for accessibility
+                R.string.nav_open // nav drawer close - description for accessibility
+        ){
+            public void onDrawerClosed(View view) {
+                getSupportActionBar().setTitle(mTitle);
+              //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xfffff70d));
+            }
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle(R.string.nav_open);
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mTitle = getResources().getString(R.string.nav_open);
 
         fragmentBoxOffice = new FragmentBoxOffice();
         fragmentGenre = new FragmentGenre();
@@ -63,18 +78,18 @@ public class ActivityLobby extends Activity {
         //load data
         data = DataContainer.getInstance();
 
-        // load slide menu items
-        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
         // nav drawer icons from resources
         final TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        // load slide menu items
+        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         mDrawerListB = (ListView) findViewById(R.id.list_slidermenu_bottom);
 
         final ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
         final ArrayList<NavDrawerItem> navDrawerItemsB = new ArrayList<NavDrawerItem>();
+
 
         // agregar un nuevo item al menu deslizante
 
@@ -89,8 +104,10 @@ public class ActivityLobby extends Activity {
 
         //Mailbox
         navDrawerItemsB.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        //About
+        //Settings
         navDrawerItemsB.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+        //About
+        navDrawerItemsB.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -104,55 +121,26 @@ public class ActivityLobby extends Activity {
         adapter = new NavDrawerListAdapter(getApplicationContext(),navDrawerItemsB);
         mDrawerListB.setAdapter(adapter);
 
-        // enabling action bar app icon and behaving it as toggle button
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_drawer, //nav menu toggle icon
-                R.string.app_name, // nav drawer open - description for accessibility
-                R.string.app_name // nav drawer close - description for accessibility
-        ) {
-            public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
-                // calling onPrepareOptionsMenu() to show action bar icons
-                invalidateOptionsMenu();
-            }
-            public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(getResources().getString(R.string.nav_open));
-                // calling onPrepareOptionsMenu() to hide action bar icons
-                invalidateOptionsMenu();
-             }
-        };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
         if (savedInstanceState == null) {
             // on first time display view for first nav item
             displayView(0);
         }
 
         //open drawer layout
+        getSupportActionBar().setTitle(R.string.nav_open);
         mDrawerLayout.openDrawer(Gravity.LEFT);
-        getActionBar().setTitle(getResources().getString(R.string.nav_open));
     }
 
-    /**
-     * Slide menu item click listener
-     * */
-    private class SlideMenuClickListener implements
-            ListView.OnItemClickListener {
+    private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            // display view for selected nav drawer item
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             displayView(position);
         }
     }
 
-    private class SlideMenuClickListenerB implements
-            ListView.OnItemClickListener {
+    private class SlideMenuClickListenerB implements ListView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            // display view for selected nav drawer item
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             displayView(position+4);
         }
     }
@@ -180,6 +168,9 @@ public class ActivityLobby extends Activity {
                 fragment = fragmentMailbox;
                 break;
             case 5:
+                onBackPressed();
+                break;
+            case 6:
                 fragment = fragmentAbout;
                 break;
             default:
@@ -194,6 +185,7 @@ public class ActivityLobby extends Activity {
             if(position < 4) {
                 mDrawerListB.setItemChecked(0, false);
                 mDrawerListB.setItemChecked(1, false);
+                mDrawerListB.setItemChecked(2, false);
                 mDrawerList.setItemChecked(position, true);
                 mDrawerList.setSelection(position);
             }
@@ -211,7 +203,7 @@ public class ActivityLobby extends Activity {
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getActionBar().setTitle(mTitle);
+        getSupportActionBar().setTitle(mTitle);
     }
 
     /**

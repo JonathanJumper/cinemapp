@@ -1,8 +1,8 @@
 package apps.daydreams.cinemapp.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +21,7 @@ import apps.daydreams.cinemapp.util.SwipeMenuCreator;
 import apps.daydreams.cinemapp.util.SwipeMenuItem;
 import apps.daydreams.cinemapp.util.SwipeMenuListView;
 
-public class ActivityShowtime extends Activity {
+public class ActivityShowtime extends ActionBarActivity {
 
     private List<Showtime> showtimes = DataContainer.getInstance().showtimes;
     private SwipeMenuListView listView;
@@ -117,7 +117,7 @@ public class ActivityShowtime extends Activity {
             }
         });
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

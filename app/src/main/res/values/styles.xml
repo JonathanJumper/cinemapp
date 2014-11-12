@@ -2,61 +2,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo">
-        <item name="android:actionBarStyle">@style/AppTheme.ActionBarStyle</item>
-    </style>
-
-            <style name="AppTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
-                <item name="android:background">@color/primary</item>
-                <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
-            </style>
-
-            <style name="AppTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-                <item name="android:textColor">@color/primary_text</item>
-            </style>
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="android:textColorPrimary">@color/background</item>
+        </style>
 
     <!-- Details theme -->
-    <style name="DetailsTheme" parent="android:Theme.Holo">
-        <item name="android:actionBarStyle">@style/DetailsTheme.ActionBarStyle</item>
+    <style name="DetailsTheme" parent="Theme.AppCompat">
         <item name="android:animateLayoutChanges">true</item>
-    </style>
-
-            <style name="DetailsTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
-                <item name="android:background">@color/btn_details_bg</item>
-                <item name="android:titleTextStyle">@style/DetailsTheme.ActionBar.TitleTextStyle</item>
-            </style>
-
-            <style name="DetailsTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-                <item name="android:textColor">@color/background_text</item>
-            </style>
+        <item name="colorPrimary">@color/details</item>
+        <item name="colorPrimaryDark">@color/detailsDark</item>
+        <item name="android:textColorPrimary">@color/background_text</item>
+        </style>
 
     <!-- Showtime theme -->
-    <style name="ShowtimeTheme" parent="android:Theme.Holo">
-        <item name="android:actionBarStyle">@style/ShowtimeTheme.ActionBarStyle</item>
+    <style name="ShowtimeTheme" parent="Theme.AppCompat">
         <item name="android:animateLayoutChanges">true</item>
-    </style>
-
-            <style name="ShowtimeTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
-                <item name="android:background">@color/btn_showtime_bg</item>
-                <item name="android:titleTextStyle">@style/DetailsTheme.ActionBar.TitleTextStyle</item>
-            </style>
-
-    <!-- FullScreen Theme -->
-    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="metaButtonBarStyle">@style/ButtonBar</item>
-        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
-    </style>
-
-    <style name="ButtonBar">
-        <item name="android:paddingLeft">2dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingRight">2dp</item>
-        <item name="android:paddingBottom">0dp</item>
-        <item name="android:background">@android:drawable/bottom_bar</item>
-    </style>
-
-    <style name="ButtonBarButton" />
+        <item name="colorPrimary">@color/showtime</item>
+        <item name="colorPrimaryDark">@color/showtimeDark</item>
+        <item name="android:textColorPrimary">@color/background_text</item>
+        </style>
 
 </resources>

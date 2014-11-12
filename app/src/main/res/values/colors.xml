@@ -2,18 +2,24 @@
 
     //global
     <color name="primary">#fff70d</color>
+    <color name="primaryDark">#beb700</color>
     <color name="primary_text">#000000</color>
     <color name="secondary">#3f51b5</color>
-    <color name="tertiary">#C2185B</color>
     <color name="background">#212121</color>
     <color name="background_text">#ffffff</color>
     <color name="background_light">#ffe7e7e7</color>
     <color name="text_link">#3f51b5</color>
 
+    //details
+    <color name="details">#3f51b5</color>
+    <color name="detailsDark">#303d89</color>
+
+    //showtimes
+    <color name="showtime">#E91E63</color>
+    <color name="showtimeDark">#960f3d</color>
+
     //list views
     <color name="btn_movies_bg">#3f51b5</color>
-    <color name="btn_showtime_bg">#E91E63</color>
-    <color name="btn_details_bg">#3f51b5</color>
     <color name="btn_theater_bg">#3f51b5</color>
     <color name="btns_bg">#000000</color>
 

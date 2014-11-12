@@ -132,7 +132,7 @@ public class FragmentTheater extends Fragment {
         // modifying the text inside edittext component
         int id = sv.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = (TextView) sv.findViewById(id);
-        textView.setHint(Html.fromHtml("<small><i>" + getResources().getString(R.string.search_movie) + "</i></small>"));
+        textView.setHint(Html.fromHtml("<small>" + getResources().getString(R.string.search_movie) + "</small>"));
         textView.setHintTextColor(getResources().getColor(R.color.duration));
         textView.setTextColor(getResources().getColor(R.color.primary_text));
 

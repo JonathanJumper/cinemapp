@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:textSize="15sp"
     android:gravity="center_vertical"
-    android:textColor="@color/tertiary"
+    android:textColor="@color/showtime"
     android:background="@drawable/rounded_spinner"
     android:padding="5dip"
 />

@@ -1,9 +1,9 @@
 package apps.daydreams.cinemapp.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +13,7 @@ import apps.daydreams.cinemapp.R;
 import apps.daydreams.cinemapp.model.DataContainer;
 import apps.daydreams.cinemapp.model.Theater;
 
-public class ActivityTheaterDetail extends Activity {
+public class ActivityTheaterDetail extends ActionBarActivity {
 
     Theater t = null;
 
@@ -37,8 +37,7 @@ public class ActivityTheaterDetail extends Activity {
             ((TextView) findViewById(R.id.theater_url)).setText(t.url);
         }
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
