@@ -2,7 +2,7 @@
 
     //global
     <color name="primary">#fff70d</color>
-    <color name="primaryDark">#beb700</color>
+    <color name="primaryDark">#FFD600</color>
     <color name="primary_text">#000000</color>
     <color name="secondary">#3f51b5</color>
     <color name="background">#212121</color>
@@ -11,12 +11,13 @@
     <color name="text_link">#3f51b5</color>
 
     //details
+    <color name="detailsLight">#536dfe</color>
     <color name="details">#3f51b5</color>
     <color name="detailsDark">#303d89</color>
 
     //showtimes
     <color name="showtime">#E91E63</color>
-    <color name="showtimeDark">#960f3d</color>
+    <color name="showtimeDark">#AC2A56</color>
 
     //list views
     <color name="btn_movies_bg">#3f51b5</color>

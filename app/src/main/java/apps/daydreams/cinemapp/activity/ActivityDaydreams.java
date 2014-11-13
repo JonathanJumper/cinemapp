@@ -19,6 +19,7 @@ public class ActivityDaydreams extends Activity {
         ProgressBar pBar = (ProgressBar) findViewById(R.id.progressBar);
         pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#ffffff"),
                 android.graphics.PorterDuff.Mode.SRC_IN);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -3,8 +3,8 @@
 
     <string name="app_name">Cinemapp Colombia</string>
     <string name="description">La aplicación que hace que ir al cine sea tan facil como estar alli.</string>
-    <string name="start_pick_city">Select city</string>
-    <string name="start_pick_lang">Select Language</string>
+    <string name="start_pick_city">Selecciona la ciudad</string>
+    <string name="start_pick_lang">Selecciona el idioma</string>
     <string name="action_settings">Settings</string>
 
     <!-- Daydreams -->
@@ -12,7 +12,7 @@
     <string name="slogan">Beyond imagination</string>
 
     <!-- Nav Drawer Items -->
-    <string name="nav_open">"Lobby"</string>
+    <string name="nav_open">"Vestibulo"</string>
 
     <string-array name="nav_drawer_items">
         <item>Cartelera</item>
@@ -35,25 +35,31 @@
         <item>@drawable/ic_about</item>
     </array>
 
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+
     <!-- Box Office -->
     <string name="connection_error">Check your internet access</string>
     <string name="loading">Monos entrenados trabajando…</string>
     <string name="search_movie">Nombre, Director, Genero…</string>
 
     <!-- Movie Detail -->
-    <string name="title_activity_movie_detail">Movie Details</string>
-    <string name="movie_description">Description:</string>
-    <string name="movie_original">Original Title:</string>
+    <string name="title_activity_movie_detail">Detalles</string>
+    <string name="movie_description">Descripción:</string>
+    <string name="movie_description_null">No disponible</string>
+    <string name="movie_original">Nombre original:</string>
     <string name="movie_director">Director:</string>
-    <string name="movie_cast">Cast:</string>
-    <string name="movie_genre">Genres:</string>
+    <string name="movie_cast">Elenco:</string>
+    <string name="movie_genre">Genero:</string>
     <string name="movie_trailer">Trailer:</string>
 
     <!-- Map Me -->
-    <string name="youre_here">"You're here"</string>
+    <string name="youre_here">"Estas aqui"</string>
+    <string name="youre_here_snippet">"Selecciona el teatro deseado"</string>
+    <string name="marker_snippet">Click aqui para ver detalles</string>
 
     <!-- Theater -->
-    <string name="search_theater">Name, Chain, Address…</string>
+    <string name="search_theater">Nombre, Cadena, Direccion…</string>
 
     <!-- Theater Detail -->
     <string name="title_activity_theater_detail">Detalles</string>

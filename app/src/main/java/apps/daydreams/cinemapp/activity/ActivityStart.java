@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,10 +23,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.startapp.android.publish.StartAppSDK;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.Locale;
 
 import apps.daydreams.cinemapp.R;
 import apps.daydreams.cinemapp.model.DataContainer;
@@ -36,8 +37,8 @@ public class ActivityStart extends Activity {
 
     private final String[] langs = { "  Español", "  English", "  Português", "  Français", "  Deutsch" };
     private final String[] cities = { "  Bogota", "  Medellin", "  Cali", "  Villavicencio", "  Tunja" };
-    private String city;
-    private String lang;
+    private String city, gotCity;
+    private String lang, gotLang;
     private Spinner sp_lang;
     private Spinner sp_cities;
     private ProgressBar pBar;
@@ -50,7 +51,6 @@ public class ActivityStart extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        StartAppSDK.init(this, "111715672", "211138085", true);
 
         sp_cities = (Spinner) findViewById(R.id.sp_cities);
         ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, R.layout.spiner_st_item, cities);
@@ -77,32 +77,23 @@ public class ActivityStart extends Activity {
         pBar = (ProgressBar) findViewById(R.id.progressBar);
         pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#e91e63"),
                 android.graphics.PorterDuff.Mode.SRC_IN);
+
         preferences = getPreferences(MODE_PRIVATE);
+        gotCity = preferences.getString("city", "");
+        if(gotCity != null){
+            sp_lang.setSelection(cityToInt(gotCity), true);
+        }
+        gotLang = preferences.getString("lang", "");
+        if(gotLang != null) {
+            sp_lang.setSelection(langToInt(gotLang),true);
+            refreshLang(gotLang);
+        }
     }
 
     public void okOnClick(){
 
         city = cities[sp_cities.getSelectedItemPosition()].trim().toLowerCase();
-        switch (sp_lang.getSelectedItemPosition()) {
-            case 0:
-                lang = "es";
-                break;
-            case 1:
-                lang = "en";
-                break;
-            case 2:
-                lang = "pt";
-                break;
-            case 3:
-                lang = "fr";
-                break;
-            case 4:
-                lang = "de";
-                break;
-            default:
-                lang = "es";
-                break;
-        }
+        lang = intToLang(sp_lang.getSelectedItemPosition());
 
         Calendar c = Calendar.getInstance();
         int date = c.get(Calendar.DAY_OF_YEAR)+c.get(Calendar.YEAR);
@@ -125,7 +116,6 @@ public class ActivityStart extends Activity {
         }
 
         //if city is not the same, refresh data
-        String gotCity = preferences.getString("city", "");
         if(!gotCity.equals(city)){
             Log.e("into:", "different city");
             preferences.edit().clear();
@@ -134,9 +124,9 @@ public class ActivityStart extends Activity {
         }
 
         //if lang is not the same, refresh data
-        String gotLang = preferences.getString("lang", "");
         if(!gotLang.equals(lang)){
             Log.e("into:", "different lang");
+            refreshLang(gotLang);
             preferences.edit().clear();
             refreshData();
             return;
@@ -236,6 +226,53 @@ public class ActivityStart extends Activity {
         okBtn.setEnabled(true);
         Intent intent = new Intent(getApplicationContext(), ActivityLobby.class);
         startActivity(intent);
+    }
+
+    public String intToLang(int lang){
+        switch (lang) {
+            case 0:
+                return "es";
+            case 1:
+                return "en";
+            case 2:
+                return "pt";
+            case 3:
+                return "fr";
+            case 4:
+                return "de";
+            default:
+                return "es";
+        }
+    }
+
+    public int langToInt(String lang){
+        if (lang.equals("es")) {
+            return 0;
+        } else if (lang.equals("en")) {
+            return 1;
+        } else if (lang.equals("pt")) {
+            return 2;
+        } else if (lang.equals("fr")) {
+            return 3;
+        } else if (lang.equals("de")) {
+            return 4;
+        } else {
+            return 1;
+        }
+    }
+
+    public int cityToInt(String city){
+        for(int i = 0; i < cities.length; i++)
+            if(cities[i].trim().toLowerCase().equals(city)) return i;
+        return 0;
+    }
+
+    public void refreshLang(String lang){
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
     @Override

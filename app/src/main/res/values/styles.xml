@@ -13,7 +13,7 @@
         <item name="android:animateLayoutChanges">true</item>
         <item name="colorPrimary">@color/details</item>
         <item name="colorPrimaryDark">@color/detailsDark</item>
-        <item name="android:textColorPrimary">@color/background_text</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
         </style>
 
     <!-- Showtime theme -->
@@ -21,7 +21,7 @@
         <item name="android:animateLayoutChanges">true</item>
         <item name="colorPrimary">@color/showtime</item>
         <item name="colorPrimaryDark">@color/showtimeDark</item>
-        <item name="android:textColorPrimary">@color/background_text</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
         </style>
 
 </resources>
