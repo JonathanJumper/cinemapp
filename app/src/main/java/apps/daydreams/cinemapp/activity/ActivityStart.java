@@ -43,6 +43,7 @@ public class ActivityStart extends Activity {
     private Spinner sp_cities;
     private ProgressBar pBar;
     private Button okBtn;
+    private TextView tv_lang, tv_city;
     public DataContainer data = DataContainer.getInstance();
     SharedPreferences preferences;
 
@@ -50,21 +51,6 @@ public class ActivityStart extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-
-        sp_cities = (Spinner) findViewById(R.id.sp_cities);
-        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, R.layout.spiner_st_item, cities);
-        sp_cities.setAdapter(adapterC);
-
-        sp_lang = (Spinner) findViewById(R.id.sp_lang);
-        ArrayAdapter<String> adapterL = new ArrayAdapter<String>(this, R.layout.spiner_st_item, langs);
-        sp_lang.setAdapter(adapterL);
-
-        try {
-            String versionName = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
-            TextView tv = (TextView) findViewById(R.id.tv_version);
-            tv.setText("Version beta "+versionName);
-        }catch(Exception e){}
 
         okBtn = (Button) findViewById(R.id.ok);
         okBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,16 +64,28 @@ public class ActivityStart extends Activity {
         pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#e91e63"),
                 android.graphics.PorterDuff.Mode.SRC_IN);
 
+        sp_cities = (Spinner) findViewById(R.id.sp_cities);
+        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, R.layout.spiner_st_item, cities);
+        sp_cities.setAdapter(adapterC);
+
+        sp_lang = (Spinner) findViewById(R.id.sp_lang);
+        ArrayAdapter<String> adapterL = new ArrayAdapter<String>(this, R.layout.spiner_st_item, langs);
+        sp_lang.setAdapter(adapterL);
+
         preferences = getPreferences(MODE_PRIVATE);
-        gotCity = preferences.getString("city", "");
-        if(gotCity != null){
-            sp_lang.setSelection(cityToInt(gotCity), true);
-        }
-        gotLang = preferences.getString("lang", "");
-        if(gotLang != null) {
-            sp_lang.setSelection(langToInt(gotLang),true);
-            refreshLang(gotLang);
-        }
+        gotCity = preferences.getString("city", "bogota");
+        sp_cities.setSelection(cityToInt(gotCity));
+
+        gotLang = preferences.getString("lang", "es");
+        sp_lang.setSelection(langToInt(gotLang));
+        refreshLang(gotLang);
+
+        tv_city = (TextView) findViewById(R.id.tv_city);
+        tv_city.setText(R.string.start_pick_city);
+
+        tv_lang = (TextView) findViewById(R.id.tv_lang);
+        tv_lang.setText(R.string.start_pick_lang);
+
     }
 
     public void okOnClick(){
@@ -115,18 +113,20 @@ public class ActivityStart extends Activity {
             return;
         }
 
-        //if city is not the same, refresh data
-        if(!gotCity.equals(city)){
-            Log.e("into:", "different city");
+        //if lang is not the same, refresh data
+        gotLang = preferences.getString("lang", "");
+        if(!gotLang.equals(lang)){
+            Log.e("into:", "different lang");
             preferences.edit().clear();
+            refreshLang(lang);
             refreshData();
             return;
         }
 
-        //if lang is not the same, refresh data
-        if(!gotLang.equals(lang)){
-            Log.e("into:", "different lang");
-            refreshLang(gotLang);
+        //if city is not the same, refresh data
+        gotCity = preferences.getString("city", "");
+        if(!gotCity.equals(city)) {
+            Log.e("into:", "different city");
             preferences.edit().clear();
             refreshData();
             return;
@@ -168,7 +168,7 @@ public class ActivityStart extends Activity {
                                 prefsEditor.putString("data", json);
                                 prefsEditor.putInt("date", Calendar.getInstance().get(Calendar.DAY_OF_YEAR) + Calendar.getInstance().get(Calendar.YEAR));
                                 prefsEditor.putString("city", city);
-                                prefsEditor.putString("lang",lang);
+                                prefsEditor.putString("lang", lang);
                                 prefsEditor.commit();
 
                                 toLobby();
@@ -215,7 +215,8 @@ public class ActivityStart extends Activity {
             }
         }
         try {
-            return dir.delete();
+            dir.delete();
+            return true;
         }
         catch (Exception e){
             return false;
@@ -278,6 +279,11 @@ public class ActivityStart extends Activity {
     @Override
     public void onResume() {
         super.onResume();
+        tv_city = (TextView) findViewById(R.id.tv_city);
+        tv_city.setText(R.string.start_pick_city);
+
+        tv_lang = (TextView) findViewById(R.id.tv_lang);
+        tv_lang.setText(R.string.start_pick_lang);
     }
 
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cinemapp Colômbia</string>
+    <string name="description">O app que faz ir ao cinema como mais fácil que estar lá.</string>
+    <string name="start_pick_city">Selecionar uma cidade</string>
+    <string name="start_pick_lang">Selecionar um idioma.</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Daydreams -->
+    <string name="title_activity_activity_daydreams">Cinemapp</string>
+    <string name="company">Daydreams ®</string>
+    <string name="slogan">Beyond imagination</string>
+
+    <!-- Nav Drawer Items -->
+    <string name="nav_open">"Entrada"</string>
+
+    <string-array name="nav_drawer_items">
+        <item>Cartaz</item>
+        <item>Gêneros</item>
+        <item>Salas</item>
+        <item>Localizar-me</item>
+        <item>Relatórios</item>
+        <item>Definições</item>
+        <item>Sobre nos</item>
+    </string-array>
+
+    <!-- Iconos de los items -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_boxoffice</item>
+        <item>@drawable/ic_genre</item>
+        <item>@drawable/ic_theater</item>
+        <item>@drawable/ic_mapme</item>
+        <item>@drawable/ic_mailbox</item>
+        <item>@drawable/ic_settings</item>
+        <item>@drawable/ic_about</item>
+    </array>
+
+    <!-- Box Office -->
+    <string name="connection_error">Verifique se o seu acesso à Internet</string>
+    <string name="search_movie">Título, diretor, Gênero…</string>
+
+    <!-- Movie Detail -->
+    <string name = "title_activity_movie_detail">Detalhes</string>
+    <string name = "movie_description">Descrição:</string>
+    <string name = "movie_original">Título Original:</string>
+    <string name = "movie_director">Diretor:</string>
+    <string name = "movie_cast">Elenco:</string>
+    <string name = "movie_genre">Gêneros:</string>
+    <string name = "movie_trailer">Trailer:</string>
+
+    <!-- Map Me -->
+    <string name = "youre_here">"Você está aqui"</string>
+
+    <!-- Theater -->
+    <string name = "search_theater">Nome, Corrente, endereço…</string>
+
+    <!-- Theater Detail -->
+    <string name = "title_activity_theater_detail">Detalhes</string>
+    <string name = "theater_adress">Endereço:</string>
+    <string name = "theater_phone">Telefone:</string>
+    <string name = "theater_url">Site:</string>
+
+    <!-- Showtimes -->
+    <string name="title_activity_showtime">Horários</string>
+
+    <!-- Mailbox -->
+    <string name="mailbox_send">"Enviar"</string>
+    <string name="mailbox_desc">"En Daydreams te escuchamos, tus mensajes nos ayudan a mejorar día a día.
+        \nSi quieres reportar un fallo, bug o inconveniente, o si simplemente quieres dejarnos una sugerencia o consejo, este es el lugar.  Ayuda a que nuestros desarrolladores no se sientan solos, estaremos esperando tus mensajes :) </string>
+
+    <!-- About -->
+    <string name="legal_advice">"Brought to you by Daydreams®, beyond imagination.
+    \nTodos los derechos reservados © 2014 Cinemapp Colombia y todas sus filiales.
+    \nCinemapp Colombia no representa a ninguna de las empresas o compañias aqui mostradas, ni tiene ningun vinculo directo con alguna de estas, todos los datos aqui mostrados son explicitamente informativos y no busca con estos el lucro o beneficio de forma alguna, indistinta de la aplicacion.</string>
+
+</resources>

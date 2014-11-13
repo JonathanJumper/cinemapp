@@ -6,10 +6,9 @@
     android:background="@drawable/start">
 
     <TextView
+        android:id="@+id/tv_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_city"
-        android:text="@string/start_pick_city"
         android:textStyle="bold"
         android:textColor="#ffffff"
 
@@ -28,13 +27,11 @@
         android:layout_centerVertical="true" />
 
     <TextView
+        android:id="@+id/tv_lang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_pick_lang"
-        android:id="@+id/tv_lang"
         android:textColor="#ffffff"
         android:textStyle="bold"
-
         android:layout_alignTop="@id/sp_cities"
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"/>
@@ -87,7 +84,8 @@
         android:textColor="#ffffff"
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:text="Version Beta"/>
 
 
 </RelativeLayout>
