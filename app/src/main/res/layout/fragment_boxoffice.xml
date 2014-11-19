@@ -5,8 +5,8 @@ android:layout_height="match_parent">
 
     <apps.daydreams.cinemapp.util.SwipeMenuListView
         android:id="@+id/lvy_movies"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
         android:divider="@color/list_divider_nd"
         android:dividerHeight="2dp"
         android:listSelector="@drawable/list_bo_selector" />

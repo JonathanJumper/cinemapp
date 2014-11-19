@@ -126,7 +126,7 @@ public class FragmentTheater extends Fragment {
 
         MenuItem item = menu.add("Search");
         //item.setIcon(R.drawable.button_findme); // sets icon
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         sv = new SearchView(getActivity());
 
         // modifying the text inside edittext component

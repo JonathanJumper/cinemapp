@@ -20,7 +20,7 @@
         <activity
             android:name="apps.daydreams.cinemapp.activity.ActivityDaydreams"
             android:label="@string/title_activity_activity_daydreams"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+            android:theme="@style/StartTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,13 +31,13 @@
         <activity
             android:name="apps.daydreams.cinemapp.activity.ActivityStart"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+            android:theme="@style/StartTheme" >
         </activity>
 
         <activity
             android:name="apps.daydreams.cinemapp.activity.ActivityLobby"
             android:label="@string/nav_open"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/LobbyTheme" />
 
         <activity
             android:name="apps.daydreams.cinemapp.activity.ActivityMovieDetail"
@@ -49,27 +49,16 @@
             android:icon="@drawable/ic_theater"
             android:label="@string/title_activity_theater_detail"
             android:theme="@style/DetailsTheme" >
->
+
         </activity>
         <activity
             android:name="apps.daydreams.cinemapp.activity.ActivityShowtime"
             android:icon="@drawable/ic_showtime"
             android:label="@string/title_activity_showtime"
             android:theme="@style/ShowtimeTheme" >
->
+
         </activity>
 
-        <!-- StartApp activities integration -->
-        <activity
-            android:name="com.startapp.android.publish.list3d.List3DActivity"
-            android:taskAffinity="apps.daydreams.cinemapp.AppWall"
-            android:theme="@android:style/Theme" />
-        <activity
-            android:name="com.startapp.android.publish.AppWallActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:taskAffinity="apps.daydreams.cinemapp.AppWall"
-            android:theme="@android:style/Theme.Translucent" />
-        <!-- End of StartApp activities integration -->
 
         <meta-data
             android:name="com.google.android.gms.version"

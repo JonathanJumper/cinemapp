@@ -239,21 +239,37 @@ public class ActivityLobby extends ActionBarActivity {
 
     @Override
     protected void onResume() {
+        Log.e("was called ---->","onResume");
         super.onResume();
     }
 
     @Override
     protected void onRestart() {
+        Log.e("was called ---->","onRestart");
         super.onRestart();
     }
 
     @Override
     protected void onPause() {
+        Log.e("was called ---->","onPause");
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
+        Log.e("was called ---->","onDestroy");
         super.onDestroy();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.e("was called ---->","save instance");
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedState) {
+        Log.e("was called ---->","restore instance");
+        super.onRestoreInstanceState(savedState);
     }
 }

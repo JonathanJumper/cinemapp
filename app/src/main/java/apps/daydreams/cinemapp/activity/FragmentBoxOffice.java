@@ -124,7 +124,7 @@ public class FragmentBoxOffice extends Fragment{
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
         MenuItem item = menu.add("Search");
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         sv = new SearchView(getActivity());
 
         // modifying the text inside edittext component

@@ -41,7 +41,6 @@ public class ActivityMovieDetail extends ActionBarActivity {
         else{
             if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
             NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.thumbnail);
-
             try {
                 String imagePath = "http://image.tmdb.org/t/p/w500"+m.imagePath;
                 thumbNail.setImageUrl(imagePath, imageLoader);
@@ -50,22 +49,41 @@ public class ActivityMovieDetail extends ActionBarActivity {
             }
         }
 
-        ((TextView) findViewById(R.id.name)).setText(m.name);
-        ((TextView) findViewById(R.id.original)).setText(m.originalName);
-        ((TextView) findViewById(R.id.genre)).setText(m.genre.replace("/", ", "));
-        ((TextView) findViewById(R.id.director)).setText(m.director);
-
-        String cast = "";
-        if (m.cast == null) {
+        if(m.name == null){
+            findViewById(R.id.header).setVisibility(View.GONE);
+        }
+        else {
+            ((TextView) findViewById(R.id.name)).setText(m.name);
+        }
+        if(m.originalName == null){
+            findViewById(R.id.original_title).setVisibility(View.GONE);
+            findViewById(R.id.original).setVisibility(View.GONE);
+        }
+        else {
+            ((TextView) findViewById(R.id.original)).setText(m.originalName);
+        }
+        if(m.genre == null){
+            findViewById(R.id.genre_title).setVisibility(View.GONE);
+            findViewById(R.id.genre).setVisibility(View.GONE);
+        }
+        else {
+            ((TextView) findViewById(R.id.genre)).setText(m.genre.replace("/", ", "));
+        }
+        if(m.director == null){
+            findViewById(R.id.director_title).setVisibility(View.GONE);
+            findViewById(R.id.director).setVisibility(View.GONE);
+        }
+        else {
+            ((TextView) findViewById(R.id.director)).setText(m.director);
+        }
+        if(m.cast == null){
             findViewById(R.id.cast_title).setVisibility(View.GONE);
             findViewById(R.id.cast).setVisibility(View.GONE);
         }
-        else{
-            for (String c : m.cast) cast = cast + c;
-            ((TextView) findViewById(R.id.cast)).setText(cast);
+        else {
+            ((TextView) findViewById(R.id.cast)).setText(m.cast);
         }
-
-        if ( m.description == null || m.description.equals("null") ) {
+        if ( m.description == null ) {
             findViewById(R.id.description_title).setVisibility(View.GONE);
             findViewById(R.id.description).setVisibility(View.GONE);
         }
@@ -96,5 +114,4 @@ public class ActivityMovieDetail extends ActionBarActivity {
         onBackPressed();
         return true;
     }
-
 }

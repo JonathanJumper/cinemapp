@@ -9,7 +9,7 @@ public class MovieLite {
     public String duration;
     public String genre;
     public String director;
-    public String[] cast;
+    public String cast;
     public String description;
     public String imagePath;
     public String trailerPath;

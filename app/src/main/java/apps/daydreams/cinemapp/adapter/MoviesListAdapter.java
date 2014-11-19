@@ -6,9 +6,6 @@ package apps.daydreams.cinemapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,17 +57,16 @@ public class MoviesListAdapter extends BaseAdapter implements Filterable{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.e("---------->", "called agaiinn");
 
         if (inflater == null)
-            inflater = (LayoutInflater) activity
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_bo_item, null);
-
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
-        NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.thumbnail);
 
+        NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.thumbnail);
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView genre = (TextView) convertView.findViewById(R.id.genre);
         TextView director = (TextView) convertView.findViewById(R.id.director);
@@ -81,33 +77,60 @@ public class MoviesListAdapter extends BaseAdapter implements Filterable{
         MovieLite m = movieLiteItems.get(position);
 
         // thumbnail image
-        if(m.imagePath != null)
-            if(!m.imagePath.contains("null")){
-                try {
-                    String imagePath = "http://image.tmdb.org/t/p/w92"+ m.imagePath;
-                    thumbNail.setImageUrl(imagePath, imageLoader);
-
-                } catch (Exception e) {
-                    Drawable transparentDrawable = new ColorDrawable(Color.TRANSPARENT);
-                    thumbNail.setImageDrawable(transparentDrawable);
-                    Log.e("In image path of " + m.name, e.toString());
-                }
+        if(m.imagePath != null) {
+            try {
+                String imagePath = "http://image.tmdb.org/t/p/w92" + m.imagePath;
+                thumbNail.setImageUrl(imagePath, imageLoader);
+            }
+            catch (Exception e) {
+                thumbNail.setImageResource(R.drawable.not_available);
+                Log.e("Error in image path of " + m.name, e.toString());
+            }
         }
-        //assign all other attributes
+        else {
+            thumbNail.setImageResource(R.drawable.not_available);
+        }
+
+        // name
         try {
-            String name = m.name.replace("3D","");
-            if(name.contains("(")) title.setText(name.substring(0,name.indexOf("(") ));
-            else title.setText(name);
-        }catch (Exception e ){
-            Log.e("Error in adapter", e.toString());
             title.setText(m.name);
         }
-        if(m.genre != null)
-            if(m.genre.contains("/"))
-                genre.setText(m.genre.substring(0, m.genre.indexOf("/")));
-        else genre.setText(m.genre);
-        director.setText(m.director);
-        duration.setText(m.duration);
+        catch (Exception e ){
+            Log.e("Error setting text in movie adapter", e.toString());
+            title.setText("");
+        }
+
+        // genres
+        try {
+            if (m.genre != null)
+                if (m.genre.contains("/"))
+                    genre.setText(m.genre.substring(0, m.genre.indexOf("/")));
+                else genre.setText(m.genre);
+        }
+        catch (Exception e){
+            Log.e("Error setting genres in movie adapter", e.toString());
+            genre.setText("");
+        }
+
+        //director
+        try {
+            director.setText(m.director);
+        }
+        catch (Exception e){
+            Log.e("Error setting director in movie adapter", e.toString());
+            director.setText("");
+        }
+
+        //duration
+        try {
+            duration.setText(m.duration);
+        }
+        catch (Exception e){
+            Log.e("Error setting duration in movie adapter", e.toString());
+            duration.setText("");
+        }
+
+
         if(m.threeD) threeD.setText("3D");
         else threeD.setText("");
 

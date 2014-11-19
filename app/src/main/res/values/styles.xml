@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <!-- Start theme. -->
+    <style name="StartTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimaryDark">@android:color/black</item>
+        </style>
+
+    <!-- Lobby theme. -->
+    <style name="LobbyTheme" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorPrimaryDark">@color/background</item>
         <item name="android:textColorPrimary">@color/background</item>
         </style>
+
 
     <!-- Details theme -->
     <style name="DetailsTheme" parent="Theme.AppCompat">

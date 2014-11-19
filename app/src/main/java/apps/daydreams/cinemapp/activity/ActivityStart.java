@@ -36,7 +36,7 @@ import apps.daydreams.cinemapp.util.GsonRequest;
 public class ActivityStart extends Activity {
 
     private final String[] langs = { "  Español", "  English", "  Português", "  Français", "  Deutsch" };
-    private final String[] cities = { "  Bogota", "  Medellin", "  Cali", "  Villavicencio", "  Tunja" };
+    private final String[] cities = { "  Bogota", "  Medellin", "  Cali", "  Villavicencio", "  Tunja"};
     private String city, gotCity;
     private String lang, gotLang;
     private Spinner sp_lang;
