@@ -57,7 +57,7 @@ public class MoviesListAdapter extends BaseAdapter implements Filterable{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.e("---------->", "called agaiinn");
+        Log.e("get view adapter called ---------->", "position "+position);
 
         if (inflater == null)
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -214,6 +214,7 @@ public class MoviesListAdapter extends BaseAdapter implements Filterable{
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             movieLiteItems = (ArrayList<MovieLite>) results.values;
+            Log.d("called-->","notify");
             notifyDataSetChanged();
         }
     }

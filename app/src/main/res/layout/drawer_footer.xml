@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <!-- Listview to display slider menu at the bottom-->
+        <ListView
+            android:id="@+id/list_slidermenu_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="singleChoice"
+            android:headerDividersEnabled="true"
+            android:divider="@color/list_divider_nd"
+            android:dividerHeight="2dp"
+            android:listSelector="@drawable/list_nd_selector"
+            android:background="@color/list_nd_bg"/>
+
+</RelativeLayout>

@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.List;
 import apps.daydreams.cinemapp.R;
 import apps.daydreams.cinemapp.adapter.ShowtimesListAdapter;
 import apps.daydreams.cinemapp.model.DataContainer;
+import apps.daydreams.cinemapp.model.MovieLite;
 import apps.daydreams.cinemapp.model.Showtime;
+import apps.daydreams.cinemapp.model.Theater;
 import apps.daydreams.cinemapp.util.SwipeMenu;
 import apps.daydreams.cinemapp.util.SwipeMenuCreator;
 import apps.daydreams.cinemapp.util.SwipeMenuItem;
@@ -24,10 +28,14 @@ import apps.daydreams.cinemapp.util.SwipeMenuListView;
 public class ActivityShowtime extends ActionBarActivity {
 
     private List<Showtime> showtimes = DataContainer.getInstance().showtimes;
+    private List<MovieLite> movies = DataContainer.getInstance().movies;
+    private List<Theater> theaters = DataContainer.getInstance().theaters;
     private SwipeMenuListView listView;
     private ShowtimesListAdapter adapter;
     private String mid, tid;
     private List<Showtime> showtimesFetched = new ArrayList<Showtime>();
+    private ImageView headerIcon;
+    private TextView headerText;
 
     
     @Override
@@ -39,12 +47,29 @@ public class ActivityShowtime extends ActionBarActivity {
         mid = b.getString("mid" , null);
         tid = b.getString("tid", null);
 
+        headerIcon = (ImageView) findViewById(R.id.sh_icon);
+        headerText = (TextView) findViewById(R.id.sh_name);
+
         if(tid == null) {
+            for(MovieLite m: movies) {
+                if (m.mid.equals(mid)) {
+                    headerText.setText(m.name);
+                    break;
+                }
+            }
+            headerIcon.setImageResource(R.drawable.ic_boxoffice);
             for(Showtime s: showtimes)
                 if(s.mid.equals(mid)) showtimesFetched.add(s);
         }
 
         if(mid == null) {
+            for(Theater t: theaters) {
+                if (t.tid.equals(tid)) {
+                    headerText.setText(t.name);
+                    break;
+                }
+            }
+            headerIcon.setImageResource(R.drawable.ic_theater);
             for(Showtime s: showtimes)
                 if(s.tid.equals(tid)) showtimesFetched.add(s);
         }

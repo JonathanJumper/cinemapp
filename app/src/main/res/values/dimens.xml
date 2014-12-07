@@ -18,10 +18,12 @@
     <dimen name="nd_icon_size">35dp</dimen>
 
     //daydreams
-    <dimen name="dd_width">200dp</dimen>
-    <dimen name="dd_height">320dp</dimen>
-    <dimen name="txt_dd_name">22dp</dimen>
-    <dimen name="txt_dd_slogan">14dp</dimen>
+    <dimen name="dd_width">300dp</dimen>
+    <dimen name="dd_height">200dp</dimen>
+    <dimen name="dd_image_padding">20dp</dimen>
+    <dimen name="dd_txt_margin">10dp</dimen>
+    <dimen name="txt_dd_name">32dp</dimen>
+    <dimen name="txt_dd_slogan">25dp</dimen>
 
     //box office
     <dimen name="title">17dp</dimen>
@@ -38,4 +40,5 @@
     <dimen name="mailbox_height">150dp</dimen>
     <dimen name="mailbox_desc_size">16dp</dimen>
     <dimen name="mailbox_text_size">14dp</dimen>
+    <dimen name="spinner_height">35dp</dimen>
 </resources>

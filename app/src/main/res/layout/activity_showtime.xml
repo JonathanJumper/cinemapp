@@ -4,8 +4,33 @@
     android:layout_height="match_parent"
     tools:context="apps.daydreams.cinemapp.activity.ActivityShowtime">
 
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:background="@color/showtimeLight">
+
+        <ImageView
+            android:id="@+id/sh_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/sh_name"
+            android:layout_toRightOf="@+id/sh_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/background_text"
+            android:textSize="@dimen/movie_name"
+            android:padding="3dp"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
     <apps.daydreams.cinemapp.util.SwipeMenuListView
         android:id="@+id/lv_showtimes"
+        android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/list_divider_nd"

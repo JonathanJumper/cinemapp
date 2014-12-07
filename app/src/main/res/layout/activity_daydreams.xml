@@ -8,21 +8,17 @@
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:minHeight="50dp"
         android:id="@+id/progressBar"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:visibility="visible"
-        android:indeterminate="true"
-        android:indeterminateBehavior="repeat"
-        android:indeterminateOnly="true"
-        android:focusableInTouchMode="false" />
+        android:indeterminate="true"/>
 
     <ImageView
         android:id="@+id/dd_logo"
-        android:layout_width="@dimen/dd_width"
-        android:layout_height="@dimen/dd_height"
+        android:padding="@dimen/dd_image_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:src="@drawable/daydreams"/>
@@ -31,18 +27,18 @@
         android:id="@+id/dd_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/background_text"
+        android:textColor="#ffffff"
         android:shadowColor="@color/background_light"
         android:textSize="@dimen/txt_dd_name"
         android:layout_above="@+id/dd_slogan"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:layout_marginBottom="@dimen/dd_txt_margin"/>
 
     <TextView android:text="@string/slogan"
         android:id="@+id/dd_slogan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/background_text"
+        android:textColor="#54956f"
         android:shadowColor="@color/background_light"
         android:textSize="@dimen/txt_dd_slogan"
         android:layout_centerHorizontal="true"

@@ -27,11 +27,17 @@
             android:textSize="@dimen/mailbox_desc_size"
             android:gravity="left" />
 
+        <Spinner
+            android:id="@+id/subject"
+            android:layout_below="@+id/mailbox_desc"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spinner_height" />
+
         <EditText
             android:id="@+id/mailbox_edit_text"
             android:layout_width="match_parent"
             android:layout_height="@dimen/mailbox_height"
-            android:layout_below="@+id/mailbox_desc"
+            android:layout_below="@+id/subject"
             android:layout_marginTop="40dp"
             android:editable="true"
             android:padding="5dp"

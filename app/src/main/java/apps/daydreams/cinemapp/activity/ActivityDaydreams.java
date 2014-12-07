@@ -17,7 +17,7 @@ public class ActivityDaydreams extends Activity {
         setContentView(R.layout.activity_daydreams);
 
         ProgressBar pBar = (ProgressBar) findViewById(R.id.progressBar);
-        pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#ffffff"),
+        pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#54956f"),
                 android.graphics.PorterDuff.Mode.SRC_IN);
 
         new Handler().postDelayed(new Runnable() {
@@ -27,6 +27,6 @@ public class ActivityDaydreams extends Activity {
                 ActivityDaydreams.this.startActivity(mainIntent);
                 ActivityDaydreams.this.finish();
             }
-        }, 1500);
+        }, 2000);
     }
 }

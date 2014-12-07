@@ -9,6 +9,9 @@ android:layout_height="match_parent">
         android:layout_height="fill_parent"
         android:divider="@color/list_divider_nd"
         android:dividerHeight="2dp"
-        android:listSelector="@drawable/list_bo_selector" />
+        android:listSelector="@drawable/list_bo_selector"
+        android:smoothScrollbar="true"
+        android:scrollingCache="false"
+        android:animationCache="false"/>
 
 </RelativeLayout>
