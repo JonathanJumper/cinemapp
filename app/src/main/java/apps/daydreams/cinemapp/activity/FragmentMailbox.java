@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import apps.daydreams.cinemapp.R;
@@ -17,7 +17,7 @@ import apps.daydreams.cinemapp.R;
  */
 public class FragmentMailbox extends Fragment {
 
-    private Button send;
+    private ImageButton send;
     private EditText mailText;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,7 +25,7 @@ public class FragmentMailbox extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_mailbox, container, false);
 
-        send = (Button) rootView.findViewById(R.id.send);
+        send = (ImageButton) rootView.findViewById(R.id.send);
         mailText = (EditText) rootView.findViewById(R.id.mailbox_edit_text);
 
         send.setOnClickListener(new View.OnClickListener() {

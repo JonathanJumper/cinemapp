@@ -66,13 +66,12 @@
 
     <!-- Mailbox -->
     <string name="mailbox_send">"Send"</string>
-    <string name="mailbox_desc">"En Daydreams te escuchamos, tus mensajes nos ayudan a mejorar día a día.
-        \nSi quieres reportar un fallo, bug o inconveniente, o si simplemente quieres dejarnos una sugerencia o consejo, este es el lugar.  Ayuda a que nuestros desarrolladores no se sientan solos, estaremos esperando tus mensajes :) </string>
+    <string name="mailbox_desc">"In Daydreams we listen to you, your messages make us improve everyday.
+        \nIf you want to report a bug, a failure or an inconvenient, or if you just want to leave us an advice or a suggestion, this is the right place. We'll be waiting to hear from you :) </string>
 
     <!-- About -->
     <string name="legal_advice">"Brought to you by Daydreams®, beyond imagination.
-    \nTodos los derechos reservados © 2014 Cinemapp Colombia y todas sus filiales.
-    \nCinemapp Colombia no representa a ninguna de las empresas o compañias aqui mostradas, ni tiene ningun vinculo directo con alguna de estas, todos los datos aqui mostrados son explicitamente informativos y no busca con estos el lucro o beneficio de forma alguna, indistinta de la aplicacion.</string>
-    <string name="beta">Version Beta</string>
+    \nAll rights reserved © 2014 Cinemapp Colombia And all its subsidiaries.
+    \nCinemapp Colombia does not represent any of the companies or companies listed here, nor have any direct link with any of these, all data shown here are explicitly informational and under no circumstances be liable Extra-counterfactual or counterfactual, for any damage resulting from the use of this site and is not responsible for the content or accuracy of any information. </string>
 
 </resources>

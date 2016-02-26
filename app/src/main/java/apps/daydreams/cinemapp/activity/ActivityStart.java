@@ -10,10 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -42,8 +41,7 @@ public class ActivityStart extends Activity {
     private Spinner sp_lang;
     private Spinner sp_cities;
     private ProgressBar pBar;
-    private Button okBtn;
-    private TextView tv_lang, tv_city;
+    private ImageButton okBtn;
     public DataContainer data = DataContainer.getInstance();
     SharedPreferences preferences;
 
@@ -52,7 +50,7 @@ public class ActivityStart extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        okBtn = (Button) findViewById(R.id.ok);
+        okBtn = (ImageButton) findViewById(R.id.ok);
         okBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 okBtn.setEnabled(false);
@@ -61,7 +59,7 @@ public class ActivityStart extends Activity {
         });
 
         pBar = (ProgressBar) findViewById(R.id.progressBar);
-        pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#e91e63"),
+        pBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#fff70d"),
                 android.graphics.PorterDuff.Mode.SRC_IN);
 
         sp_cities = (Spinner) findViewById(R.id.sp_cities);
@@ -80,11 +78,6 @@ public class ActivityStart extends Activity {
         sp_lang.setSelection(langToInt(gotLang));
         refreshLang(gotLang);
 
-        tv_city = (TextView) findViewById(R.id.tv_city);
-        tv_city.setText(R.string.start_pick_city);
-
-        tv_lang = (TextView) findViewById(R.id.tv_lang);
-        tv_lang.setText(R.string.start_pick_lang);
 
     }
 
@@ -147,20 +140,17 @@ public class ActivityStart extends Activity {
     }
 
     public void refreshData(){
-
-        // Showing progress bar before making http request
         pBar.setVisibility(View.VISIBLE);
 
-        String feedUrl = "http://cinemappco.appspot.com/getdata?city="+city+"&lang="+lang;
-        RequestQueue rq = Volley.newRequestQueue(this);
+        String feedUrl = "http://cinemappco.appspot.com/getdata?city=" + city + "&lang=" + lang;
+        RequestQueue rq = Volley.newRequestQueue(getApplicationContext());
+
         GsonRequest<DataContainer> getData =
                 new GsonRequest<DataContainer>(feedUrl, DataContainer.class,
                         new Response.Listener<DataContainer>() {
                             @Override
                             public void onResponse(DataContainer response) {
-                                pBar.setVisibility(View.GONE);
                                 data.setDataContainer(response);
-
                                 //persist data
                                 SharedPreferences.Editor prefsEditor = preferences.edit();
                                 Gson gson = new Gson();
@@ -171,6 +161,7 @@ public class ActivityStart extends Activity {
                                 prefsEditor.putString("lang", lang);
                                 prefsEditor.commit();
 
+                                pBar.setVisibility(View.GONE);
                                 toLobby();
                             }
                         },
@@ -183,7 +174,7 @@ public class ActivityStart extends Activity {
                                 Toast.makeText(getApplicationContext(), R.string.connection_error, Toast.LENGTH_LONG).show();
                             }
                         });
-        int socketTimeout = 20*1000;
+        int socketTimeout = 20 * 1000;
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         getData.setRetryPolicy(policy);
         rq.add(getData);
@@ -279,13 +270,7 @@ public class ActivityStart extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        tv_city = (TextView) findViewById(R.id.tv_city);
-        tv_city.setText(R.string.start_pick_city);
-
-        tv_lang = (TextView) findViewById(R.id.tv_lang);
-        tv_lang.setText(R.string.start_pick_lang);
     }
-
 
     @Override
     public void onPause() {

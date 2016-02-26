@@ -36,18 +36,13 @@
         <item>@drawable/ic_about</item>
     </array>
 
-    <!-- Content Description -->
-    <string name="desc_list_item_icon">Item Icon</string>
-
     <!-- Box Office -->
     <string name="connection_error">Check your internet access</string>
-    <string name="loading">Monos entrenados trabajando…</string>
     <string name="search_movie">Nombre, Director, Genero…</string>
 
     <!-- Movie Detail -->
     <string name="title_activity_movie_detail">Detalles</string>
     <string name="movie_description">Descripción:</string>
-    <string name="movie_description_null">No disponible</string>
     <string name="movie_original">Nombre original:</string>
     <string name="movie_director">Director:</string>
     <string name="movie_cast">Elenco:</string>
@@ -56,8 +51,6 @@
 
     <!-- Map Me -->
     <string name="youre_here">"Estas aqui"</string>
-    <string name="youre_here_snippet">"Selecciona el teatro deseado"</string>
-    <string name="marker_snippet">Click aqui para ver detalles</string>
 
     <!-- Theater -->
     <string name="search_theater">Nombre, Cadena, Direccion…</string>
@@ -74,11 +67,12 @@
     <!-- Mailbox -->
     <string name="mailbox_send">"Enviar"</string>
     <string name="mailbox_desc">"En Daydreams te escuchamos, tus mensajes nos ayudan a mejorar día a día.
-        \nSi quieres reportar un fallo, bug o inconveniente, o si simplemente quieres dejarnos una sugerencia o consejo, este es el lugar.  Ayuda a que nuestros desarrolladores no se sientan solos, estaremos esperando tus mensajes :) </string>
+        \nSi quieres reportar un fallo, bug o inconveniente, o si simplemente quieres dejarnos una sugerencia o consejo, este es el lugar.  Estaremos esperando tus mensajes :) </string>
 
     <!-- About -->
     <string name="legal_advice">"Brought to you by Daydreams®, beyond imagination.
     \nTodos los derechos reservados © 2014 Cinemapp Colombia y todas sus filiales.
     \nCinemapp Colombia no representa a ninguna de las empresas o compañias aqui mostradas, ni tiene ningun vinculo directo con alguna de estas, todos los datos aqui mostrados son explicitamente informativos y no busca con estos el lucro o beneficio de forma alguna, indistinta de la aplicacion.</string>
+    <string name="title_activity_activity_daydreams">ActivityDaydreams</string>
 
 </resources>

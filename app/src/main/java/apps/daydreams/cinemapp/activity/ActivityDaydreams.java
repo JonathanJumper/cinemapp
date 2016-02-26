@@ -27,6 +27,6 @@ public class ActivityDaydreams extends Activity {
                 ActivityDaydreams.this.startActivity(mainIntent);
                 ActivityDaydreams.this.finish();
             }
-        }, 2000);
+        }, 1300);
     }
 }

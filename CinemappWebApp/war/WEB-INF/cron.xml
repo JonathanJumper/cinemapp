@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+	<cron>
+		<url>/refreshdata</url>
+		<description>Daily data refresh cron task </description>
+		<schedule>every day 05:00</schedule>
+		<timezone>America/Bogota</timezone>
+	</cron>
+</cronentries>

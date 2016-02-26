@@ -148,7 +148,7 @@ public class ActivityLobby extends ActionBarActivity {
     /**
      * Diplaying fragment view for selected nav drawer list item
      * */
-    private void displayView(int position) {
+    public void displayView(int position) {
         // update the main content by replacing fragments
         Fragment fragment = null;
         switch (position) {
@@ -168,7 +168,7 @@ public class ActivityLobby extends ActionBarActivity {
                 fragment = fragmentMailbox;
                 break;
             case 5:
-                onBackPressed();
+                finish();
                 break;
             case 6:
                 fragment = fragmentAbout;
@@ -265,6 +265,15 @@ public class ActivityLobby extends ActionBarActivity {
     protected void onSaveInstanceState(Bundle outState) {
         Log.e("was called ---->","save instance");
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            mDrawerLayout.closeDrawer(Gravity.LEFT);
+        } else {
+            mDrawerLayout.openDrawer(Gravity.LEFT);
+        }
     }
 
     @Override

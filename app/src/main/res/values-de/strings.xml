@@ -8,7 +8,6 @@
     <string name = "action_settings">Einstellungen</string>
 
     <!-- Daydreams -->
-    <string name="title_activity_activity_daydreams">Cinemapp</string>
     <string name="company">Daydreams</string>
     <string name="slogan">Beyond imagination</string>
 
@@ -66,13 +65,13 @@
 
     <!-- Mailbox -->
     <string name="mailbox_send">"Senden"</string>
-    <string name="mailbox_desc">"En Daydreams te escuchamos, tus mensajes nos ayudan a mejorar día a día.
-        \nSi quieres reportar un fallo, bug o inconveniente, o si simplemente quieres dejarnos una sugerencia o consejo, este es el lugar.  Ayuda a que nuestros desarrolladores no se sientan solos, estaremos esperando tus mensajes :) </string>
+    <string name="mailbox_desc">In Daydreams Sie hören, Ihre Nachrichten helfen uns, jeden Tag zu verbessern.
+         \ nWenn möchten, dass Sie einen Bug, Bug oder das Problem, zu melden oder wenn Sie nur wollen uns einen Verbesserungsvorschlag oder Beratung zu gehen, ist dies der Ort. Wir werden warten, Ihre Beiträge :)</string>
 
     <!-- About -->
-    <string name="legal_advice">"Brought to you by Daydreams®, beyond imagination.
-    \nTodos los derechos reservados © 2014 Cinemapp Colombia y todas sus filiales.
-    \nCinemapp Colombia no representa a ninguna de las empresas o compañias aqui mostradas, ni tiene ningun vinculo directo con alguna de estas, todos los datos aqui mostrados son explicitamente informativos y no busca con estos el lucro o beneficio de forma alguna, indistinta de la aplicacion.</string>
-    <string name="beta">Version Beta</string>
+    <string name="legal_advice">Brought to you by Daydreams®, beyond imagination.
+    \nAlle Rechte vorbehalten © 2014 Cinemapp Colombia und alle ihre Tochtergesellschaften.
+    \nCinemapp Kolumbien stellt keine der hier genannten Unternehmen oder Unternehmen, noch eine direkte Verbindung Haben Mit einer dieser Punkte, Alle hier gezeigten Daten sind explizit zu Informationszwecken und unter keinen Umständen haftbar Zusätzliche kontrafaktischen Fallkonstellation oder, Aufgrund für Schäden, die aus der Nutzung dieser Website und ist nicht für den Inhalt oder die Richtigkeit der Informationen verantwortlich.</string>
+    <string name="title_activity_activity_daydreams">ActivityDaydreams</string>
 
 </resources>

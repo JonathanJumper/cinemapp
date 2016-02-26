@@ -27,17 +27,11 @@
             android:textSize="@dimen/mailbox_desc_size"
             android:gravity="left" />
 
-        <Spinner
-            android:id="@+id/subject"
-            android:layout_below="@+id/mailbox_desc"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/spinner_height" />
-
         <EditText
             android:id="@+id/mailbox_edit_text"
             android:layout_width="match_parent"
             android:layout_height="@dimen/mailbox_height"
-            android:layout_below="@+id/subject"
+            android:layout_below="@+id/mailbox_desc"
             android:layout_marginTop="40dp"
             android:editable="true"
             android:padding="5dp"
@@ -46,21 +40,16 @@
             android:textSize="@dimen/mailbox_text_size"
             android:background="@color/director" />
 
-        <Button
-            android:id="@+id/send"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_below="@+id/mailbox_desc"
-            android:layout_marginTop="240dp"
-            android:text="@string/mailbox_send"
-            android:textColor="#000000"
-            android:textStyle="bold|normal"
-            android:textSize="18dp"
-            android:singleLine="false"
-            android:layout_centerHorizontal="true"
+        <ImageButton android:id="@+id/send"
+            android:src="@drawable/ic_forward"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-30dp"
+            android:layout_alignParentRight="true"
             android:background="@drawable/rounded_button"
             android:onClick="urlOnClick"
-            />
+            android:layout_below="@+id/mailbox_edit_text"/>
 
     </RelativeLayout>
 

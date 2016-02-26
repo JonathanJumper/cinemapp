@@ -2,90 +2,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="apps.daydreams.cinemapp.activity.ActivityStart"
-    android:background="@drawable/start">
+    android:background="@color/background"
+    tools:context="apps.daydreams.cinemapp.activity.ActivityStart">
 
-    <TextView
-        android:id="@+id/tv_city"
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/sp_cities"
+        android:src="@drawable/start_bg"/>
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-
-        android:layout_alignBottom="@+id/sp_cities"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:src="@drawable/ribbon"
+        android:id="@+id/st_logo"
+        android:padding="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Spinner
-        android:layout_width="250dp"
-        android:layout_height="35dp"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
         android:id="@+id/sp_cities"
-        android:spinnerMode="dialog"
-        android:background="#00ffffff"
-
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
-
-    <TextView
-        android:id="@+id/tv_lang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:layout_alignTop="@id/sp_cities"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"/>
+        android:background="@color/primary"
+        android:layout_above="@+id/sp_lang"/>
 
     <Spinner
-        android:layout_width="250dp"
-        android:layout_height="35dp"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
         android:id="@+id/sp_lang"
-        android:spinnerMode="dialog"
-        android:background="#00ffffff"
+        android:background="@color/details"
+        android:layout_alignParentBottom="true"/>
 
-        android:layout_alignTop="@id/tv_lang"
-        android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true"/>
-
-    <Button android:id="@+id/ok"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
-        android:text="OK"
-        android:textColor="#000000"
-        android:textStyle="bold|normal"
-        android:textSize="18dp"
-        android:textAlignment="gravity"
-        android:singleLine="false"
-
-        android:layout_alignTop="@id/sp_lang"
-        android:layout_marginTop="70dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_button"
-     />
+    <ImageButton android:id="@+id/ok"
+        android:src="@drawable/ic_forward"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/sp_cities"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="-30dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/rounded_button" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="50dp"
         android:id="@+id/progressBar"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:visibility="invisible"
         android:indeterminate="true"
-        android:indeterminateBehavior="repeat"
-        android:indeterminateOnly="true"
-        android:focusableInTouchMode="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_version"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/beta"/>
-
+        android:visibility="invisible"
+        android:indeterminateBehavior="cycle"/>
 
 </RelativeLayout>

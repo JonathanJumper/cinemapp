@@ -5,4 +5,14 @@
     android:layout_height="match_parent"
     android:clickable="true">
 
+    <ListView
+        android:id="@+id/lv_genres"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/list_divider_nd"
+        android:dividerHeight="2dp"
+        android:listSelector="@drawable/list_bo_selector" />
+
+
+
 </TableLayout>

@@ -7,12 +7,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:scrollbarStyle="outsideOverlay"
-    android:background="@color/background"
+    android:background="@drawable/bg_pattern"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/ab_logo"
+            android:paddingRight="@dimen/dd_image_padding"
+            android:paddingLeft="@dimen/dd_image_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/daydreams"/>
+
+        <TextView android:text="@string/company"
+            android:id="@+id/ab_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#54956f"
+            android:textSize="@dimen/txt_dd_name"
+            android:layout_below="@+id/ab_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dd_txt_margin"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -25,7 +45,8 @@
             android:textColor="@color/background_light"
             android:padding="5dp"
             android:textSize="@dimen/mailbox_desc_size"
-            android:gravity="left" />
+            android:gravity="fill_horizontal"
+            android:layout_below="@+id/ab_name"/>
 
     </RelativeLayout>
 
