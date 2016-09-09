@@ -1,4 +1,4 @@
-Cinemapp Version 0.1.2
+Cinemapp 2014
 # ![1](media/Screenshot_2014-12-09-09-34-51.png)
 # ![2](media/Screenshot_2014-12-09-09-32-46.png)
 # ![3](media/Screenshot_2014-12-09-09-32-54.png)
@@ -8,3 +8,6 @@ Cinemapp Version 0.1.2
 # ![7](media/Screenshot_2014-12-09-09-34-09.png)
 # ![8](media/Screenshot_2014-12-09-09-34-02.png)
 # ![9](media/Screenshot_2014-12-09-09-30-34.png)
+# ![9](media/Screenshot_2014-12-09-09-33-45.png)
+# ![9](media/Screenshot_2014-12-09-09-30-34.png)
+# ![9](media/Screenshot_2014-12-09-09-33-38.png)
